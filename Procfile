@@ -1,0 +1,1 @@
+web: gunicorn mira_blog.wsgi
