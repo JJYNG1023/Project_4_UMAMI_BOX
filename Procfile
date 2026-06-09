@@ -1,1 +1,1 @@
-web: gunicorn mira_blog.wsgi
+web: gunicorn umami_box.wsgi
