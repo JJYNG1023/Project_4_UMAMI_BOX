@@ -82,6 +82,9 @@ h5 {
     color: var(--color-heading);
 }
 
+p{
+    font-size: small;
+}
 /* ------------------------------
 Logo
 -------------------------------*/
@@ -211,7 +214,7 @@ Footer
 }
 
 .footer-heading {
-    color: var(--color-secondary);
+    color: var(--color-light-text);
     font-weight: 700;
 }
 
@@ -250,7 +253,10 @@ Media query
     .basket-icon, .account-icon {
         padding-left: 20px;
     }
-
+    .footer-link-icon{
+    padding: 0 5px;
+    font-size: 1.5em;
+    }
 }
 
 /* Large devices (desktops, 992px and up)*/
@@ -266,5 +272,9 @@ Media query
     .nav-wrapper {
         padding-left: var(--desktop-side-padding);
         padding-right: var(--desktop-side-padding);
+    }
+    .footer-link-icon{
+    padding: 0 5px;
+    font-size: 1.5em;
     }
 }
