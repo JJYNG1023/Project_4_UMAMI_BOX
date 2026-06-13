@@ -1,7 +1,7 @@
 {% load static %}
 
 <header>
-    <nav class="navbar navbar-expand-lg bg-umami py-3">
+    <nav class="navbar navbar-expand-lg bg-umami-top-nav py-3">
         <div class="container-fluid px-3 px-lg-5"> 
             
             <!--mobile nav toggle-->
@@ -18,7 +18,7 @@
            
             <!-- Basket -->
             <a class="basket-icon ms-lg-4 mobile-basket-icon" href="#" aria-label="Basket">
-            <i class="bi bi-basket3"></i>
+            <i class="bi bi-bag"></i>
             </a>
         </div>  
     </nav>
@@ -32,14 +32,6 @@
     aria-hidden="true">
     <div class="modal-dialog modal-fullscreen-lg-down m-0">
         <div class="modal-content nav-modal-content">
-            <div class="ms-auto">
-                <button 
-                    type="button" 
-                    class="btn-close" 
-                    data-bs-dismiss="modal" 
-                    aria-label="Close navigation menu"
-                ></button>
-            </div>
             <div class="modal-body px-4">
                 <nav>
                     <ul class="list-unstyled nav-modal-list">
@@ -63,8 +55,26 @@
                         <li>
                             <a class="nav-modal-link" href="#">About</a>
                         </li>
+
+                        <br>
+
+                        <li>
+                            <a class="nav-modal-link" href="#">Account</a>
+                        </li>
+
+                        <li>
+                            <a class="nav-modal-link" href="#">Basket</a>
+                        </li>
                     </ul>
-                </nav>    
+                </nav>
+                <div class="d-flex justify-content-center close-button-wrapper">
+                <button 
+                    type="button" 
+                    class="btn border-0" 
+                    data-bs-dismiss="modal" 
+                    aria-label="Close navigation menu"
+                ><i class="bi bi-x-circle close-button"></i></button>
+                </div>    
             </div>
         </div>
     </div>

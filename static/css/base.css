@@ -1,20 +1,61 @@
 :root {
-    --color-primary: #0F2E22;
-    --color-primary-light: #244839;
-    --color-secondary: #D7A85C;
-    --color-accent: #C75436;
+     /* Brand colours */
+    --color-primary: #123525;          /* deep green header/buttons */
+    --color-primary-light: #1E4A35;    /* hover green */
+    --color-primary-dark: #0B2519;     /* darker green */
 
-    --color-background: #F8F1E6;
-    --color-background-soft: #EFE2CF;
-    --color-card: #FFF9EF;
+    --color-secondary: #D8B56D;        /* muted gold accent */
+    --color-accent: #C85A3A;           /* chilli / basket badge / spice */
 
-    --color-text: #1F1B16;
-    --color-heading: #14291F;
-    --color-muted: #6F675C;
+    /* Background colours */
+    --color-background: #F8F1E6;       /* warm cream */
+    --color-background-soft: #F1E5D2;  /* soft beige section */
+    --color-card: #FFF9EF;             /* card background */
+    --color-card-warm: #F4E8D5;        /* category / content card */
+    --color-white: #FFFFFF;
+
+    /* Text colours */
+    --color-text: #1F1B16;             /* main text */
+    --color-heading: #14291F;          /* heading dark green */
+    --color-muted: #6F675C;            /* muted paragraph text */
+    --color-light-text: #FFF9EF;       /* text on dark green */
+
+    /* Borders */
     --color-border: #D8C8AF;
+    --color-border-light: #E8DCCB;
 
+    /* Status colours */
+    --color-success: #2F6B45;
+    --color-warning: #D9A441;
+    --color-error: #A63A2A;
+
+    /* Fonts */
+    --font-logo: 'Inter', sans-serif;
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
+
+    /* Icon sizes */
+    --icon-size-1-5: 1.5em;
+    --icon-size-1-7: 1.7em;
+    --icon-size-1-8: 1.8em;
+    --icon-size-2-0: 2em;
+    --icon-size-2-5: 2.5em;
+    --icon-size-3-0: 3em;
+
+    /* Spacing */
+    --spacing-size-4-0: 4em;
+    --spacing-size-5-0: 5em;
+    --spacing-size-6-0: 6em;
+
+    /* Border radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1.25rem;
+    --radius-pill: 999px;
+
+    /* Shadows */
+    --shadow-soft: 0 8px 24px rgba(31, 27, 22, 0.08);
+    --shadow-card: 0 4px 16px rgba(31, 27, 22, 0.06);
 }
 
 body {
@@ -23,12 +64,23 @@ body {
     font-family: var(--font-body);
 }
 
-.brand-logo-center {
+h1,
+h2,
+h3,
+h4,
+h5,{
     font-family: var(--font-heading);
+}
+
+/* 
+Logo
+*/
+.brand-logo-center {
+    font-family: var(--font-logo);
     font-weight: 700;
-    letter-spacing: 0.08em;
-    line-height: 0.9;
-    color: var(--color-background);
+    letter-spacing: 0.2em;
+    line-height: 1em;
+    color: var(--color-primary);
     text-decoration: none;
 
     position: absolute;
@@ -39,32 +91,25 @@ body {
     line-height: 1;
 }
 
-.bg-umami {
-    background-color: var(--color-primary);
+.bg-umami-top-nav {
+    background-color: var(--color-background-soft);
     border-bottom: 1px solid var(--color-border);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-.brand-logo-center {
-    font-family: var(--font-heading);
+    height: var(--spacing-size-4-0);
+    width: 100%;
 }
 
 /*
 Mobile nav modal icon
 */
 .mobile-nav-icon {
-    color: var(--color-background);
-    font-size: 1.8rem;
+    color: var(--color-primary);
+    font-size: var(--icon-size-1-7);
     line-height: 1;
 }
 
 .mobile-basket-icon {
-    color: var(--color-background);
-    font-size: 1.5rem;
+    color: var(--color-primary);
+    font-size: var(--icon-size-1-5);
     line-height: 1;
 }
 
@@ -90,14 +135,24 @@ Mobile nav modal icon
 }
 
 .nav-modal-link {
-    color: var(--color-text);
+    color: var(--color-primary);
     font-family: var(--font-body);
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 2rem;
+    font-weight: 600;
     text-decoration: none;
+    padding-left: 1em;
 }
 
 .nav-modal-link:hover {
     color: var(--color-accent);
     text-decoration: none;
+}
+
+.close-button {
+    font-size: var(--icon-size-3-0);
+    color: var(--color-primary);
+}
+
+.close-button-wrapper{
+    margin-top: var(--spacing-size-6-0);
 }
