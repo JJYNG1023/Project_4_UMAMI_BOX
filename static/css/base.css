@@ -2,7 +2,7 @@
      /* Brand colours */
     --color-primary: #123525;          /* deep green header/buttons */
     --color-primary-light: #1E4A35;    /* hover green */
-    --color-primary-dark: #0B2519;     /* darker green */
+    --color-primary-dark: #03110a;     /* darker green */
 
     --color-secondary: #D8B56D;        /* muted gold accent */
     --color-accent: #C85A3A;           /* chilli / basket badge / spice */
@@ -33,6 +33,17 @@
     --font-logo: 'Inter', sans-serif;
     --font-heading: 'Inter', serif;
     --font-body: 'Inter', sans-serif;
+
+    /* Fonts */
+    --font-logo-size:15px;
+    --font-heading-size:14px;
+    --font-subheading-1-size: 13px;
+    --font-subheading-2-size: 12px;
+    --font-subheading-3-size: 11px;
+    --font-subheading-4-size: 10px;
+    --font-subheading-5-size: 9px;
+    --font-body-size: 10px;
+    --font-annotation-size:9px;
 
     /* Icon sizes */
     --icon-size-1-5: 1.5em;
@@ -83,7 +94,7 @@ h5 {
 }
 
 p{
-    font-size: small;
+    font-size: var(--font-body-size);
 }
 /* ------------------------------
 Logo
@@ -94,6 +105,7 @@ Logo
     letter-spacing: 0.2em;
     color: var(--color-light-text);
     text-decoration: none;
+    font-size: var(--font-logo-size);
 
     position: absolute;
     left: 50%;
@@ -115,7 +127,7 @@ Mobile nav modal icon
 -------------------------------*/
 .mobile-nav-icon {
     color: var(--color-light-text);
-    font-size: var(--icon-size-1-7);
+    font-size: var(--icon-size-1-5);
     line-height: 1;
 }
 
@@ -129,7 +141,7 @@ Mobile nav modal icon
 .mobile-basket-icon:hover,
 .account-icon:hover,
 .desktop-nav-link:hover{
-    color: var(--color-accent);
+    color: var(--color-primary-dark);
     text-decoration: none;
 }
 
@@ -156,7 +168,7 @@ Mobile nav modal icon
 }
 
 .nav-modal-link:hover {
-    color: var(--color-accent);
+    color: var(--color-primary-dark);
     text-decoration: none;
 }
 
@@ -173,8 +185,8 @@ Mobile nav modal icon
 mid to large view 
 -------------------------------*/
 .account-icon {
-    color: var(--color-primary);
-    font-size: var(--icon-size-1-7);
+    color: var(--color-light-text);
+    font-size: var(--icon-size-1-8);
     line-height: 1;
     text-decoration: none;
 }
@@ -182,7 +194,7 @@ mid to large view
 .desktop-nav-link{
     color: var(--color-light-text);
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: var(--font-subheading-1-size);
     font-weight: 600;
     text-decoration: none;
     padding-right: 1em;
@@ -208,6 +220,7 @@ Footer
 
 .footer-logo {
     font-family: var(--font-logo);
+    font-size: var(--font-logo-size);
     font-weight: 700;
     letter-spacing: 0.2em;
     color: var(--color-light-text);
@@ -215,20 +228,21 @@ Footer
 
 .footer-heading {
     color: var(--color-light-text);
+    font-size: var(--font-subheading-2-size);
     font-weight: 700;
 }
 
 .footer-link-icon{
     color: var(--color-light-text);
     padding: 0 15px;
-    font-size: var(--icon-size-1-8);
+    font-size: var(--icon-size-1-5);
 }
 
 .footer-link {
     color: var(--color-light-text);
+    font-size: var(--font-annotation-size);
     text-decoration: none;
     opacity: 0.8;
-    font-size: small;
 }
 
 .footer-link:hover {
@@ -255,7 +269,7 @@ Media query
     }
     .footer-link-icon{
     padding: 0 5px;
-    font-size: 1.5em;
+    font-size: 1.1em;
     }
 }
 
@@ -274,7 +288,7 @@ Media query
         padding-right: var(--desktop-side-padding);
     }
     .footer-link-icon{
-    padding: 0 5px;
-    font-size: 1.5em;
+    padding: 0 3px;
+    font-size: 1.1em;
     }
 }
