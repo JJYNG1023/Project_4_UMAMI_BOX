@@ -63,6 +63,10 @@
     --desktop-side-padding: 4em;
 }
 
+/* ------------------------------
+general css
+-------------------------------*/
+
 body {
     background-color: var(--color-background-soft);
     color: var(--color-text);
@@ -78,14 +82,14 @@ h5 {
     color: var(--color-heading);
 }
 
-/* 
+/* ------------------------------
 Logo
-*/
+-------------------------------*/
 .brand-logo-center {
     font-family: var(--font-logo);
     font-weight: 700;
     letter-spacing: 0.2em;
-    color: var(--color-primary);
+    color: var(--color-light-text);
     text-decoration: none;
 
     position: absolute;
@@ -97,50 +101,50 @@ Logo
 }
 
 .bg-umami-top-nav {
-    background-color: var(--color-background-soft);
+    background-color: var(--color-primary);
     border-bottom: 1px solid var(--color-border);
     height: var(--spacing-size-4-0);
     width: 100%;
 }
 
-/*
+/* ------------------------------
 Mobile nav modal icon
-*/
+-------------------------------*/
 .mobile-nav-icon {
-    color: var(--color-primary);
+    color: var(--color-light-text);
     font-size: var(--icon-size-1-7);
     line-height: 1;
 }
 
 .mobile-basket-icon {
-    color: var(--color-primary);
+    color: var(--color-light-text);
     font-size: var(--icon-size-1-5);
     line-height: 1;
 }
 
 .mobile-nav-icon:hover,
-.mobile-basket-icon:hover {
+.mobile-basket-icon:hover,
+.account-icon:hover,
+.desktop-nav-link:hover{
     color: var(--color-accent);
+    text-decoration: none;
 }
 
 .nav-modal-content {
-    background-color: var(--color-background);
-    color: var(--color-text);
+    background-color: var(--color-primary-light);
+    color: var(--color-light-text);
     min-height: 100vh;
     border: 0;
     border-radius: 0;
 }
 
-.nav-modal-list {
-    margin-top: 2rem;
-}
-
 .nav-modal-list li {
+    margin-top: 2rem;
     margin-bottom: 1.5rem;
 }
 
 .nav-modal-link {
-    color: var(--color-text);
+    color: var(--color-light-text);
     font-family: var(--font-body);
     font-size: 2rem;
     font-weight: 600;
@@ -155,52 +159,86 @@ Mobile nav modal icon
 
 .close-button {
     font-size: var(--icon-size-3-0);
-    color: var(--color-primary);
+    color: var(--color-light-text);
 }
 
 .close-button-wrapper{
     margin-top: var(--spacing-size-6-0);
 }
 
-/*
-desktop view 
-*/
+/* ------------------------------
+mid to large view 
+-------------------------------*/
 .account-icon {
     color: var(--color-primary);
     font-size: var(--icon-size-1-7);
     line-height: 1;
     text-decoration: none;
 }
-.account-icon:hover {
-    color: var(--color-accent);
-}
 
 .desktop-nav-link{
-    color: var(--color-text);
+    color: var(--color-light-text);
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
     padding-right: 1em;
-    justify-content: center;
-}
-.desktop-nav-link:hover {
-    color: var(--color-accent);
-    text-decoration: none;
 }
 
 .nav-wrapper {
     padding-left: var(--moible-side-padding);
-    padding-right:var(--moible-side-padding);
+    padding-right: var(--moible-side-padding);
 }
 
 .page-wrapper {
-    width: 100%;
+    padding-left: var(--moible-side-padding);
+    padding-right: var(--moible-side-padding);
 }
 
-/*
-media query
-*/
+
+/* ------------------------------
+Footer
+-------------------------------*/
+.bg-umami-footer {
+    background-color: var(--color-primary);
+}
+
+.footer-logo {
+    font-family: var(--font-logo);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--color-light-text);
+}
+
+.footer-heading {
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+.footer-link-icon{
+    color: var(--color-light-text);
+    padding: 0 15px;
+    font-size: var(--icon-size-1-8);
+}
+
+.footer-link {
+    color: var(--color-light-text);
+    text-decoration: none;
+    opacity: 0.8;
+    font-size: small;
+}
+
+.footer-link:hover {
+    color: var(--color-secondary);
+    opacity: 1;
+    text-decoration: none;
+}
+
+
+/* ------------------------------
+Media query
+-------------------------------*/
+
 
 /* Medium screens and above */
 @media (min-width: 768px) {

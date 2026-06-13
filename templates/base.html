@@ -2,7 +2,7 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
 
     {% block meta %}
         <meta charset="utf-8">
@@ -31,8 +31,9 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Macondo&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Shippori+Antique+B1&display=swap" rel="stylesheet">
 
     <title>UMAMI BOX {% block extra_title %}{% endblock %}</title>
-  </head>
-  <body class="background-color">
+</head>
+
+<body class="background-color">
     {% include 'includes/navbar.html' %}
 
 
@@ -48,6 +49,10 @@
     {% endblock %}
 </main>
 
+
+<footer>
+    {% include 'includes/footer.html' %}
+</footer>
 
 {% block core_js %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
