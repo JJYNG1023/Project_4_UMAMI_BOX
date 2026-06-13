@@ -31,7 +31,7 @@
 
     /* Fonts */
     --font-logo: 'Inter', sans-serif;
-    --font-heading: 'Playfair Display', serif;
+    --font-heading: 'Inter', serif;
     --font-body: 'Inter', sans-serif;
 
     /* Icon sizes */
@@ -43,6 +43,7 @@
     --icon-size-3-0: 3em;
 
     /* Spacing */
+    --spacing-size-4-0: 3em;
     --spacing-size-4-0: 4em;
     --spacing-size-5-0: 5em;
     --spacing-size-6-0: 6em;
@@ -56,10 +57,14 @@
     /* Shadows */
     --shadow-soft: 0 8px 24px rgba(31, 27, 22, 0.08);
     --shadow-card: 0 4px 16px rgba(31, 27, 22, 0.06);
+
+    --moible-side-padding: 1.5em;
+    --tablet-side-padding: 5em;
+    --desktop-side-padding: 4em;
 }
 
 body {
-    background-color: var(--color-background);
+    background-color: var(--color-background-soft);
     color: var(--color-text);
     font-family: var(--font-body);
 }
@@ -68,8 +73,9 @@ h1,
 h2,
 h3,
 h4,
-h5,{
+h5 {
     font-family: var(--font-heading);
+    color: var(--color-heading);
 }
 
 /* 
@@ -79,7 +85,6 @@ Logo
     font-family: var(--font-logo);
     font-weight: 700;
     letter-spacing: 0.2em;
-    line-height: 1em;
     color: var(--color-primary);
     text-decoration: none;
 
@@ -135,7 +140,7 @@ Mobile nav modal icon
 }
 
 .nav-modal-link {
-    color: var(--color-primary);
+    color: var(--color-text);
     font-family: var(--font-body);
     font-size: 2rem;
     font-weight: 600;
@@ -155,4 +160,73 @@ Mobile nav modal icon
 
 .close-button-wrapper{
     margin-top: var(--spacing-size-6-0);
+}
+
+/*
+desktop view 
+*/
+.account-icon {
+    color: var(--color-primary);
+    font-size: var(--icon-size-1-7);
+    line-height: 1;
+    text-decoration: none;
+}
+.account-icon:hover {
+    color: var(--color-accent);
+}
+
+.desktop-nav-link{
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding-right: 1em;
+    justify-content: center;
+}
+.desktop-nav-link:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.nav-wrapper {
+    padding-left: var(--moible-side-padding);
+    padding-right:var(--moible-side-padding);
+}
+
+.page-wrapper {
+    width: 100%;
+}
+
+/*
+media query
+*/
+
+/* Medium screens and above */
+@media (min-width: 768px) {
+    .page-wrapper, 
+    .nav-wrapper {
+        padding-left: var(--tablet-side-padding);
+        padding-right: var(--tablet-side-padding);     
+    }
+    .basket-icon, .account-icon {
+        padding-left: 20px;
+    }
+
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {     
+    .brand-logo-center {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-right: 3rem;
+        left:auto;
+    }
+    .page-wrapper,
+    .nav-wrapper {
+        padding-left: var(--desktop-side-padding);
+        padding-right: var(--desktop-side-padding);
+    }
 }
