@@ -1,0 +1,103 @@
+:root {
+    --color-primary: #0F2E22;
+    --color-primary-light: #244839;
+    --color-secondary: #D7A85C;
+    --color-accent: #C75436;
+
+    --color-background: #F8F1E6;
+    --color-background-soft: #EFE2CF;
+    --color-card: #FFF9EF;
+
+    --color-text: #1F1B16;
+    --color-heading: #14291F;
+    --color-muted: #6F675C;
+    --color-border: #D8C8AF;
+
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-body);
+}
+
+.brand-logo-center {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 0.9;
+    color: var(--color-background);
+    text-decoration: none;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    text-align: center;
+    line-height: 1;
+}
+
+.bg-umami {
+    background-color: var(--color-primary);
+    border-bottom: 1px solid var(--color-border);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.brand-logo-center {
+    font-family: var(--font-heading);
+}
+
+/*
+Mobile nav modal icon
+*/
+.mobile-nav-icon {
+    color: var(--color-background);
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.mobile-basket-icon {
+    color: var(--color-background);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.mobile-nav-icon:hover,
+.mobile-basket-icon:hover {
+    color: var(--color-accent);
+}
+
+.nav-modal-content {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
+}
+
+.nav-modal-list {
+    margin-top: 2rem;
+}
+
+.nav-modal-list li {
+    margin-bottom: 1.5rem;
+}
+
+.nav-modal-link {
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.nav-modal-link:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+}
