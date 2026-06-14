@@ -1,0 +1,110 @@
+:root {
+     /* Brand colours */
+    --color-primary: #123525;          /* deep green header/buttons */
+    --color-primary-light: #1E4A35;    /* hover green */
+    --color-primary-dark: #03110a;     /* darker green */
+
+    --color-secondary: #D8B56D;        /* muted gold accent */
+    --color-accent: #C85A3A;           /* chilli / basket badge / spice */
+
+    /* Background colours */
+    --color-background: #F8F1E6;       /* warm cream */
+    --color-background-soft: #F1E5D2;  /* soft beige section */
+    --color-card: #FFF9EF;             /* card background */
+    --color-card-warm: #F4E8D5;        /* category / content card */
+    --color-white: #FFFFFF;
+
+    /* Text colours */
+    --color-text: #1F1B16;             /* main text */
+    --color-heading: #14291F;          /* heading dark green */
+    --color-muted: #6F675C;            /* muted paragraph text */
+    --color-light-text: #FFF9EF;       /* text on dark green */
+
+    /* Borders */
+    --color-border: #D8C8AF;
+    --color-border-light: #E8DCCB;
+
+    /* Status colours */
+    --color-success: #2F6B45;
+    --color-warning: #D9A441;
+    --color-error: #A63A2A;
+
+    /* Fonts */
+    --font-logo: 'Inter', sans-serif;
+    --font-heading: 'Inter', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Fonts */
+    --font-logo-size:15px;
+    --font-heading-size:20px;
+    --font-subheading-1-size: 13px;
+    --font-subheading-2-size: 12px;
+    --font-subheading-3-size: 11px;
+    --font-subheading-4-size: 10px;
+    --font-subheading-5-size: 9px;
+    --font-body-size: 10px;
+    --font-annotation-size:9px;
+
+    /* Icon sizes */
+    --icon-size-1-5: 1.5em;
+    --icon-size-1-7: 1.7em;
+    --icon-size-1-8: 1.8em;
+    --icon-size-2-0: 2em;
+    --icon-size-2-5: 2.5em;
+    --icon-size-3-0: 3em;
+
+    /* Spacing */
+    --spacing-size-4-0: 3em;
+    --spacing-size-4-0: 4em;
+    --spacing-size-5-0: 5em;
+    --spacing-size-6-0: 6em;
+
+    /* Border radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1.25rem;
+    --radius-pill: 999px;
+
+    /* Shadows */
+    --shadow-soft: 0 8px 24px rgba(31, 27, 22, 0.08);
+    --shadow-card: 0 4px 16px rgba(31, 27, 22, 0.06);
+
+    --moible-side-padding: 1.5em;
+    --tablet-side-padding: 5em;
+    --desktop-side-padding: 4em;
+}
+
+.hero-image {
+    height: 80vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-section{
+    background-color: #2F6B45;
+    padding: 40px 0px;
+    margin: 0px 40px;
+    border-radius: 5%;
+}
+
+.hero-title{
+    color: var( --color-primary-dark);
+}
+
+.hero-message{
+    color: var(--color-primary-dark);
+}
+
+.hero-offer-message {
+    padding-top: 50px;
+    color: var(--color-secondary);
+    font-size: var(--font-subheading-1-size);
+    font-weight: 800;
+}
+
+.heading{
+    font-size: var(--font-heading-size);
+    font-family: var(--font-heading);
+    font-weight:700;
+    color: var(--color-heading);
+}
