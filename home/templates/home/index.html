@@ -47,39 +47,39 @@
 <section>
     <div class="container page-wrapper ">
         <div class="col-12 col-md-6 col-lg-5 mx-auto text-center mt-5">
-            <h1 class="mb-3 heading">
+            <h2 class="mb-4 heading">
                 EXPLORE OUR RANGE
-            </h1>
+            </h2>
         </div>
         <div id="carouselExample" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                 <img src="{% static 'images/meal-kits.png' %}" class="d-block w-100 meal-explore-range" alt="meal-kits">
                  <div class="card-body">
-                    <h5 class="card-title">Meal Kits</h5>
+                    <h2 class="step-card-title">Meal Kits</h2>
                     <p class="card-text">Pre-portioned ingredients and signature sauces delivered together, making it easy for professional cook at home.</p>
                 </div>
                 </div>
                 <div class="carousel-item">
                 <img src="{% static 'images/ready-meal.png' %}" class="d-block w-100 meal-explore-range" alt="ready-meal">
                 <div class="card-body">
-                <h5 class="card-title">Ready Meals</h5>
+                <h2 class="step-card-title">Ready Meals</h2>
                 <p class="card-text">Freshly prepared meals, ready to heat and enjoy in minutes — perfect for busy days without compromising on flavour.</p>
             </div>
                 </div>
                 <div class="carousel-item">
                 <img src="{% static 'images/signature-sauces.png' %}" class="d-block w-100 meal-explore-range" alt="signature-sauces">
                 <div class="card-body">
-                    <h5 class="card-title">Signature Sauces</h5>
+                    <h2 class="step-card-title">Signature Sauces</h2>
                     <p class="card-text">Rich, flavour-packed homemade sauces crafted to bring authentic taste to your everyday cooking.</p>
                 </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <button class="carousel-control-prev mb-5" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <button class="carousel-control-next mb-5" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -90,16 +90,16 @@
 <!-- card on how umami work-->
 <section class="card-section">
     <div class="container page-wrapper">
-        <h1 class="heading text-center mt-4 pt-5">
-        HOW UMAMI <strong> WORKS?</strong> </h1>
+        <h2 class="heading text-center mt-4 pt-5">
+        HOW UMAMI <strong> WORKS?</strong> </h2>
         <div class="row">  
             <!-- Step 1 -->
             <div class="col">
                 <div class="step-card-img-top text-center">
-                <span class="card-title text-uppercase">Step 1</span>
+                <span class="step-card-title text-uppercase">Step 1</span>
                 <img src="{% static 'images/step1-meal-order.png' %}" class="card-img-top" alt="Step 1: Pick your favourite ready meal, meal kit or signature sauce from our menu">
                     <div class="card-body text-center">
-                        <span class="card-title text-uppercase">Choose</span>
+                        <span class="step-card-title text-uppercase">Choose</span>
                         <p class="card-text">Pick your favourite ready meal, meal kit or signature sauce.</p>
                     </div>
                 </div>
@@ -108,10 +108,10 @@
             <!-- Step 2 -->
             <div class="col">
                 <div class="step-card-img-top text-center">
-                    <span class="card-title text-uppercase">Step 2</span>
+                    <span class="step-card-title text-uppercase">Step 2</span>
                     <img src="{% static 'images/step2-meal-delivery.png' %}" class="card-img-top" alt="Step 2:We carefully pack your order and deliver it fresh to your door ">
                     <div class="card-body text-center">
-                        <span class="card-title text-uppercase">Deliver</span>
+                        <span class="step-card-title text-uppercase">Deliver</span>
                         <p class="card-text">We carefully pack your order and deliver it fresh to your door.</p>
                     </div>
                 </div>
@@ -119,10 +119,10 @@
             <!-- Step 3 -->
             <div class="col">
                 <div class="step-card-img-top text-center">
-                    <span class="card-title text-uppercase">Step 3</span>
+                    <span class="step-card-title text-uppercase">Step 3</span>
                     <img src="{% static 'images/step3-meal-cook.png' %}" class="card-img-top" alt="Step 3:Follow the simple instructions, cook in minutes and enjoy authentic Asian flavours at home ">
                     <div class="card-body text-center">
-                        <span class="card-title text-uppercase">Cook</span>
+                        <span class="step-card-title text-uppercase">Cook</span>
                         <p class="card-text">Follow the simple instructions, cook in minutes.</p>
                     </div>
                 </div>
@@ -134,10 +134,10 @@
 <!-- recommended menu-->
 <section>
     <div class="container page-wrapper">
-        <h1 class="mb-4 heading text-center mt-5">
-        Explore our menue </h1>
-        <div class="row flex-nowrap overflow-auto g-3">  
-            <div class="col-10 col-sm-6 col-md-4">
+        <h2 class="mb-4 heading text-center mt-5 text-uppercase">
+        Explore our menu </h2>
+        <div class="row flex-nowrap flex-md-nowrap overflow-auto g-3">  
+            <div class="col-10 col-sm-6 col-md-6 col-lg-4">
                 <div class="h-100 explore-menue-card">
                 <img src="{% static 'images/step1-meal-order.png' %}" class="card-img-top" alt="menu">
                     <div class="ps-2 card-img-overlay d-flex flex-column justify-content-end align-items-start mb-4">
@@ -147,7 +147,7 @@
                 </div>
             </div>    
 
-            <div class="col-10 col-sm-6 col-md-4">
+            <div class="col-10 col-sm-6 col-md-6 col-lg-4">
                 <div class="h-100 explore-menue-card">
                 <img src="{% static 'images/step1-meal-order.png' %}" class="card-img-top" alt="menu">
                     <div class="ps-2 card-img-overlay d-flex flex-column justify-content-end align-items-start mb-4">
@@ -156,7 +156,7 @@
                     </div>
                 </div>
             </div>  
-            <div class="col-10 col-sm-6 col-md-4">
+            <div class="col-10 col-sm-6 col-md-6 col-lg-4">
                 <div class="h-100 explore-menue-card">
                 <img src="{% static 'images/step1-meal-order.png' %}" class="card-img-top" alt="menu">
                     <div class="ps-2 card-img-overlay d-flex flex-column justify-content-end align-items-start mb-4">
@@ -173,45 +173,58 @@
 <!-- sustainability-->
 <section class="card-section sustainability-section">
     <div class="container page-wrapper">
-        <h1 class="heading text-center pt-5 mb-5">
-        Better Food, Less Waste </h1>
-        <div class="row mt-2 mb-3">
-            <div class="col-2">
-                <img src="{% static 'images/sustainability-low-carbon.png' %}" class="sustainability-icon" alt=""> 
-            </div>
-            <div class="col-10">
-                <h3>Low Carbon</h3>
-                <p>Reduce food waste by providing portioned ingredients, so customers only receive what they need for each meal.</p>
-            </div>
-        </div>
-        <div class="row mt-3 mb-3">
-            <div class="col-2">
-                <img src="{% static 'images/sustainability-recycling.png' %}" class="sustainability-icon" alt=""> 
-            </div>
-            <div class="col-10">
-                <h3>Recycling Drop-Off Point</h3>
-                <p>Customers can return reusable containers to our recycling point, helping reduce single-use waste.</p>
-            </div>
-        </div> 
-        <div class="row mt-3 mb-3">
-            <div class="col-2">
-                <img src="{% static 'images/sustainability-source-local.png' %}" class="sustainability-icon" alt=""> 
-            </div>
-            <div class="col-10">
-                <h3>Locally Sourced Ingredients</h3>
-                <p>Source fresh ingredients from local farmers and suppliers to support the community and reduce food miles.</p>
-            </div>
-        </div> 
-        <div class="row mt-3">
-            <div class="col-2">
-                <img src="{% static 'images/sustainability-ice-pack.png' %}" class="sustainability-icon" alt=""> 
-            </div>
-            <div class="col-10">
-                <h3>Reusable Ice Packs</h3>
-                <p>Return used ice packs with their next order or drop them off at our recycling point, to reuse materials and reduce packaging waste.</p>
-            </div>
-        </div> 
-    </div>
+        <h2 class="heading text-center pt-5 mb-5 text-uppercase">
+        Better Food, Less Waste </h2>
+        <div class="row g-4">
+            
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="row align-items-center text-md-center">
+                    <div class="col-2 col-md-12">
+                        <img src="{% static 'images/sustainability-low-carbon.png' %}" class="sustainability-icon" alt=""> 
+                    </div>
+                    <div class="col-10 col-md-12 text-md-center">
+                        <h3>Low Carbon</h3>
+                        <p>Reduce food waste by providing portioned ingredients, so customers only receive what they need for each meal.</p>
+                    </div>
+                </div>
+            </div>    
 
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="row align-items-center text-md-center">
+                    <div class="col-2 col-md-12">
+                        <img src="{% static 'images/sustainability-recycling.png' %}" class="sustainability-icon" alt=""> 
+                    </div>
+                    <div class="col-10 col-md-12 text-md-center">
+                        <h3>Recycling Drop-Off Point</h3>
+                        <p>Customers can return reusable containers to our recycling point, helping reduce single-use waste.</p>
+                    </div>
+                </div>
+            </div>        
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="row align-items-center text-md-center">
+                    <div class="col-2 col-md-12">
+                        <img src="{% static 'images/sustainability-source-local.png' %}" class="sustainability-icon" alt=""> 
+                    </div>
+                    <div class="col-10 col-md-12 text-md-center">
+                        <h3>Locally Sourced Ingredients</h3>
+                        <p>Source fresh ingredients from local farmers and suppliers to support the community and reduce food miles.</p>
+                    </div>
+                </div>
+            </div>        
+        
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="row align-items-center text-md-center">
+                    <div class="col-2 col-md-12">
+                        <img src="{% static 'images/sustainability-ice-pack.png' %}" class="sustainability-icon" alt=""> 
+                    </div>
+                    <div class="col-10 col-md-12 text-md-center">
+                        <h3>Reusable Ice Packs</h3>
+                        <p>Return used ice packs with their next order or drop them off at our recycling point, to reuse materials and reduce packaging waste.</p>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
 </section>
 {% endblock %}

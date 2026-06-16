@@ -271,6 +271,9 @@ Media query
     padding: 0 5px;
     font-size: 1.1em;
     }
+    .social-media{
+        padding-left:15em;
+    }
 }
 
 /* Large devices (desktops, 992px and up)*/
