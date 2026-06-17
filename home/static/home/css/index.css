@@ -84,6 +84,22 @@ Hero section
     object-position: center;
 }
 
+.hero-section {
+    background-color: #2F6B45;
+    padding: 40px;
+    margin: 0 40px;
+    border-radius: 5%;
+    max-width: 520px;
+}
+
+.hero-container {
+    width: 100%;
+}
+
+.hero-content {
+    width: 100%;
+}
+
 .hero-section{
     background-color: #2F6B45;
     padding: 40px 0px;
@@ -97,6 +113,7 @@ Hero section
 
 .hero-message{
     color: var(--color-primary-dark);
+    padding-right: 40px;
 }
 
 .hero-offer-message {
@@ -237,16 +254,23 @@ tablet view
 }
 
 .hero-section {
-    margin: 0 150px;
+    margin: 2em 11em;
+    padding: 3.5rem 1rem;
+    max-width: calc(100% - 80px);
+}
+.hero-title {
+    font-size: 2.5rem;
+    padding-bottom: 0.5em;
     
+}
+.hero-message {
+    font-size: 1rem;
 }
 
 .hero-title {
     font-size: 3rem;
 }
-.hero-message {
-    font-size: 1.1rem;
-}
+
 /* Explore range carousel */
 .meal-explore-range {
     height: 420px;
@@ -282,7 +306,7 @@ tablet view
     font-size: 0.8rem;
 }
 
-    /* Sustainability section */
+/* Sustainability section */
 .sustainability-icon {
     width: 4.5em;
     height: 4.5em;
