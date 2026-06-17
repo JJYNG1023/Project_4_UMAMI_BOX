@@ -277,11 +277,6 @@ tablet view
         object-fit: cover;
     }
 
-    .carousel-control-next-icon , 
-    .carousel-control-prev-icon {
-        
-    }
-
     /* How it works section */
     .card-section .row {
         align-items: start;
