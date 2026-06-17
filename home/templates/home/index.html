@@ -46,42 +46,60 @@
 
 <!-- carousel for meal types-->
 <section>
-    <div class="container page-wrapper ">
+    <div class="container">
         <div class="col-12 col-md-6 col-lg-5 mx-auto text-center mt-5">
             <h2 class="mb-4 heading">
                 EXPLORE OUR RANGE
             </h2>
         </div>
         <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
+            <div class="carousel-inner page-wrapper">
                 <div class="carousel-item active">
-                <img src="{% static 'images/meal-kits.png' %}" class="d-block w-100 meal-explore-range" alt="meal-kits">
-                 <div class="card-body">
-                    <h2 class="step-card-title">Meal Kits</h2>
-                    <p class="card-text">Pre-portioned ingredients and signature sauces delivered together, making it easy for professional cook at home.</p>
-                </div>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-7">
+                            <img src="{% static 'images/meal-kits.png' %}" class="d-block w-100 meal-explore-range" alt="meal-kits">
+                        </div>
+                        <div class="col-12 col-lg-5">
+                            <div class="card-body text-center text-lg-start px-4 py-4">
+                                <h2 class="step-card-title text-lg-start pt-lg-0">Meal Kits</h2>
+                                <p class="card-text text-lg-start px-lg-0">Pre-portioned ingredients and signature sauces delivered together, making it easy for professional cook at home.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="carousel-item">
-                <img src="{% static 'images/ready-meal.png' %}" class="d-block w-100 meal-explore-range" alt="ready-meal">
-                <div class="card-body">
-                <h2 class="step-card-title">Ready Meals</h2>
-                <p class="card-text">Freshly prepared meals, ready to heat and enjoy in minutes — perfect for busy days without compromising on flavour.</p>
-            </div>
-                </div>
+                       <div class="row align-items-center">
+                           <div class="col-12 col-lg-7">
+                               <img src="{% static 'images/ready-meal.png' %}" class="d-block w-100 meal-explore-range" alt="ready-meal">
+                           </div>
+                       <div class="col-12 col-lg-5">
+                           <div class="card-body text-center text-lg-start px-4 py-4">
+                               <h2 class="step-card-title text-lg-start pt-lg-0">Ready Meals</h2>
+                               <p class="card-text text-lg-start px-lg-0">Freshly prepared meals, ready to heat and enjoy in minutes — perfect for busy days without compromising on flavour.</p>
+                           </div>
+                       </div>
+                    </div> 
+                </div>   
                 <div class="carousel-item">
-                <img src="{% static 'images/signature-sauces.png' %}" class="d-block w-100 meal-explore-range" alt="signature-sauces">
-                <div class="card-body">
-                    <h2 class="step-card-title">Signature Sauces</h2>
-                    <p class="card-text">Rich, flavour-packed homemade sauces crafted to bring authentic taste to your everyday cooking.</p>
-                </div>
+                      <div class="row align-items-center">
+                        <div class="col-12 col-lg-7">
+                              <img src="{% static 'images/signature-sauces.png' %}" class="d-block w-100 meal-explore-range" alt="signature-sauces">
+                        </div>
+                        <div class="col-12 col-lg-5">
+                          <div class="card-body text-center text-lg-start px-4 py-4">
+                              <h2 class="step-card-title text-lg-start pt-lg-0">Signature Sauces</h2>
+                              <p class="card-text text-lg-start px-lg-0">Rich, flavour-packed homemade sauces crafted to bring authentic taste to your everyday cooking.</p>
+                          </div>    
+                        </div>
+                    </div>      
                 </div>
             </div>
-            <button class="carousel-control-prev mb-5" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon custom-carousel-control" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next mb-5" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <button class="carousel-control-next custom-carousel-control" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon custom-carousel-control" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>

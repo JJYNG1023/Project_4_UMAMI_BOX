@@ -100,13 +100,6 @@ Hero section
     width: 100%;
 }
 
-.hero-section{
-    background-color: #2F6B45;
-    padding: 40px 0px;
-    margin: 0px 40px;
-    border-radius: 5%;
-}
-
 .hero-title{
     color: var( --color-primary-dark);
 }
@@ -141,7 +134,15 @@ Explore range section
     object-position: center;
 }
 
+.custom-carousel-control{
+    padding-bottom: 10em;
+}
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+}
 /* ------------------------------
 How it works section
 -------------------------------*/
@@ -247,76 +248,236 @@ mobile view
 tablet view
 -------------------------------*/
 @media (min-width: 768px) and (max-width: 991.98px) {
-    /* tablet styles */
-/* Hero section */
-.hero-image {
-    height: 70vh;
+    /* Hero section */
+    .hero-image {
+        height: 70vh;
+    }
+
+    .hero-section {
+        margin: 2em 11em;
+        padding: 3.5rem 1rem;
+        max-width: calc(100% - 80px);
+    }
+    .hero-title {
+        font-size: 2.5rem;
+        padding-bottom: 0.5em;
+
+    }
+    .hero-message {
+        font-size: 1rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    /* Explore range carousel */
+    .meal-explore-range {
+        height: 420px;
+        object-fit: cover;
+    }
+
+    .carousel-control-next-icon , 
+    .carousel-control-prev-icon {
+        
+    }
+
+    /* How it works section */
+    .card-section .row {
+        align-items: start;
+    }
+    .step-card-img-top {
+        padding: 1em 0.5em;
+    }
+    .step-card-title {
+        font-size: 14px;
+    }
+    .card-text {
+        font-size: 10px;
+        padding: 0.5em 0.8em 1em 0.8em;
+    }
+    /* Explore menu cards */
+    .explore-menue-card {
+        width: 100%;
+        min-height: 380px;
+    }
+    .explore-menue-card img {
+        height: 380px;
+        object-fit: cover;
+    }
+    .explore-menue-title {
+        font-size: 1rem;
+    }
+    .explore-menue-summary {
+        font-size: 0.8rem;
+    }
+
+    /* Sustainability section */
+    .sustainability-icon {
+        width: 4.5em;
+        height: 4.5em;
+    }
+
+    .sustainability-section h3 {
+        font-size: 1rem;
+    }
+
+    .sustainability-section p {
+        font-size: 0.8rem;
+    }
 }
 
-.hero-section {
-    margin: 2em 11em;
-    padding: 3.5rem 1rem;
-    max-width: calc(100% - 80px);
-}
-.hero-title {
-    font-size: 2.5rem;
-    padding-bottom: 0.5em;
+/* ------------------------------
+Large screen view
+-------------------------------*/
+@media (min-width: 992px) {
+    .hero-image {
+        height: 78vh;
+    }
+
+    .hero-section {
+        max-width: 500px;
+        margin-left: 5rem;
+        padding: 2.5rem;
+        border-radius: 1.25rem;
+    }
+
+    .hero-title {
+        font-size: 3.25rem;
+        line-height: 1;
+    }
+
+    .hero-message {
+        font-size: 1rem;
+        padding-right: 0;
+        max-width: 400px;
+    }
+
+    .heading {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .meal-explore-range {
+        height: 440px;
+    }
+
+    .custom-carousel-control {
+        padding-top: 10em;
+    }
     
-}
-.hero-message {
-    font-size: 1rem;
+    .carousel-control-prev-icon , 
+    .carousel-control-next-icon{
+    filter: invert(100%);
+    }
+ 
+
+    .step-card-title {
+        font-size: 1rem;
+    }
+
+    .card-text {
+        font-size: 0.8rem;
+        line-height: 1.5;
+        padding: 0.75em 1.5em 1.5em 1.5em;
+    }
+
+    .explore-menue-card {
+        width: 100%;
+        min-height: 380px;
+    }
+
+    .explore-menue-card img {
+        height: 380px;
+        object-fit: cover;
+    }
+
+    .explore-menue-title {
+        font-size: 1rem;
+    }
+
+    .explore-menue-summary {
+        font-size: 0.8rem;
+        max-width: 90%;
+    }
+
+    .sustainability-icon {
+        width: 4.5em;
+        height: 4.5em;
+    }
+
+    .sustainability-section h3 {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .sustainability-section p {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
 }
 
-.hero-title {
-    font-size: 3rem;
+/* ------------------------------
+X-Large devices
+Large desktops, 1200px and up
+-------------------------------*/
+@media (min-width: 1200px) {
+    .page-wrapper {
+        max-width: 1140px;
+    }
+
+    .hero-section {
+        margin-left: 6rem;
+        max-width: 540px;
+    }
+
+    .hero-title {
+        font-size: 3.75rem;
+    }
+
+    .meal-explore-range {
+        height: 480px;
+    }
+
+    .explore-menue-card img {
+        height: 420px;
+    }
+    
+    .custom-carousel-control {
+        width: 2.5%;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+    filter: invert(100%);
+    width: 3rem;
+    height: 3rem;
+    }
 }
 
-/* Explore range carousel */
-.meal-explore-range {
-    height: 420px;
-    object-fit: cover;
-}
-/* How it works section */
-.card-section .row {
-    align-items: start;
-}
-.step-card-img-top {
-    padding: 1em 0.5em;
-}
-.step-card-title {
-    font-size: 14px;
-}
-.card-text {
-    font-size: 10px;
-    padding: 0.5em 0.8em 1em 0.8em;
-}
-/* Explore menu cards */
-.explore-menue-card {
-    width: 100%;
-    min-height: 380px;
-}
-.explore-menue-card img {
-    height: 380px;
-    object-fit: cover;
-}
-.explore-menue-title {
-    font-size: 1rem;
-}
-.explore-menue-summary {
-    font-size: 0.8rem;
-}
+/* ------------------------------
+XX-Large devices
+Larger desktops, 1400px and up
+-------------------------------*/
+@media (min-width: 1400px) {
+    .page-wrapper {
+        max-width: 1280px;
+    }
 
-/* Sustainability section */
-.sustainability-icon {
-    width: 4.5em;
-    height: 4.5em;
-}
+    .hero-section {
+        margin-left: 8rem;
+        max-width: 580px;
+    }
 
-.sustainability-section h3 {
-    font-size: 1rem;
-}
+    .hero-title {
+        font-size: 4.25rem;
+    }
 
-.sustainability-section p {
-    font-size: 0.8rem;
-}
+    .hero-message {
+        font-size: 1.1rem;
+    }
+
+    .meal-explore-range {
+        height: 520px;
+    }
 }
