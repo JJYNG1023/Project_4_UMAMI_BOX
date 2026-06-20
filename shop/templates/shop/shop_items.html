@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | Shop{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="page-wrapper mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-12">
+                <h1> {{ category_title }}</h1>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <p class="fs-6"> {{ category_description }}</p>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-lg-end">
+                <form class="search-form mt-2" role="search">
+                    <div class="search-input-wrapper">
+                        <input class="form-control me-2 search-bar" type="search" placeholder="Search" aria-label="Search"/>
+                        <button class="search-icon-btn" type="submit" aria-label="Search">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--category filters-->
+        <div class="row mt-4">
+            <div class="col-12 mb-2">
+                <button class="btn filter-btn">
+                    <a href="#" class="fs-7">All</a>
+                </button>
+
+                <button class="btn filter-btn">
+                    <a href="#" class=" fs-7">Meal Kits</a>
+                </button>
+
+                <button class="btn filter-btn">
+                    <a href="#" class="fs-7">Ready Meals</a>
+                </button>
+
+                <button class="btn filter-btn">
+                    <a href="#" class="fs-7">Signature Sauces</a>
+                </button>
+            </div>
+        </div>
+
+        <!--general filters-->
+        <div class="row mt-1 mb-3">
+            <div class="col-12 mb-3">
+                <div class="btn-group">
+                    <button class="btn filter-btn dropdown-toggle fs-7" data-bs-toggle="dropdown" aria-expanded="false">
+                    Cuisines
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end fs-6">
+                        <li><a class="dropdown-item" href="?category={{ category }}&cuisine=japanese">Japanese</a></li>
+                        <li><a class="dropdown-item" href="?category={{ category }}&cuisine=chinese">Chinese</a></li>
+                        <li><a class="dropdown-item" href="?category={{ category }}&cuisine=korean">Korean</a></li>
+                        <li><a class="dropdown-item" href="?category={{ category }}&cuisine=thai">Thai</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">              
+                    <button class="btn filter-btn dropdown-toggle fs-7" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dietary
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end fs-7">
+                        <li><a class="dropdown-item" href="?category={{ category }}&dietary=gluten_free">Gluten Free</a></li>
+                        <li><a class="dropdown-item" href="?category={{ category }}&dietary=Dairy">Dairy Free</a></li>
+                        <li><a class="dropdown-item" href="?category={{ category }}&dietary=pescatarian">Pescatarian</a></li>
+                        <li><a class="dropdown-item" href="?category={{ category }}&dietary=vegetarian">Vegetarian</a></li>
+                        <li><a class="dropdown-item" href="?category={{ category }}&dietary=vegan">Vegan</a></li>
+                        <li><a class="dropdown-item" href="?category={{ category }}&dietary=low_carb">Low Carb</a></li>
+                    </ul>
+                </div>  
+
+                <div class="btn-group">
+                    <button class="btn filter-btn dropdown-toggle fs-7" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sort
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end fs-7">
+                        <li><a class="dropdown-item" href="?category={{ category }}&sort=cooking_time">
+                            Cooking Time: Short to Long </a></li>
+                        <li><a class="dropdown-item" href="?category={{ category }}&sort=price_low_high">
+                            Price: Low to High</a></li>
+                        <li><a class="dropdown-item" href="?category={{ category }}&sort=price_high_low">
+                            Price: High to Low</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="card-section page-wrapper">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-lg-6">
+                <div class="d-flex product-card">
+                    <!-- Product image -->
+                    <div class="product-image-wrapper">
+                        <img 
+                            src="https://picsum.photos/seed/picsum/300/300" 
+                            class="product-image" 
+                            alt="Korean Gochujang Tofu Bowl"
+                        >
+                    </div>
+
+                     <!-- Product content -->
+                    <div class="product-card-content d-flex flex-column">
+                        <h3 class="product-title mb-2">
+                            Korean Gochujang Tofu Bowl
+                        </h3>
+                        <div class="product-meta mb-3">
+                            <span>Meal Kit</span>
+                            <span>|</span>
+                            <span>20min</span>
+                            <span>|</span>
+                            <span>Medium</span>
+                        </div>
+                        <div class="product-card-bottom d-flex justify-content-between align-items-center mt-auto">
+                            <p class="product-price mb-0">
+                                £7.99
+                            </p>
+
+                            <button class="btn product-add-btn" aria-label="Add Korean Gochujang Tofu Bowl to basket">
+                                <i class="bi bi-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-12 col-lg-6">
+                 <div class="d-flex product-card">
+                    <!-- Product image -->
+                    <div class="product-image-wrapper">
+                        <img 
+                            src="https://picsum.photos/seed/picsum/300/300" 
+                            class="product-image" 
+                            alt="Korean Gochujang Tofu Bowl"
+                        >
+                    </div>
+
+                     <!-- Product content -->
+                    <div class="product-card-content d-flex flex-column">
+                        <h3 class="product-title mb-2">
+                            Korean Gochujang Tofu Bowl
+                        </h3>
+                        <div class="product-meta mb-3">
+                            <span>Meal Kit</span>
+                            <span>|</span>
+                            <span>20min</span>
+                            <span>|</span>
+                            <span>Medium</span>
+                        </div>
+                        <div class="product-card-bottom d-flex justify-content-between align-items-center mt-auto">
+                            <p class="product-price mb-0">
+                                £7.99
+                            </p>
+
+                            <button class="btn product-add-btn" aria-label="Add Korean Gochujang Tofu Bowl to basket">
+                                <i class="bi bi-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+            <div class="col-12 col-lg-6">
+                 <div class="d-flex product-card">
+                    <!-- Product image -->
+                    <div class="product-image-wrapper">
+                        <img 
+                            src="https://picsum.photos/seed/picsum/300/300" 
+                            class="product-image" 
+                            alt="Korean Gochujang Tofu Bowl"
+                        >
+                    </div>
+
+                     <!-- Product content -->
+                    <div class="product-card-content d-flex flex-column">
+                        <h3 class="product-title mb-2">
+                            Korean Gochujang Tofu Bowl
+                        </h3>
+                        <div class="product-meta mb-3">
+                            <span>Meal Kit</span>
+                            <span>|</span>
+                            <span>20min</span>
+                            <span>|</span>
+                            <span>Medium</span>
+                        </div>
+                        <div class="product-card-bottom d-flex justify-content-between align-items-center mt-auto">
+                            <p class="product-price mb-0">
+                                £7.99
+                            </p>
+
+                            <button class="btn product-add-btn" aria-label="Add Korean Gochujang Tofu Bowl to basket">
+                                <i class="bi bi-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>     
+        </div>
+    </div>
+</section>
+{% endblock %}

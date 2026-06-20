@@ -7,7 +7,34 @@ def shop(request):
 
 """Display the selected category shop products"""
 def shop_items(request):
-    return render(request, 'shop/shop_items.html')
+    category = request.GET.get('category', 'meal_kits')
+
+    category_content = {
+        'meal_kits': {
+            'title': 'Meal Kits',
+            'description': 'Pre-portioned ingredients and signature sauces delivered together, making it easy to cook restaurant-inspired Asian meals at home.',
+        },
+        'ready_meals': {
+            'title': 'Ready Meals',
+            'description': 'Freshly prepared Asian meals, ready to heat and enjoy in minutes. Perfect for busy days without compromising on flavour.',
+        },
+        'signature_sauces': {
+            'title': 'Signature Sauces',
+            'description': 'Rich, flavour-packed homemade sauces crafted to bring authentic Asian taste to your everyday cooking.',
+        },
+    }
+
+    selected_category = category_content.get(category, category_content['meal_kits'])
+
+    context = {
+        'category': category,
+        'category_title': selected_category['title'],
+        'category_description': selected_category['description'],
+    }
+
+    return render(request, 'shop/shop_items.html', context)
+
+
 
 """Display a single product detail page."""
 def product_detail(request):

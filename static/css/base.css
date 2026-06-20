@@ -98,10 +98,12 @@ h5 {
 .fs-3,
 .fs-4,
 .fs-5,
-.fs-6 {
+.fs-6,
+.fs-7 {
     font-family: var(--font-heading);
     color: var(--color-heading);
 }
+
 
 p{
     font-size: var(--font-body-size);
