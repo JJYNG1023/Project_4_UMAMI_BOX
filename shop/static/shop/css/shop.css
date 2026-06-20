@@ -1,0 +1,17 @@
+
+
+/* ---------------------------------
+mid - large screen view
+------------------------------------*/
+@media (min-width: 992px) { 
+
+/* ---------------------------------
+Shop.html page
+------------------------------------*/
+    .meal-explore-range {
+    width: 85% !important;
+    height: 350px;
+    object-fit: cover;
+    object-position: center;
+    }
+}

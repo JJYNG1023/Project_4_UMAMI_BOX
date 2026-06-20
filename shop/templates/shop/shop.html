@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | Shop{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+<!--meal types-->
+<section>
+    <div class="container">
+        <div class="col-12 col-md-11 col-lg-8 mx-auto text-center mt-5 page-wrapper">
+            <h2 class="mb-2 heading">
+                EXPLORE OUR RANGE
+            </h2>
+            <br>
+            <span class="mb-5 fs-6 ">Discover three simple ways to enjoy Asian-inspired cooking at home. 
+                Choose from fresh meal kits, quick ready meals, 
+                and signature sauces designed to bring bold flavour, 
+                convenience, and comfort to your table.</span>
+        </div>
+        <div class="page-wrapper mt-5">
+            <div class="row align-items-center mb-lg-5">
+                    <div class="col-12 col-lg-7">
+                            <img src="{% static 'images/meal-kits.png' %}" class="d-block w-100 meal-explore-range" alt="meal-kits">
+                    </div>
+                    <div class="col-12 col-lg-5 mb-5">
+                            <div class="card-body text-center text-lg-start px-4 py-4">
+                                <h2 class="step-card-title text-lg-start pt-lg-0">Meal Kits</h2>
+                                <p class="card-text text-lg-start px-lg-0 fs-6">Pre-portioned ingredients and signature sauces delivered together, making it easy for professional cook at home.</p>
+                                <button class="btn btn-light px-4 py-2 mt-1">
+                                    <a href="#" class="text-dark text-decoration-none">Explore More</a>
+                                </button>
+                            </div>
+                    </div>
+            </div>
+            <div class="row align-items-center mb-lg-5">
+                    <div class="col-12 col-lg-7">
+                               <img src="{% static 'images/ready-meal.png' %}" class="d-block w-100 meal-explore-range" alt="ready-meal">
+                    </div>
+                    <div class="col-12 col-lg-5 mb-5">
+                           <div class="card-body text-center text-lg-start px-4 py-4">
+                                <h2 class="step-card-title text-lg-start pt-lg-0">Ready Meals</h2>
+                                <p class="card-text text-lg-start px-lg-0 fs-6">Freshly prepared meals, ready to heat and enjoy in minutes — perfect for busy days without compromising on flavour.</p>
+                                <button class="btn btn-light px-4 py-2 mt-1">
+                                    <a href="#" class="text-dark text-decoration-none">Explore More</a>
+                                </button>
+                            </div>
+                    </div>
+            </div> 
+            <div class="row align-items-center mb-lg-5">
+                    <div class="col-12 col-lg-7">
+                        <img src="{% static 'images/signature-sauces.png' %}" class="d-block w-100 meal-explore-range" alt="signature-sauces">
+                    </div>
+                    <div class="col-12 col-lg-5 mb-5">
+                        <div class="card-body text-center text-lg-start px-4 py-4">
+                            <h2 class="step-card-title text-lg-start pt-lg-0">Signature Sauces</h2>
+                            <p class="card-text text-lg-start px-lg-0 fs-6">Rich, flavour-packed homemade sauces crafted to bring authentic taste to your everyday cooking.</p>
+                            <button class="btn btn-light px-4 py-2 mt-1">
+                                <a href="#" class="text-dark text-decoration-none">Explore More</a>
+                            </button>
+                        </div>    
+                    </div>
+            </div>      
+        </div>
+    </div>
+</section>
+
+{% endblock %}
