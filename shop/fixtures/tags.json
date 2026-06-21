@@ -1,0 +1,49 @@
+[
+    {"model":"shop.tag",
+     "pk":1,
+     "field":{
+        "name":"chinese",
+        "friendly_name":"Chinese"
+     }
+    }
+  {
+    "model": "shop.tag",
+    "pk": 2,
+    "fields": {
+      "name": "japanese",
+      "friendly_name": "Japanese"
+    }
+  },
+  {
+    "model": "shop.tag",
+    "pk": 3,
+    "fields": {
+      "name": "korean",
+      "friendly_name": "Korean"
+    }
+  },
+  {
+    "model": "shop.tag",
+    "pk": 4,
+    "fields": {
+      "name": "vegetarian",
+      "friendly_name": "Vegetarian"
+    }
+  },
+  {
+    "model": "shop.tag",
+    "pk": 5,
+    "fields": {
+      "name": "vegan",
+      "friendly_name": "Vegan"
+    }
+  },
+  {
+    "model": "shop.tag",
+    "pk": 6,
+    "fields": {
+      "name": "gluten_free",
+      "friendly_name": "Gluten Free"
+    }
+  }
+]

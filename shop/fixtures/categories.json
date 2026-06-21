@@ -1,0 +1,29 @@
+[
+    {
+        "model":"shop.category",
+        "pk":1,
+        "fields":{
+            "name":"meal_kits",
+            "friendly_name":"Meal Kits",
+            "descriptions":"Pre-portioned ingredients and signature sauces delivered together, making it easy for professional cook at home."
+        }
+    },
+    {
+        "model":"shop.category",
+        "pk":2,
+        "fields":{
+            "name":"ready_meals",
+            "friendly_name":"Ready Meals",
+            "descriptions":"Freshly prepared meals, ready to heat and enjoy in minutes — perfect for busy days without compromising on flavour."
+        }
+    },
+    {
+        "model":"shop.category",
+        "pk":3,
+        "fields":{
+            "name":"signature_sauces",
+            "friendly_name":"Signature Sauces",
+            "descriptions":"Rich, flavour-packed homemade sauces crafted to bring authentic taste to your everyday cooking."
+        }
+    },
+]
