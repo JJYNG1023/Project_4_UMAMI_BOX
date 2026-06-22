@@ -5,7 +5,7 @@
         "fields":{
             "name":"meal_kits",
             "friendly_name":"Meal Kits",
-            "descriptions":"Pre-portioned ingredients and signature sauces delivered together, making it easy for professional cook at home."
+            "description":"Pre-portioned ingredients and signature sauces delivered together, making it easy for professional cook at home."
         }
     },
     {
@@ -14,7 +14,7 @@
         "fields":{
             "name":"ready_meals",
             "friendly_name":"Ready Meals",
-            "descriptions":"Freshly prepared meals, ready to heat and enjoy in minutes — perfect for busy days without compromising on flavour."
+            "description":"Freshly prepared meals, ready to heat and enjoy in minutes — perfect for busy days without compromising on flavour."
         }
     },
     {
@@ -23,7 +23,7 @@
         "fields":{
             "name":"signature_sauces",
             "friendly_name":"Signature Sauces",
-            "descriptions":"Rich, flavour-packed homemade sauces crafted to bring authentic taste to your everyday cooking."
+            "description":"Rich, flavour-packed homemade sauces crafted to bring authentic taste to your everyday cooking."
         }
-    },
+    }
 ]

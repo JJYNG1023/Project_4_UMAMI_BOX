@@ -1,11 +1,11 @@
 [
-    {"model":"shop.tag",
-     "pk":1,
-     "field":{
-        "name":"chinese",
-        "friendly_name":"Chinese"
-     }
+  {"model":"shop.tag",
+   "pk":1,
+   "fields":{
+      "name":"chinese",
+      "friendly_name":"Chinese"
     }
+  },
   {
     "model": "shop.tag",
     "pk": 2,

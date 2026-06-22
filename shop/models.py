@@ -26,9 +26,9 @@ class Product(models.Model):
     cooking_time = models.PositiveIntegerField(null=True, blank=True)
     servings = models.PositiveIntegerField(null=True, blank=True)
     spice_level = models.CharField(max_length=50,null=True, blank=True)
-    ingredient = models.TextField(null=True, blank=True)
+    ingredients = models.TextField(null=True, blank=True)
     allergens = models.TextField(null=True, blank=True)
-    available = models.BooleanField(default=True)
+    is_available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name

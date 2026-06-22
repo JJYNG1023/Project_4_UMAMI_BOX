@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
+from .models import Product
 
 # Create your views here.
 """Display the shop category landing page."""
@@ -34,8 +35,10 @@ def shop_items(request):
 
     return render(request, 'shop/shop_items.html', context)
 
-
-
 """Display a single product detail page."""
-def product_detail(request):
-    return render(request,'product_detail.html')
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    context = {
+        "product": product,
+    }
+    return render(request, 'shop/product_detail.html', context)

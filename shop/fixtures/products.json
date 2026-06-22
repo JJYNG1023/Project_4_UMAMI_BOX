@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         3,
         4
       ],
@@ -25,7 +25,7 @@
     "pk": 2,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         2
       ],
       "name": "Japanese Chicken Katsu Curry Kit",
@@ -45,7 +45,7 @@
     "pk": 3,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         1
       ],
       "name": "Chinese Black Bean Beef Stir-Fry Kit",
@@ -65,7 +65,7 @@
     "pk": 4,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         3,
         4
       ],
@@ -86,7 +86,7 @@
     "pk": 5,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         2
       ],
       "name": "Japanese Teriyaki Salmon Rice Kit",
@@ -106,7 +106,7 @@
     "pk": 6,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         1
       ],
       "name": "Chinese Sweet and Sour Chicken Kit",
@@ -126,7 +126,7 @@
     "pk": 7,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         3
       ],
       "name": "Korean Kimchi Fried Rice Kit",
@@ -146,7 +146,7 @@
     "pk": 8,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         2,
         4,
         5
@@ -168,7 +168,7 @@
     "pk": 9,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         1
       ],
       "name": "Chinese Garlic Chilli Prawn Noodle Kit",
@@ -188,7 +188,7 @@
     "pk": 10,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         3,
         4
       ],
@@ -209,7 +209,7 @@
     "pk": 11,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         2
       ],
       "name": "Japanese Yaki Udon Chicken Kit",
@@ -229,7 +229,7 @@
     "pk": 12,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         1,
         4
       ],
@@ -250,7 +250,7 @@
     "pk": 13,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         3
       ],
       "name": "Korean Spicy Pork Lettuce Wrap Kit",
@@ -270,7 +270,7 @@
     "pk": 14,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         2,
         4
       ],
@@ -291,7 +291,7 @@
     "pk": 15,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         1
       ],
       "name": "Chinese Hoisin Duck Pancake Kit",
@@ -311,7 +311,7 @@
     "pk": 16,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         3,
         4
       ],
@@ -332,7 +332,7 @@
     "pk": 17,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         2
       ],
       "name": "Japanese Ramen Bowl Kit",
@@ -352,7 +352,7 @@
     "pk": 18,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         1,
         4,
         5
@@ -374,7 +374,7 @@
     "pk": 19,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         3
       ],
       "name": "Korean Soy Garlic Chicken Kit",
@@ -394,7 +394,7 @@
     "pk": 20,
     "fields": {
       "category": 1,
-      "tags": [
+      "tag": [
         2,
         4
       ],
@@ -415,7 +415,7 @@
     "pk": 21,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         3
       ],
       "name": "Korean Gochujang Chicken Rice Bowl",
@@ -435,7 +435,7 @@
     "pk": 22,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         2
       ],
       "name": "Japanese Katsu Curry Ready Meal",
@@ -455,7 +455,7 @@
     "pk": 23,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         1
       ],
       "name": "Chinese Beef Chow Mein Ready Meal",
@@ -475,7 +475,7 @@
     "pk": 24,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         3,
         4
       ],
@@ -496,7 +496,7 @@
     "pk": 25,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         2
       ],
       "name": "Japanese Teriyaki Chicken Donburi",
@@ -516,7 +516,7 @@
     "pk": 26,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         1,
         4,
         5
@@ -538,7 +538,7 @@
     "pk": 27,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         3
       ],
       "name": "Korean Bulgogi Beef Rice Bowl",
@@ -558,7 +558,7 @@
     "pk": 28,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         2,
         4,
         5
@@ -580,7 +580,7 @@
     "pk": 29,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         1
       ],
       "name": "Chinese Black Pepper Chicken Rice",
@@ -600,7 +600,7 @@
     "pk": 30,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         3,
         4
       ],
@@ -621,7 +621,7 @@
     "pk": 31,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         2
       ],
       "name": "Japanese Yaki Udon Ready Meal",
@@ -641,7 +641,7 @@
     "pk": 32,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         1,
         4
       ],
@@ -662,7 +662,7 @@
     "pk": 33,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         3
       ],
       "name": "Korean Soy Garlic Chicken Noodles",
@@ -682,7 +682,7 @@
     "pk": 34,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         2,
         4
       ],
@@ -703,7 +703,7 @@
     "pk": 35,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         1
       ],
       "name": "Chinese Hoisin Duck Rice Bowl",
@@ -723,7 +723,7 @@
     "pk": 36,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         3
       ],
       "name": "Korean Spicy Pork Rice Bowl",
@@ -743,7 +743,7 @@
     "pk": 37,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         2
       ],
       "name": "Japanese Salmon Teriyaki Rice",
@@ -763,7 +763,7 @@
     "pk": 38,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         1,
         4,
         5
@@ -785,7 +785,7 @@
     "pk": 39,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         3,
         4
       ],
@@ -806,7 +806,7 @@
     "pk": 40,
     "fields": {
       "category": 2,
-      "tags": [
+      "tag": [
         2,
         4
       ],
@@ -827,7 +827,7 @@
     "pk": 41,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         1,
         5
       ],
@@ -848,7 +848,7 @@
     "pk": 42,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         3,
         5
       ],
@@ -869,7 +869,7 @@
     "pk": 43,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         2,
         5
       ],
@@ -890,7 +890,7 @@
     "pk": 44,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         1,
         5
       ],
@@ -911,7 +911,7 @@
     "pk": 45,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         3,
         5
       ],
@@ -932,7 +932,7 @@
     "pk": 46,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         2,
         4
       ],
@@ -953,7 +953,7 @@
     "pk": 47,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         1,
         5
       ],
@@ -974,7 +974,7 @@
     "pk": 48,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         3
       ],
       "name": "Korean Ssamjang Dipping Sauce",
@@ -994,7 +994,7 @@
     "pk": 49,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         2,
         4
       ],
@@ -1015,7 +1015,7 @@
     "pk": 50,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         1,
         5
       ],
@@ -1036,7 +1036,7 @@
     "pk": 51,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         3,
         5
       ],
@@ -1057,7 +1057,7 @@
     "pk": 52,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         2,
         5
       ],
@@ -1078,7 +1078,7 @@
     "pk": 53,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         1,
         5
       ],
@@ -1099,7 +1099,7 @@
     "pk": 54,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         3
       ],
       "name": "Korean Bulgogi Marinade",
@@ -1119,7 +1119,7 @@
     "pk": 55,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         2,
         5
       ],
@@ -1140,7 +1140,7 @@
     "pk": 56,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         1,
         5
       ],
@@ -1161,7 +1161,7 @@
     "pk": 57,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         3,
         5
       ],
@@ -1182,7 +1182,7 @@
     "pk": 58,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         2,
         4
       ],
@@ -1203,7 +1203,7 @@
     "pk": 59,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         1,
         5
       ],
@@ -1224,7 +1224,7 @@
     "pk": 60,
     "fields": {
       "category": 3,
-      "tags": [
+      "tag": [
         3,
         5
       ],

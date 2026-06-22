@@ -34,19 +34,19 @@
         <div class="row mt-4">
             <div class="col-12 mb-2">
                 <button class="btn filter-btn">
-                    <a href="#" class="fs-7">All</a>
+                    <a href="{% url 'shop_items' %}?category=all" class="fs-7">All</a>
                 </button>
 
                 <button class="btn filter-btn">
-                    <a href="#" class=" fs-7">Meal Kits</a>
+                    <a href="{% url 'shop_items' %}? category=meal_kits" class=" fs-7">Meal Kits</a>
                 </button>
 
                 <button class="btn filter-btn">
-                    <a href="#" class="fs-7">Ready Meals</a>
+                    <a href="{% url 'shop_items' %}? category=ready_meals" class="fs-7">Ready Meals</a>
                 </button>
 
                 <button class="btn filter-btn">
-                    <a href="#" class="fs-7">Signature Sauces</a>
+                    <a href="{% url 'shop_items' %}? category=signature_sauces" class="fs-7">Signature Sauces</a>
                 </button>
             </div>
         </div>
@@ -58,7 +58,7 @@
                     <button class="btn filter-btn dropdown-toggle fs-7" data-bs-toggle="dropdown" aria-expanded="false">
                     Cuisines
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end fs-6">
+                    <ul class="dropdown-menu dropdown-menu-end fs-7">
                         <li><a class="dropdown-item" href="?category={{ category }}&cuisine=japanese">Japanese</a></li>
                         <li><a class="dropdown-item" href="?category={{ category }}&cuisine=chinese">Chinese</a></li>
                         <li><a class="dropdown-item" href="?category={{ category }}&cuisine=korean">Korean</a></li>
@@ -101,32 +101,48 @@
 <section class="card-section page-wrapper">
     <div class="container">
         <div class="row g-4">
+            <!--Python loop-->
+            {% for product in products %}
             <div class="col-12 col-lg-6">
                 <div class="d-flex product-card">
                     <!-- Product image -->
                     <div class="product-image-wrapper">
+                        {% if product.image_url%}
                         <img 
-                            src="https://picsum.photos/seed/picsum/300/300" 
+                            src="{% static product.image_url %}" 
                             class="product-image" 
-                            alt="Korean Gochujang Tofu Bowl"
+                            alt="{{product.name}}"
                         >
+                        {% endif%}
                     </div>
 
                      <!-- Product content -->
                     <div class="product-card-content d-flex flex-column">
-                        <h3 class="product-title mb-2">
-                            Korean Gochujang Tofu Bowl
-                        </h3>
+                        <a href=" {% url 'product_detail' product.id %}" class="text-decoration-none">
+                            <h3 class="product-title mb-2">
+                                {{ product.name }}
+                            </h3>
+                        </a>
+
                         <div class="product-meta mb-3">
-                            <span>Meal Kit</span>
-                            <span>|</span>
-                            <span>20min</span>
-                            <span>|</span>
-                            <span>Medium</span>
+                            {% if product.category %}
+                                <span> {{ product.category.friendly_name | default:product.category.name }}</span>
+                            {% endif %}
+                                <span>|</span>
+                            
+                            {% if product.cooking_time %}
+                                <span> {{ product.cooking_time }}</span>
+                            {% endif %}
+                                <span>|</span>
+
+                            {% if product.spice_level %}
+                                <span> {{ product.spice_level}}</span>
+                            {% endif %}
+
                         </div>
                         <div class="product-card-bottom d-flex justify-content-between align-items-center mt-auto">
                             <p class="product-price mb-0">
-                                £7.99
+                                £ {{ product.price}}
                             </p>
 
                             <button class="btn product-add-btn" aria-label="Add Korean Gochujang Tofu Bowl to basket">
@@ -135,77 +151,12 @@
                         </div>
                     </div>
                 </div>
-            </div> 
-            <div class="col-12 col-lg-6">
-                 <div class="d-flex product-card">
-                    <!-- Product image -->
-                    <div class="product-image-wrapper">
-                        <img 
-                            src="https://picsum.photos/seed/picsum/300/300" 
-                            class="product-image" 
-                            alt="Korean Gochujang Tofu Bowl"
-                        >
-                    </div>
-
-                     <!-- Product content -->
-                    <div class="product-card-content d-flex flex-column">
-                        <h3 class="product-title mb-2">
-                            Korean Gochujang Tofu Bowl
-                        </h3>
-                        <div class="product-meta mb-3">
-                            <span>Meal Kit</span>
-                            <span>|</span>
-                            <span>20min</span>
-                            <span>|</span>
-                            <span>Medium</span>
-                        </div>
-                        <div class="product-card-bottom d-flex justify-content-between align-items-center mt-auto">
-                            <p class="product-price mb-0">
-                                £7.99
-                            </p>
-
-                            <button class="btn product-add-btn" aria-label="Add Korean Gochujang Tofu Bowl to basket">
-                                <i class="bi bi-plus-circle"></i>
-                            </button>
-                        </div>
-                    </div>
+            </div>  
+            {% empty %}
+                <div class="col-12">
+                    <p>No products found.</p>
                 </div>
-            </div>      
-            <div class="col-12 col-lg-6">
-                 <div class="d-flex product-card">
-                    <!-- Product image -->
-                    <div class="product-image-wrapper">
-                        <img 
-                            src="https://picsum.photos/seed/picsum/300/300" 
-                            class="product-image" 
-                            alt="Korean Gochujang Tofu Bowl"
-                        >
-                    </div>
-
-                     <!-- Product content -->
-                    <div class="product-card-content d-flex flex-column">
-                        <h3 class="product-title mb-2">
-                            Korean Gochujang Tofu Bowl
-                        </h3>
-                        <div class="product-meta mb-3">
-                            <span>Meal Kit</span>
-                            <span>|</span>
-                            <span>20min</span>
-                            <span>|</span>
-                            <span>Medium</span>
-                        </div>
-                        <div class="product-card-bottom d-flex justify-content-between align-items-center mt-auto">
-                            <p class="product-price mb-0">
-                                £7.99
-                            </p>
-
-                            <button class="btn product-add-btn" aria-label="Add Korean Gochujang Tofu Bowl to basket">
-                                <i class="bi bi-plus-circle"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>     
+            {% endfor %}
         </div>
     </div>
 </section>
