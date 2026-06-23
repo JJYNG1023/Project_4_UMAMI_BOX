@@ -98,7 +98,7 @@
     </div>
 </section>
 
-<section class="card-section page-wrapper">
+<section class="card-section page-wrapper mb-5">
     <div class="container">
         <div class="row g-4">
             <!--Python loop-->
@@ -107,9 +107,9 @@
                 <div class="d-flex product-card">
                     <!-- Product image -->
                     <div class="product-image-wrapper">
-                        {% if product.image_url%}
+                        {% if product.image %}
                         <img 
-                            src="{% static product.image_url %}" 
+                            src="{% static product.image.name %}" 
                             class="product-image" 
                             alt="{{product.name}}"
                         >
@@ -131,7 +131,7 @@
                                 <span>|</span>
                             
                             {% if product.cooking_time %}
-                                <span> {{ product.cooking_time }}</span>
+                                <span> {{ product.cooking_time }}min</span>
                             {% endif %}
                                 <span>|</span>
 
