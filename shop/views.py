@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from .models import Product
 
 # Create your views here.
@@ -8,7 +9,11 @@ def shop(request):
 
 """Display the selected category shop products"""
 def shop_items(request):
-    category = request.GET.get('category', 'meal_kits')
+    category = request.GET.get('category', 'all')
+    cuisine = request.GET.get('cuisine')
+    dietary = request.GET.get('dietary')
+    sort = request.GET.get('sort')
+    query = request.GET.get('q')
     
     category_content = {
         'all': {
@@ -32,14 +37,48 @@ def shop_items(request):
     selected_category = category_content.get(category, category_content['all'])
 
     products = Product.objects.all()
+    
+    # Category filter
     if category != 'all':
         products=products.filter(category__name=category)
 
+    # Cuisine filter using tags
+    if cuisine :
+        products = products.filter(tag__name=cuisine)
+
+    # Cuisine dietary using tags
+    if dietary:
+        products = products.filter(tag__name=dietary)
+
+    # If filter
+    if query:
+        products = products.filter(
+            Q(name__icontains=query) |
+            Q(description__icontains=query) |
+            Q(ingredients__icontains=query)
+        )
+
+    # Search Filter
+    if sort == 'cooking_time' :
+        products = products.order_by('cooking_time')
+
+    elif sort == 'price_low_high' :
+        products = products.order_by('price')
+
+    elif sort == 'price_high_low' :
+        products = products.order_by('-price')
+
+    products = products.distinct()
+    
     context = {
         'products' : products,
         'category': category,
         'category_title': selected_category['title'],
         'category_description': selected_category['description'],
+        'current_cuisine': cuisine,
+        'current_dietary': dietary,
+        'current_sort': sort,
+        'search_query': query,
     }
 
     return render(request, 'shop/shop_items.html', context)
@@ -47,7 +86,12 @@ def shop_items(request):
 """Display a single product detail page."""
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
+
+    ingredients_list=[]
+    if product.ingredients:
+        ingredients_list = [item.strip() for item in product.ingredients.split(',')]
     context = {
         'product': product,
+        'ingredients_list':ingredients_list
     }
     return render(request, 'shop/product_detail.html', context)

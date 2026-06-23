@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | {{product.name}} {% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row g-0 product-detail-card">
+            <!-- Product image -->
+            <div class="col-12 col-lg-6">
+                <div class="product-detail-image-wrapper position-relative">
+                    <button class="btn product-favourite-btn" aria-label="Add {{ product.name }} to favourites">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                     {% if product.image %}
+                     <img 
+                        src="{% static product.image.name %}" 
+                        class="product-detail-image" 
+                        alt="{{ product.name }}"
+                    >
+                    {% else %}
+                    <div class="d-flex align-items-center justify-content-center h-100">
+                        image
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+             <!-- Product information -->
+            <div class="col-12 col-lg-6 mt-3">
+                <div class="p-3 p-lg-4">
+                    {% if product.category %}
+                    <p class="text-muted mb-1 fs-7"> {{ product.category.friendly_name|default:product.category.name }} </h1>
+                    {% endif %}
+                    
+                    <h1 class=" fs-1 product-detail-title mb-2 mt-3">
+                    {{product.name}}
+                    </h1>
+
+                    <div class="product-meta mb-3 mt-3">
+                        {% if product.category %}
+                            <span>{{ product.category.friendly_name|default:product.category.name }}</span>
+                        {% endif %}
+                        {% if product.cooking_time %}
+                            <span>|</span>
+                            <span>{{ product.cooking_time }}min</span>
+                        {% endif %}
+                        {% if product.servings %}
+                            <span>|</span>
+                            <span>{{ product.servings }} serves</span>
+                        {% endif %}
+                        {% if product.spice_level %}
+                            <span>|</span>
+                            <span>{{ product.spice_level }}</span>
+                        {% endif %}
+                    </div>
+                    <p class="mb-4 fs-5">
+                        {{ product.description }}
+                    </p>
+
+                    {% if ingredients_list %}
+                        <div class="mb-4">
+                            <h2 class="product-detail-subtitle">What's inside:</h2>
+
+                            <ul class="ps-3 mb-0 fs-7">
+                                {% for ingredient in ingredients_list %}
+                                    <li>{{ ingredient }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                    <div class="mb-4">
+                        <h2 class="product-detail-subtitle">Allergy Note</h2>
+
+                        {% if product.allergens %}
+                            <p class="fs-7 mb-2">
+                                Contains: {{ product.allergens }}
+                            </p>
+                        {% endif %}
+                    <div class="row g-2 fs-7">
+                        <div class="col-6">
+                            <span class="allergy-circle"></span> Gluten free
+                        </div>
+                        <div class="col-6">
+                            <span class="allergy-circle"></span> Milk free
+                        </div>
+                        <div class="col-6">
+                            <span class="allergy-circle"></span> Meat free
+                        </div>
+                        <div class="col-6">
+                            <span class="allergy-circle"></span> Crustaceans free
+                        </div>
+                        <div class="col-6">
+                            <span class="allergy-circle"></span> Nut free
+                        </div>
+                        <div class="col-6">
+                            <span class="allergy-circle"></span> Seafood free
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="quantity-control d-flex align-items-center">
+                        <button class="btn btn-sm px-2" type="button">-</button>
+                        <span class="px-2">1</span>
+                        <button class="btn btn-sm px-2" type="button">+</button>
+                    </div>
+                    <p class="product-price fs-5 mb-0">
+                      £{{ product.price }}
+                    </p>
+                    <button class="btn filter-btn flex-grow-1">
+                        Add to order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock%}

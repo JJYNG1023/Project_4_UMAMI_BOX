@@ -38,15 +38,15 @@
                 </button>
 
                 <button class="btn filter-btn">
-                    <a href="{% url 'shop_items' %}? category=meal_kits" class=" fs-7">Meal Kits</a>
+                    <a href="{% url 'shop_items' %}?category=meal_kits" class=" fs-7">Meal Kits</a>
                 </button>
 
                 <button class="btn filter-btn">
-                    <a href="{% url 'shop_items' %}? category=ready_meals" class="fs-7">Ready Meals</a>
+                    <a href="{% url 'shop_items' %}?category=ready_meals" class="fs-7">Ready Meals</a>
                 </button>
 
                 <button class="btn filter-btn">
-                    <a href="{% url 'shop_items' %}? category=signature_sauces" class="fs-7">Signature Sauces</a>
+                    <a href="{% url 'shop_items' %}?category=signature_sauces" class="fs-7">Signature Sauces</a>
                 </button>
             </div>
         </div>
@@ -62,7 +62,6 @@
                         <li><a class="dropdown-item" href="?category={{ category }}&cuisine=japanese">Japanese</a></li>
                         <li><a class="dropdown-item" href="?category={{ category }}&cuisine=chinese">Chinese</a></li>
                         <li><a class="dropdown-item" href="?category={{ category }}&cuisine=korean">Korean</a></li>
-                        <li><a class="dropdown-item" href="?category={{ category }}&cuisine=thai">Thai</a></li>
                     </ul>
                 </div>
 
@@ -72,11 +71,8 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end fs-7">
                         <li><a class="dropdown-item" href="?category={{ category }}&dietary=gluten_free">Gluten Free</a></li>
-                        <li><a class="dropdown-item" href="?category={{ category }}&dietary=Dairy">Dairy Free</a></li>
-                        <li><a class="dropdown-item" href="?category={{ category }}&dietary=pescatarian">Pescatarian</a></li>
                         <li><a class="dropdown-item" href="?category={{ category }}&dietary=vegetarian">Vegetarian</a></li>
                         <li><a class="dropdown-item" href="?category={{ category }}&dietary=vegan">Vegan</a></li>
-                        <li><a class="dropdown-item" href="?category={{ category }}&dietary=low_carb">Low Carb</a></li>
                     </ul>
                 </div>  
 
