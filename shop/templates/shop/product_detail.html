@@ -10,7 +10,7 @@
 
 {% block content %}
 
-<section>
+<section class="page-wrapper mt-3 mb-5">
     <div class="container">
         <div class="row g-0 product-detail-card">
             <!-- Product image -->
@@ -19,6 +19,10 @@
                     <button class="btn product-favourite-btn" aria-label="Add {{ product.name }} to favourites">
                         <i class="bi bi-heart"></i>
                     </button>
+
+                    <a href="{% url 'shop_items' %}" class="btn product-back-btn" aria-label="Back to shop">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
 
                      {% if product.image %}
                      <img 
@@ -38,7 +42,7 @@
             <div class="col-12 col-lg-6 mt-3">
                 <div class="p-3 p-lg-4">
                     {% if product.category %}
-                    <p class="text-muted mb-1 fs-7"> {{ product.category.friendly_name|default:product.category.name }} </h1>
+                    <p class="text-muted mb-1 fs-7"> {{ product.category.friendly_name|default:product.category.name }} </p>
                     {% endif %}
                     
                     <h1 class=" fs-1 product-detail-title mb-2 mt-3">
@@ -65,49 +69,37 @@
                     <p class="mb-4 fs-5">
                         {{ product.description }}
                     </p>
+                    
+                    <!-- Mobile ingredients and allergy note -->
+                     <div class="d-lg-none">
+                     {% if ingredients_list %}
+                         <div class="mb-4">
+                             <h2 class="product-detail-subtitle">What's inside:</h2>
 
-                    {% if ingredients_list %}
+                             <ul class="ps-3 mb-0 fs-7">
+                                 {% for ingredient in ingredients_list %}
+                                     <li>{{ ingredient }}</li>
+                                 {% endfor %}
+                             </ul>
+                         </div>
+                     {% endif %}
+
                         <div class="mb-4">
-                            <h2 class="product-detail-subtitle">What's inside:</h2>
+                            <h2 class="product-detail-subtitle">Allergy Note</h2>
 
-                            <ul class="ps-3 mb-0 fs-7">
-                                {% for ingredient in ingredients_list %}
-                                    <li>{{ ingredient }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-
-                    <div class="mb-4">
-                        <h2 class="product-detail-subtitle">Allergy Note</h2>
-
-                        {% if product.allergens %}
-                            <p class="fs-7 mb-2">
-                                Contains: {{ product.allergens }}
-                            </p>
-                        {% endif %}
-                    <div class="row g-2 fs-7">
-                        <div class="col-6">
-                            <span class="allergy-circle"></span> Gluten free
-                        </div>
-                        <div class="col-6">
-                            <span class="allergy-circle"></span> Milk free
-                        </div>
-                        <div class="col-6">
-                            <span class="allergy-circle"></span> Meat free
-                        </div>
-                        <div class="col-6">
-                            <span class="allergy-circle"></span> Crustaceans free
-                        </div>
-                        <div class="col-6">
-                            <span class="allergy-circle"></span> Nut free
-                        </div>
-                        <div class="col-6">
-                            <span class="allergy-circle"></span> Seafood free
+                            {% if product.allergens %}
+                                <p class="fs-7 mb-2">
+                                 Contains: {{ product.allergens }}
+                                </p>
+                            {% else %}
+                                <p> No allergy information available</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
-                <div class="d-flex align-items-center gap-3 mb-3">
+                
+                <!-- Quantity -->
+                <div class="d-flex align-items-center gap-3 mb-3 order_quantity_section">
                     <div class="quantity-control d-flex align-items-center">
                         <button class="btn btn-sm px-2" type="button">-</button>
                         <span class="px-2">1</span>
@@ -116,12 +108,96 @@
                     <p class="product-price fs-5 mb-0">
                       £{{ product.price }}
                     </p>
-                    <button class="btn filter-btn flex-grow-1">
+                    <button class="btn order-btn flex-grow-1">
                         Add to order
                     </button>
                 </div>
             </div>
+            
+            <!-- Desktop ingredients and allergy note -->
+            <div class="col-12 d-none d-lg-block">
+                <div class="row product-detail-extra px-lg-4 py-lg-4">
+
+                    <div class="col-lg-6">
+                        {% if ingredients_list %}
+                            <h2 class="product-detail-subtitle">What's inside:</h2>
+
+                            <ul class="ps-3 mb-0 fs-7">
+                                {% for ingredient in ingredients_list %}
+                                    <li>{{ ingredient }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-lg-6">
+                        <h2 class="product-detail-subtitle">Allergy Note</h2>
+
+                        {% if product.allergens %}
+                            <p class="fs-7 mb-0">
+                                Contains: {{ product.allergens }}
+                            </p>
+                        {% else %}
+                            <p class="fs-7 mb-0">
+                                No allergy information available.
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
+          
+        <!-- Recommended menu -->
+        {% if related_products %}
+            <section class="product-detail-card mb-5">
+                <h2 class="mb-4 heading text-center text-uppercase">
+                    Explore our menu
+                </h2>
+
+                <div class="position-relative related-detail-card">
+                    <div class="row flex-nowrap overflow-auto g-3 justify-content-lg-center">
+                        {% for item in related_products %}
+                            {% if item.pk %}
+                                <div class="col-10 col-sm-6 col-md-6 col-lg-4">
+                                    <a href="{% url 'product_detail' item.pk %}" class="text-decoration-none">
+                                        <div class="h-100 explore-menue-card related-product-card position-relative">
+                                            {% if item.image %}
+                                                <img 
+                                                    src="{% static item.image.name %}" 
+                                                    class="card-img-top related-product-img" 
+                                                    alt="{{ item.name }}"
+                                                >
+                                            {% else %}
+                                                <div class="d-flex align-items-center justify-content-center h-100">
+                                                    image
+                                                </div>
+                                            {% endif %}
+
+                                            <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start mb-4">
+                                                <p class="text-uppercase explore-menue-title">
+                                                    {{ item.name }}
+                                                </p>
+
+                                                <p class="card-text explore-menue-summary">
+                                                    {{ item.description|truncatewords:10 }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center pt-4 mb-5">
+                    <a href="{% url 'shop_items' %}" class="btn btn-dark rounded-pill px-4 py-2 text-uppercase">
+                        View all
+                    </a>
+                </div>
+
+            </section>
+        {% endif %}
     </div>
 </section>
 

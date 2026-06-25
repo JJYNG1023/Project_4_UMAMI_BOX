@@ -90,8 +90,13 @@ def product_detail(request, product_id):
     ingredients_list=[]
     if product.ingredients:
         ingredients_list = [item.strip() for item in product.ingredients.split(',')]
+
+    related_products = Product.objects.exclude(pk=product.pk)[:5]
+
     context = {
         'product': product,
-        'ingredients_list':ingredients_list
+        'ingredients_list':ingredients_list,
+        'related_products': related_products,
     }
+    
     return render(request, 'shop/product_detail.html', context)

@@ -127,6 +127,16 @@ product item display
     color: var(--color-accent);
 }
 
+.order-btn {    
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    font-weight: 500;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
 /* ---------------------------------
 Product_detail
 ------------------------------------*/
@@ -159,7 +169,19 @@ Product_detail
     z-index: 2;
 }
 
-.product-favourite-btn:hover {
+.product-back-btn{
+    position: absolute;
+    top: 0.75rem;
+    left: 0.15rem;
+    background: transparent;
+    border: 0;
+    color: var(--color-text);
+    font-size: 1.5rem;
+    z-index: 2;
+}
+
+.product-favourite-btn, 
+.product-back-btn :hover {
     color: var(--color-accent);
 }
 
@@ -191,6 +213,7 @@ Product_detail
     border-radius: var(--radius-sm);
     overflow: hidden;
     height: 2rem;
+    margin-left: 1em;
 }
 
 .quantity-control button {
@@ -202,6 +225,51 @@ Product_detail
 .quantity-control button:hover {
     color: var(--color-accent);
 }
+
+/* related products*/
+.related-detail-card {
+    margin: 0 1.5em;
+}
+
+
+.heading {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    color: var(--color-heading);
+}
+
+.related-product-card {
+    width: 100%;
+    height: 260px;
+    border-radius: var(--radius-sm);
+}
+
+.related-product-img {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    object-fit: cover;
+    display: block;
+}
+
+.explore-menue-title{
+    background-color: #fff3b0;
+    margin: 0rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 0.75rem;
+}
+
+.explore-menue-summary{
+    background-color: #cfe2ff;
+    margin: 0rem 1rem;
+    font-size: 0.9rem;
+    color: #111;
+    max-width: 97%;
+    margin-bottom: 0;
+}
+
 
 /* ---------------------------------
 Small - midscreen view
@@ -250,6 +318,17 @@ Small - midscreen view
     .product-add-btn {
         font-size: 1.35rem;
     }
+
+    .order-btn {    
+    margin-left: 10em;
+    margin-right: 1.5em;
+    }
+    
+    .product-detail-extra{
+    margin-left: 1em;
+    margin-top: 1em; 
+    margin-bottom: 2em;   
+    }
 }
 
 
@@ -279,6 +358,22 @@ mid - large screen view
     .product-detail-title {
         font-size: 2rem;
     }
+    
+    .product-meta{
+        margin-bottom: 10em;
+    }
+
+    .order_quantity_section{
+        margin-top: 7em;
+    }
+    .order-btn {        
+    margin-left: 5em;
+    margin-right: 1.5em;
+    }
+    .related-product-card {
+        height: 300px;
+    }
+
 }
 
 
