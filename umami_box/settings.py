@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     #local apps
     'home',
     'shop',
+    'basket',
 ]
 
 MIDDLEWARE = [

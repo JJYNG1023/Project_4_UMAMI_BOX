@@ -99,16 +99,19 @@
                 </div>
                 
                 <!-- Quantity -->
-                <div class="d-flex align-items-center gap-3 mb-3 order_quantity_section">
+                <div class="d-flex align-items-center gap-3 mb-3 order_quantity_section" 
+                data-product-id="{{ product.id }}"
+                data-product-name="{{ product.name }}"
+                data-product-price="{{ product.price }}">
                     <div class="quantity-control d-flex align-items-center">
-                        <button class="btn btn-sm px-2" type="button">-</button>
-                        <span class="px-2">1</span>
-                        <button class="btn btn-sm px-2" type="button">+</button>
+                        <button class="btn btn-sm px-2 quantity-minus" type="button">-</button>
+                        <span class="px-2 quantity-display">1</span>
+                        <button class="btn btn-sm px-2 quantity-plus" type="button">+</button>
                     </div>
                     <p class="product-price fs-5 mb-0">
-                      £{{ product.price }}
+                      £<span class="product-total-price">{{ product.price }}</span>
                     </p>
-                    <button class="btn order-btn flex-grow-1">
+                    <button class="btn order-btn flex-grow-1 add-to-order-btn" type="button">
                         Add to order
                     </button>
                 </div>
@@ -201,4 +204,9 @@
     </div>
 </section>
 
+<div class="shop-toast-message" id="shopToastMessage">
+    Added to order
+</div>
+
+<script src="{% static 'shop/js/shop.js' %}"></script>
 {% endblock%}

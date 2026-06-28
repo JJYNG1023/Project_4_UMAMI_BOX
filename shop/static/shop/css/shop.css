@@ -270,6 +270,33 @@ Product_detail
     margin-bottom: 0;
 }
 
+/* toastmessage*/
+.shop-toast-message {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background-color: #123525;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.shop-toast-message.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* add to fav */
+.product-favourite-btn.is-favourite {
+    color: var(--color-primary);
+}
 
 /* ---------------------------------
 Small - midscreen view
