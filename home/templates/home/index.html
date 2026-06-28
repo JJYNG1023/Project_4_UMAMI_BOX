@@ -151,34 +151,33 @@
 </section>
 
 <!-- recommended menu-->
+{% if recommended_products %}
 <section>
     <div class="container page-wrapper">
         <h2 class="mb-4 heading text-center mt-5 text-uppercase">
         Explore our menu </h2>
         <div class="row flex-nowrap flex-md-nowrap overflow-auto g-3">  
+            {% for product in recommended_products %}
             <div class="col-10 col-sm-6 col-md-6 col-lg-4">
-                <div class="h-100 explore-menue-card">
-                <img src="{% static 'images/step1-meal-order.png' %}" class="card-img-top" alt="menu">
-                    <div class="ps-2 card-img-overlay d-flex flex-column justify-content-end align-items-start mb-4">
-                        <span class="text-uppercase explore-menue-title">Choose</span>
-                        <p class="card-text explore-menue-summary">Pick your favourite ready meal, meal kit or signature sauce from our menu.</p>
+                <a href="{% url 'product_detail' product.pk %}" class="text-decoration-none">
+                    <div class="h-100 explore-menue-card">
+                    {% if product.image %}
+                    <img src="{% static product.image.name %}" class="card-img-top" alt="{{ product.name }}">
+                    {% endif %}
+                        <div class="ps-2 card-img-overlay d-flex flex-column justify-content-end align-items-start mb-4">
+                            <span class="text-uppercase explore-menue-title">{{ product.name }}</span>
+                            <p class="card-text explore-menue-summary">{{ product.description|truncatewords:10 }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>    
-
-            <div class="col-10 col-sm-6 col-md-6 col-lg-4">
-                <div class="h-100 explore-menue-card">
-                <img src="{% static 'images/step1-meal-order.png' %}" class="card-img-top" alt="menu">
-                    <div class="ps-2 card-img-overlay d-flex flex-column justify-content-end align-items-start mb-4">
-                        <span class="text-uppercase explore-menue-title">Choose</span>
-                        <p class="card-text explore-menue-summary">Pick your favourite ready meal, meal kit or signature sauce from our menu.</p>
-                    </div>
-                </div>
-            </div>  
+            {% endfor %}
         </div>
-        <div class="d-flex justify-content-center pt-4 mb-5"><a href="#" class="btn btn-dark rounded-pill px-4 py-2 text-uppercase">view all</a></div>
+        <div class="d-flex justify-content-center pt-4 mb-5">
+            <a href="{% url 'shop_items' %}" class="btn btn-dark rounded-pill px-4 py-2 text-uppercase">view all</a></div>
     </div>
 </section>
+{% endif %}
 
 <!-- sustainability-->
 <section class="card-section sustainability-section">
