@@ -14,6 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return JSON.parse(localStorage.getItem ("umamiBasket")) || [];
     }
 
+    function saveBasket(basket){
+        localStorage.setItem("umamiBasket", JSON.stringify(basket));
+    }
+
     /* render basket  */
     function renderBasketItems () {
         const basket = getBasket()
@@ -42,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         /* show basket */
         basket.forEach(function (item){
             const itemTotal = Number(item.price) * Number(item.quantity);
-            total+=itemTotal
+            total+=itemTotal;
 
             const orderDetail = document.createElement("div");
             orderDetail.classList.add("orderDetail","mb-3");
@@ -68,6 +72,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                 Item total: £${itemTotal.toFixed(2)}
                             </p>
                         </div>
+                        <button class="btn remove-basket-item mt-2" data-product-id="${item.id}" type="button">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
                     </div>`;
                 basketItems.appendChild(orderDetail);
         });
@@ -77,6 +84,37 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    basketItems.addEventListener("click", function (event)  {
+        const removeButton = event.target.closest(".remove-basket-item");            
+            if (!removeButton) {
+                return;
+            }
+            console.count("remove clicked")
+
+            event.preventDefault();
+            
+            const productId = removeButton.dataset.productId;
+            const basket = getBasket();
+            
+            const updatedBasket = basket
+                /* remove the product if quantity by 1 */
+                .map(function (item){
+                    if (item.id === productId){
+                        return { 
+                            ...item,
+                            quantity: item.quantity - 1
+                        };
+                    }
+                    return item;
+                })
+                /* remove the product if quantity becomes 0 */
+                .filter(function (item) {
+                    return item.quantity>0;
+                });
+            saveBasket(updatedBasket);
+            renderBasketItems();
+        });
+    
     renderBasketItems();
 
 })
