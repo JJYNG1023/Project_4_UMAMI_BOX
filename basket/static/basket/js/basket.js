@@ -34,26 +34,17 @@ document.addEventListener("DOMContentLoaded", function () {
         /* show basket */
         basket.forEach(function (item){
             const itemTotal = Number(item.price) * Number(item.quantity);
-            const OrderDetail = document.createElement("div");
-            OrderDetail.classList.add("orderDetail", "mb-3");
+            const orderDetail = document.createElement("div");
+            orderDetail.classList.add("orderDetail","mb-3");
             
-            OrderDetail.innerHTML=
+            orderDetail.innerHTML=
                 `   <div class="product-card-content d-flex flex-column">
-                        <a href=" {% url 'product_detail' product.id %}" class="text-decoration-none">
+                        <a href="#" class="text-decoration-none">
                             <h3 class="product-title mb-2">
                                 ${ item.name }
                             </h3>
                         </a>
 
-                        <div class="product-meta mb-3">
-                                <span> ${item.category.friendly_name} </span>
-                                <span>|</span>
-                            
-                                <span> ${ item.cooking_time }}min</span>
-                                <span>|</span>
-
-                                <span> ${ item.spice_level}}</span>
-                        </div>
                         <div class="product-card-bottom d-flex justify-content-between align-items-center mt-auto">
                             <p class="product-price mb-0">
                                 £ ${Number(item.price).toFixed(2)}
@@ -68,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </p>
                         </div>
                     </div>`;
-                basketItems.appendChild(OrderDetail);
+                basketItems.appendChild(orderDetail);
         });
     }
 
