@@ -1,7 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | Basket{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<body>
-<h1> Basket </h1>
+<section class="page-wrapper mt-4 mb-5">
+    <div class="container">
+        <h1 class="heading text-uppercase text-center mb-4">Your Basket</h1>
+            
+        <div class="row g-4">
+            <div class="col-12 col-lg-8">
+                <div id="basketItems">
+                    <!-- Basket item with JavaScript -->
+                </div>
+            </div>
+        </div>
 
-</body>
+
+            <div class="emptyBasketMessage" id="emptyBasketMessage">2</div>
+        <div class="basketSummary" id="basketSummary">2</div>
+
+        <button class="btn order-btn w-100 mt-3" type="button">
+            Checkout
+        </button>
+    </div>
+</section>
+
+{% block postload_js %}
+    {{ block.super }}
+    <script src="{% static 'basket/js/basket.js' %}"></script>
+{% endblock %}
+
 {% endblock %}
