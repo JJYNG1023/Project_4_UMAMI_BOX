@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("basket.js loaded");
 
     const basketItems = document.getElementById("basketItems");
+    const basketTotal = document.getElementById("basketTotal");
 
     if (!basketItems) {
         console.log("basketItems container not found");
@@ -23,17 +24,26 @@ document.addEventListener("DOMContentLoaded", function () {
         basketItems.innerHTML = "";
         
         if (basket.length===0){
-        basketItems.innerHTML = `
-        <div class="emptyBasketMessage">
-            <p> Your basket is empty </p>
-        <div>
-        `;
+            basketItems.innerHTML = `
+            <div class="emptyBasketMessage">
+                <p> Your basket is empty </p>
+            <div>
+            `;
+
+            if(basketTotal){
+                basketTotal.textContent="0.00";
+            }
+
         return;
         }
         
+        let total =0;
+
         /* show basket */
         basket.forEach(function (item){
             const itemTotal = Number(item.price) * Number(item.quantity);
+            total+=itemTotal
+
             const orderDetail = document.createElement("div");
             orderDetail.classList.add("orderDetail","mb-3");
             
@@ -61,7 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>`;
                 basketItems.appendChild(orderDetail);
         });
+
+        if (basketTotal){
+            basketTotal.textContent = total.toFixed(2)
+        }
     }
 
     renderBasketItems();
+
 })
