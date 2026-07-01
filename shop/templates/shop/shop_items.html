@@ -100,7 +100,19 @@
             <!--Python loop-->
             {% for product in products %}
             <div class="col-12 col-lg-6">
-                <div class="d-flex product-card">
+                <div class="d-flex product-card" 
+                    data-product-id="{{ product.id }}"
+                    data-product-name="{{ product.name }}"
+                    data-product-price="{{ product.price }}"
+                    data-product-url="{% url 'product_detail' product.id %}"
+                    data-product-category="{{ product.category.friendly_name|default:product.category.name }}"
+                    data-product-cooking-time="{{ product.cooking_time }}"
+                    data-product-spice-level="{{ product.spice_level }}"
+                    {% if product.image %}
+                        data-product-image="{% static product.image.name %}"
+                    {% else %}
+                        data-product-image=""
+                    {% endif %}>
                     <!-- Product image -->
                     <div class="product-image-wrapper">
                         {% if product.image %}
@@ -140,7 +152,7 @@
                                 £ {{ product.price}}
                             </p>
 
-                            <button class="btn product-add-btn" aria-label="Add to basket">
+                            <button class="btn product-add-btn" type="button" aria-label="Add to basket">
                                 <i class="bi bi-plus-circle"></i>
                             </button>
                         </div>

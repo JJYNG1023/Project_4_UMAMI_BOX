@@ -3,82 +3,15 @@
 // shop_detail.html 
 document.addEventListener("DOMContentLoaded" , function() {
     console.log("shop.js loaded");
-    
+    const productAddButtons = document.querySelectorAll(".product-add-btn");
     const orderSection = document.querySelector(".order_quantity_section");
-    console.log("Order section:", orderSection);
-
-
-    if (!orderSection){
-        console.log("No order section found");
-        return;
-    }
-
-    const minusBtn = document.querySelector(".quantity-minus");
-    const plusBtn = document.querySelector(".quantity-plus");
-    const quantityDisplay = document.querySelector(".quantity-display");
-    const totalPriceDisplay = document.querySelector(".product-total-price");
-    const addToOrderBtn = document.querySelector(".add-to-order-btn");
     const favBtn = document.querySelector(".product-favourite-btn");
     const toastMessage = document.getElementById("shopToastMessage");
 
-    const productId = orderSection.dataset.productId
-    const productName = orderSection.dataset.productName;
-    const productPrice = parseFloat (orderSection.dataset.productPrice);
-    console.log("Product detail:", productId, productName, productPrice);
+    console.log("Order section:", orderSection);
 
-    let quantity = 1 ;
     const maxQuantity = 5;
     let toastTimeout;
-
-    // update quantity and price //
-    function updateTotalPrice () {
-        const total = productPrice * quantity;
-        quantityDisplay.textContent = quantity;
-        totalPriceDisplay.textContent = total.toFixed(2);
-    }
-
-        plusBtn.addEventListener("click",function (){
-            if (quantity < 5) {
-                quantity ++;
-                updateTotalPrice();
-            };
-        });
-
-        minusBtn.addEventListener("click",function (){
-            if (quantity > 1){
-                quantity --;
-                updateTotalPrice()
-            }
-        });
-
-    updateTotalPrice();
-
-    //add order button//
-
-
-    // add order Basket //
-    addToOrderBtn.addEventListener("click", function(){
-        const basket = getBasket();
-        const existingProduct = basket.find(function(item){
-            return item.id === productId;
-        });
-
-        if (existingProduct){
-            existingProduct.quantity = Math.min(existingProduct.quantity + quantity, maxQuantity);
-        }else{
-            basket.push({
-                id: productId,
-                name: productName,
-                price: productPrice,
-                quantity:quantity
-            });  
-        }
-
-        saveBasket(basket);
-        updateBasketCount();
-
-        popUpToast(`Added to Basket !`);
-    });
 
     // Basket //
     function getBasket() {
@@ -98,9 +31,9 @@ document.addEventListener("DOMContentLoaded" , function() {
 
         const basket = getBasket();
 
-        const totalItem = basket.reduce(function (total ,item){
-            return total + item.quantity;
-        },0);
+        const totalItem = basket.reduce(function (total, item) {
+            return total + Number(item.quantity);
+        }, 0);
 
         basketCount.textContent = totalItem;
 
@@ -111,9 +44,9 @@ document.addEventListener("DOMContentLoaded" , function() {
         }
     }
     
-
     // pop up toastmessage //
     function popUpToast(message){
+        console.log("Toast element:", toastMessage);
         if (!toastMessage){ 
             return;
         }
@@ -129,7 +62,121 @@ document.addEventListener("DOMContentLoaded" , function() {
         },2000);
     }
 
-    
+    function addProductToBasket(product, quantityToAdd) {
+        const basket = getBasket();
+
+        const existingProduct = basket.find(function (item) {
+            return item.id === product.id;
+        });
+
+        if (existingProduct) {
+            existingProduct.quantity = Math.min(
+                Number(existingProduct.quantity) + Number(quantityToAdd),
+                maxQuantity
+            );
+        } else {
+            basket.push({
+                id: product.id,
+                name: product.name,
+                price: Number(product.price),
+                quantity: Number(quantityToAdd),
+                image: product.image,
+                url: product.url,
+                category: product.category,
+                cookingTime: product.cookingTime,
+                spiceLevel: product.spiceLevel
+            });
+        }
+
+        saveBasket(basket);
+        updateBasketCount();
+
+        console.log("Basket saved:", basket);
+    }
+    // shop listing page //
+    productAddButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const productCard = button.closest(".product-card");
+
+                if (!productCard) {
+                    return;
+                }
+
+                const product = {
+                    id: productCard.dataset.productId,
+                    name: productCard.dataset.productName,
+                    price: productCard.dataset.productPrice,
+                    image: productCard.dataset.productImage,
+                    url: productCard.dataset.productUrl,
+                    category: productCard.dataset.productCategory,
+                    cookingTime: productCard.dataset.productCookingTime,
+                    spiceLevel: productCard.dataset.productSpiceLevel
+                };
+                addProductToBasket(product, 1);
+                popUpToast("Added to Basket!");
+            });
+        });
+               
+    //add to oder button on shop detail page //
+    if (orderSection) {
+        console.log("Order section:", orderSection);
+
+        const minusBtn = orderSection.querySelector(".quantity-minus");
+        const plusBtn = orderSection.querySelector(".quantity-plus");
+        const quantityDisplay = orderSection.querySelector(".quantity-display");
+        const totalPriceDisplay = orderSection.querySelector(".product-total-price");
+        const addToOrderBtn = orderSection.querySelector(".add-to-order-btn");
+
+        const product = {
+            id: orderSection.dataset.productId,
+            name: orderSection.dataset.productName,
+            price: Number(orderSection.dataset.productPrice),
+            image: orderSection.dataset.productImage,
+            url: orderSection.dataset.productUrl,
+            category: orderSection.dataset.productCategory,
+            cookingTime: orderSection.dataset.productCookingTime,
+            spiceLevel: orderSection.dataset.productSpiceLevel
+        };
+
+        let quantity = 1;
+        
+        // update quantity and price //
+        function updateTotalPrice() {
+            const total = Number(product.price) * quantity;
+
+            quantityDisplay.textContent = quantity;
+            totalPriceDisplay.textContent = total.toFixed(2);
+
+            plusBtn.disabled = quantity >= maxQuantity;
+            minusBtn.disabled = quantity <= 1;
+        }
+
+        plusBtn.addEventListener("click", function () {
+            if (quantity < maxQuantity) {
+                quantity++;
+                updateTotalPrice();
+            }
+        });
+
+        minusBtn.addEventListener("click", function () {
+            if (quantity > 1) {
+                quantity--;
+                updateTotalPrice();
+            }
+        });
+
+        addToOrderBtn.addEventListener("click", function () {
+            addProductToBasket(product, quantity);
+            popUpToast("Added to Basket!");
+
+            quantity = 1;
+            updateTotalPrice();
+        });
+
+        updateTotalPrice();
+    }
+
+
     // add to favourit //
     if (favBtn) {
         favBtn.addEventListener("click", function () {
@@ -146,6 +193,5 @@ document.addEventListener("DOMContentLoaded" , function() {
         });
     }
     updateBasketCount();
-    updateTotalPrice();
 });
 

@@ -193,6 +193,29 @@ Mobile nav modal icon
     margin-top: var(--spacing-size-6-0);
 }
 
+/* toastmessage*/
+.shop-toast-message {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background-color: #123525;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 99999;
+}
+
+.shop-toast-message.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
 /* ------------------------------
 mid to large view 
 -------------------------------*/
