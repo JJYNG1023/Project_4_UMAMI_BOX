@@ -100,9 +100,18 @@
                 
                 <!-- Quantity -->
                 <div class="d-flex align-items-center gap-3 mb-3 order_quantity_section" 
-                data-product-id="{{ product.id }}"
-                data-product-name="{{ product.name }}"
-                data-product-price="{{ product.price }}">
+                    data-product-id="{{ product.id }}"
+                    data-product-name="{{ product.name }}"
+                    data-product-price="{{ product.price }}"
+                    data-product-url="{% url 'product_detail' product.id %}"
+                    data-product-category="{{ product.category.friendly_name|default:product.category.name }}"
+                    data-product-cooking-time="{{ product.cooking_time }}"
+                    data-product-spice-level="{{ product.spice_level }}"
+                    {% if product.image %}
+                        data-product-image="{% static product.image.name %}"
+                    {% else %}
+                        data-product-image=""
+                    {% endif %}>
                     <div class="quantity-control d-flex align-items-center">
                         <button class="btn btn-sm px-2 quantity-minus" type="button">-</button>
                         <span class="px-2 quantity-display">1</span>

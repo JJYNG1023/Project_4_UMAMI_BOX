@@ -112,6 +112,8 @@ document.addEventListener("DOMContentLoaded" , function() {
                     cookingTime: productCard.dataset.productCookingTime,
                     spiceLevel: productCard.dataset.productSpiceLevel
                 };
+                console.log("Product image path:", product.image);
+                
                 addProductToBasket(product, 1);
                 popUpToast("Added to Basket!");
             });
