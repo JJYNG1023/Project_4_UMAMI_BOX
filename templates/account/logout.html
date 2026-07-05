@@ -1,8 +1,14 @@
-{% extends "account/base_manage.html" %}
+{% extends 'base.html'%}
+{% load static %}
 {% load allauth i18n %}
-{% block head_title %}
-    {% trans "Sign Out" %}
-{% endblock head_title %}
+
+{% block extra_title %} | Logout{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
 {% block content %}
     {% element h1 %}
         {% trans "Sign Out" %}

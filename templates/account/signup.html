@@ -1,45 +1,108 @@
-{% extends "account/base_entrance.html" %}
+{% extends 'base.html'%}
+{% load static %}
 {% load allauth i18n %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
+
+{% block extra_title %} | Sign Up{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    {% setvar link %}
-        <a href="{{ login_url }}">
-        {% endsetvar %}
-        {% setvar end_link %}
-        </a>
-    {% endsetvar %}
-    {% element p %}
-        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-    {% endelement %}
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% url 'account_signup' as action_url %}
-        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-            {% slot body %}
-                {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
-                {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                {% element button tags="prominent,signup" type="submit" %}
-                    {% trans "Sign Up" %}
-                {% endelement %}
-            {% endslot %}
-        {% endelement %}
-    {% endif %}
-    {% if PASSKEY_SIGNUP_ENABLED %}
-        {% element hr %}
-        {% endelement %}
-        {% element button href=signup_by_passkey_url tags="prominent,signup,outline,primary" %}
-            {% trans "Sign up using a passkey" %}
-        {% endelement %}
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+<section class="page-wrapper mt-4 mb-5">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-5">
+                <div class="account-card">
+
+                    <h2 class="fs-3 fw-bold text-center mb-4">
+                        Sign Up
+                    </h2>
+
+                    {% if not SOCIALACCOUNT_ONLY %}
+
+                        {% url 'account_signup' as action_url %}
+
+                        <form method="POST" action="{{ action_url }}" class="account-form fs-6">
+                            {% csrf_token %}
+
+                            {{ form.non_field_errors }}
+
+                            {% if form.username %}
+                                <div class="account-form-group">
+                                    <label for="{{ form.username.id_for_label }}">
+                                        User Name
+                                    </label>
+                                    {{ form.username }}
+                                    {{ form.username.errors }}
+                                </div>
+                            {% endif %}
+
+                            {% if form.email %}
+                                <div class="account-form-group">
+                                    <label for="{{ form.email.id_for_label }}">
+                                        User Email
+                                    </label>
+                                    {{ form.email }}
+                                    {{ form.email.errors }}
+                                </div>
+                            {% endif %}
+
+                            {% if form.password1 %}
+                                <div class="account-form-group">
+                                    <label for="{{ form.password1.id_for_label }}">
+                                        Password
+                                    </label>
+                                    {{ form.password1 }}
+                                    {{ form.password1.errors }}
+                                </div>
+                            {% endif %}
+
+                            {% if form.password2 %}
+                                <div class="account-form-group">
+                                    <label for="{{ form.password2.id_for_label }}">
+                                        Re-enter Password
+                                    </label>
+                                    {{ form.password2 }}
+                                    {{ form.password2.errors }}
+                                </div>
+                            {% endif %}
+
+                            {{ redirect_field }}
+
+                            <button class="account-submit-btn" type="submit">
+                                Create Account
+                            </button>
+                        </form>
+
+                    {% endif %}
+
+                    <p class="text-center mt-4 mb-0">
+                        Already have an account?
+                        <a href="{{ login_url }}" class="account-link-inline">
+                            Sign in
+                        </a>
+                    </p>
+
+                    {% if PASSKEY_SIGNUP_ENABLED %}
+                        <hr>
+
+                        {% element button href=signup_by_passkey_url tags="prominent,signup,outline,primary" %}
+                            {% trans "Sign up using a passkey" %}
+                        {% endelement %}
+                    {% endif %}
+
+                    {% if SOCIALACCOUNT_ENABLED %}
+                        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 {% endblock content %}
