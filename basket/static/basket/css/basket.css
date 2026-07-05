@@ -1,4 +1,5 @@
 .basket-product-card {
+    position: relative;
     background-color: var(--color-card);
     border-radius: var(--radius-sm);
     padding: 0.75rem;
@@ -11,6 +12,7 @@
     width: 40%;
     flex-shrink: 0;
     border-radius: var(--radius-sm);
+    overflow: hidden;
 }
 
 .basket-product-image {
@@ -43,6 +45,7 @@
 
 
 .order-btn {
+    background-color: var(--color-card);
     border: 1px solid var(--color-text);
     border-radius: var(--radius-sm);
     display: flex;
@@ -52,3 +55,107 @@
     width: fit-content;
     padding: 0.5rem 1.5rem;
 }
+
+.basket-remove-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+}
+
+/* ---------------------------------
+Small - midscreen view
+------------------------------------*/
+@media (min-width: 750px) {
+    .basket-product-card {
+        background-color: var(--color-card);
+        border-radius: var(--radius-sm);
+        padding: 0.75rem;
+        gap: 0.75rem;
+        display: flex;
+        align-items: center;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .basket-product-image-wrapper {
+        width: 110px;
+        height: 110px;
+        flex-shrink: 0;
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+    }
+
+    .basket-product-image {
+        width: 100%;
+        height: 100%;
+        border-radius: var(--radius-sm);
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+    }
+
+    .basket-summary {
+        padding: 0 0.5rem;
+        align-items: center;
+        justify-content: center;
+        width:80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+/* ---------------------------------
+mid - large screen view
+------------------------------------*/
+@media (min-width: 992px) {
+    .basket-product-card {
+        background-color: var(--color-card);
+        border-radius: var(--radius-sm);
+        padding: 0.75rem;
+        gap: 0.75rem;
+        display: flex;
+        align-items: center;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .basket-product-image-wrapper {
+        width: 110px;
+        height: 110px;
+        flex-shrink: 0;
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+    }
+
+    .basket-product-image {
+        object-fit: contain;
+        object-position: center center;
+        background-color: var(--color-card);
+    }
+
+    .basket-summary {
+        padding: 0 0.5rem;
+        align-items: center;
+        justify-content: center;
+        width:100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+ }
+
+
+
+
+/* ------------------------------
+X-Large devices
+Large desktops, 1200px and up
+-------------------------------*/
+@media (min-width: 1200px) {}
