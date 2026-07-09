@@ -29,11 +29,11 @@
             <!-- Account icon --> 
             <div class="ms-auto d-flex align-items-center">
                 {% if request.user.is_authenticated %}
-                <a href="{% url 'profile' %}" aria-label="My Account">
+                <a href="{% url 'profile' %}" class="account-icon d-md-inline-flex" aria-label="My Account">
                     <i class="bi bi-person"></i>
                 </a>
                 {% else %}
-                <a href="{% url 'account_login' %}" aria-label="Login">
+                <a href="{% url 'account_login' %}" class="account-icon d-md-inline-flex" aria-label="Login">
                     <i class="bi bi-person"></i>
                 </a>
                 {% endif %}
@@ -81,11 +81,19 @@
                         <br>
 
                         <li>
-                            <a class="nav-modal-link" href="#">Account</a>
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'profile' %}" class="nav-modal-link" aria-label="My Account">
+                                Account
+                            </a>
+                            {% else %}
+                            <a href="{% url 'account_login' %}" class="nav-modal-link" aria-label="Login">
+                                Account
+                            </a>
+                        {% endif %}
                         </li>
 
                         <li>
-                            <a class="nav-modal-link" href="#">Basket</a>
+                            <a class="nav-modal-link" href="{% url 'view_basket' %}">Basket</a>
                         </li>
                     </ul>
                 </nav>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | Edit Profile{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'profiles/css/edit_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="page-wrapper mt-4 mb-5">
+        <div class="container">
+            <p class="heading text-uppercase text-start mb-2 fs-1">
+                Profile Detail
+            </p>
+    
+            <div class="row justify-content-center">
+                <!-- Profile detail content goes here -->
+                <div class="col-12 col-md-8 -col-lg-5">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div>
+                            {{ }}
+                        </div>
+
+                        <input type="hidden" name="user_id" value="{{ request.user.id }}">
+                        {{ form.non_field_errors }}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

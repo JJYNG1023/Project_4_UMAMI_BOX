@@ -193,6 +193,10 @@ Mobile nav modal icon
     margin-top: var(--spacing-size-6-0);
 }
 
+.account-icon {
+    padding-right: 20px;
+}
+
 /* toastmessage*/
 .shop-toast-message {
     position: fixed;

@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'home',
     'shop',
     'basket',
-    'profile',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -109,7 +109,7 @@ ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'email2*', 'password1*', 'password2*']
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
-ACCOUNT_LOGIN_REDIRECT_URL = '/profile/'
+ACCOUNT_LOGIN_REDIRECT_URL = '/profiles/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 WSGI_APPLICATION = 'umami_box.wsgi.application'
