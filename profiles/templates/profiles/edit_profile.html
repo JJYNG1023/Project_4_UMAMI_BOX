@@ -19,18 +19,64 @@
                 <div class="col-12 col-md-8 -col-lg-5">
                     <form method="POST">
                         {% csrf_token %}
+                        
+                        {{ form.non_field_errors }}
 
                         <div>
-                            {{ }}
+                            {{ form.full_name.label_tag }}
+                            {{ form.full_name }}
+                            {{ form.full_name.errors }}
                         </div>
 
-                        <input type="hidden" name="user_id" value="{{ request.user.id }}">
-                        {{ form.non_field_errors }}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <div class="profile-form-group">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                            {{ form.email.errors }}
+                        </div>
+
+                        <div class="profile-form-group">
+                            {{ form.default_address.label_tag }}
+                            {{ form.default_address }}
+                            {{ form.default_address.errors }}
+                        </div>
+
+                        <div class="profile-form-group">
+                            {{ form.delivery_note.label_tag }}
+                            {{ form.delivery_note }}
+                            {{ form.delivery_note.errors }}
+                        </div>
+
+
+                        <div class="profile-action-row">
+                        <button class="btn profile-action-btn" type="button" id="editProfileBtn">
+                            Edit
+                        </button>
+
+                        <button class="btn profile-action-btn" type="submit">
+                            Save
+                        </button>
+                        </div>
                     </form>
+
+                    <form method="POST" class="text-center mt-3">
+                    {% csrf_token %}
+                        <button 
+                            class="btn profile-delete-btn" 
+                            type="submit" 
+                            name="delete_account"
+                            onclick="return confirm('Are you sure you want to delete your account? This cannot be undone.');"
+                        >
+                            Delete Account
+                        </button>
+                    </form>
+
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    <script src="{% static 'profiles/js/profile.js' %}"></script>
 {% endblock %}

@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import UserProfile
+from .models import UserProfileForm
 
 # Create your views here.
 
@@ -9,6 +12,36 @@ def profile(request):
 
 @login_required
 def edit_profile(request):
+    
+    user_profile, created =UserProfile.objects.get_or_create(user=request.user)
+
+    if request.method=='POST':
+        if 'delete_account' in request.POST:
+            request.user.delete()
+            messages.success(request, ' Your account has been deleted.')
+            return redirect('account_login')
+        
+        form = UserProfileForm(
+            request.POST,
+            instance= user_profile,
+            user=request.user
+        )
+
+        if form.is_valid():
+            form.save()
+            messages.success(request='Profile updated successfully.')
+            return redirect('edit_profile')
+    else:
+        form = UserProfileForm (
+            instance = user_profile,
+            user=request.user
+        )
+
+
+    context = {
+        'form' = form,
+    }
+    
     return render(request, 'profiles/edit_profile.html')
 
 @login_required
