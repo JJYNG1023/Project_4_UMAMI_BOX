@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import UserProfile
-from .models import UserProfileForm
+from .forms import UserProfileForm
 
 # Create your views here.
 
@@ -29,7 +29,7 @@ def edit_profile(request):
 
         if form.is_valid():
             form.save()
-            messages.success(request='Profile updated successfully.')
+            messages.success(request,'Profile updated successfully.')
             return redirect('edit_profile')
     else:
         form = UserProfileForm (
@@ -39,10 +39,10 @@ def edit_profile(request):
 
 
     context = {
-        'form' = form,
+        'form': form,
     }
-    
-    return render(request, 'profiles/edit_profile.html')
+
+    return render(request, 'profiles/edit_profile.html', context)
 
 @login_required
 def order_history(request):

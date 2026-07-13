@@ -5,3 +5,68 @@
 .profile-container{
     height:90vw;
 }
+
+.profile-form {
+    background-color: white;
+    border-radius: var(--radius-md);
+    padding: 2rem 1.5rem 2rem 1.5rem;
+}
+
+.profile-form-group {
+    margin-bottom: 2rem;
+}
+
+.profile-form-label {
+    margin-bottom: 0.35rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.profile-form-input,
+.profile-form-textarea {
+    width: 100%;
+    border: 1px solid var(--color-text);
+    border-radius: var(--radius-sm);
+    padding: 0.45rem 0.6rem;
+    background-color: transparent;
+    color: var(--color-text);
+}
+
+.profile-form-textarea {
+    resize: none;
+}
+
+.profile-form textarea[name="default_address"] {
+    min-height: 4.5rem;
+}
+
+.profile-form textarea[name="delivery_note"] {
+    min-height: 7rem;
+}
+
+.profile-action-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.profile-action-btn,
+.profile-delete-btn {
+    background-color: transparent;
+    border: 1px solid var(--color-text);
+    border-radius: 999px;
+    color: var(--color-text);
+    padding: 0.2rem 1.6rem;
+    line-height: 1.2;
+}
+
+.profile-delete-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.profile-delete-btn {
+    min-width: 180px;
+}

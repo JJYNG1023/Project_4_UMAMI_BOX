@@ -1,31 +1,38 @@
 from django import forms
 from .models import UserProfile
 
-class UserProfileForm(forms.modelForm):
+class UserProfileForm(forms.ModelForm):
     email = forms.EmailField(required=True)
 
     class Meta:
         model = UserProfile
         # database fields appear in the form
-        fields = ['full_name', 
-                  'email', 
-                  'delivery_address', 
-                  'delivery_notes']
+        fields = [            
+                    'full_name',
+                    'email',
+                    'phone_number',
+                    'street_address_1',
+                    'street_address_2',
+                    'postcode',
+                    'town_or_city',
+                    'country',
+                    'delivery_notes',]
         
-        # text shown above the input
-        labels = {
-                'full_name': 'Full Name',
-                'email': 'Email Address',
-                'delivery_address': 'Delivery Address',
-                'delivery_notes': 'Delivery Notes'
-                }
-
         # controls the HTML input element used for each field
-        widgets = {'full_name': forms.TextInput(attrs={'class': 'form-control'}),
-                   'email': forms.EmailInput(attrs={'class': 'form-control'}),
-                    'delivery_address': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-                    'delivery_notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 3})
-                   }
+        widgets = {
+                    'full_name': forms.TextInput(attrs={'class': 'profile-form-input'}),
+                    'email': forms.EmailInput(attrs={'class': 'profile-form-input'}),
+                    'phone_number': forms.TextInput(attrs={'class': 'profile-form-input'}),
+                    'street_address_1': forms.TextInput(attrs={'class': 'profile-form-input'}),
+                    'street_address_2': forms.TextInput(attrs={'class': 'profile-form-input'}),
+                    'postcode': forms.TextInput(attrs={'class': 'profile-form-input'}),
+                    'town_or_city': forms.TextInput(attrs={'class': 'profile-form-input'}),
+                    'country': forms.Select(attrs={'class': 'profile-form-input'}),
+                    'delivery_notes': forms.Textarea(attrs={
+                        'class': 'profile-form-textarea',
+                        'rows': 5,
+                    }),
+                }
 
     def __init__ (self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -35,13 +42,15 @@ class UserProfileForm(forms.modelForm):
             self.fields['email'].initial = self.user.email
 
     def save(self,commit=True):
-        profile = super().save(commit=True);
+        profile = super().save(commit=False)
 
         if self.user:
             self.user.email = self.cleaned_data['email']
 
-            if commit:
+        if commit:
+            if self.user:
                 self.user.save()
-                profile.save()
+
+            profile.save()
 
         return profile

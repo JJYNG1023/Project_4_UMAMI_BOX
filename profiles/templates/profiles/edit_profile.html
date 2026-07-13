@@ -4,12 +4,12 @@
 {% block extra_title %} | Edit Profile{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'profiles/css/edit_profile.css' %}">
+<link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
-    <section class="page-wrapper mt-4 mb-5">
-        <div class="container">
+    <section class="page-wrapper mt-5 mb-5">
+        <div class="container profile-form">
             <p class="heading text-uppercase text-start mb-2 fs-1">
                 Profile Detail
             </p>
@@ -17,35 +17,82 @@
             <div class="row justify-content-center">
                 <!-- Profile detail content goes here -->
                 <div class="col-12 col-md-8 -col-lg-5">
-                    <form method="POST">
+                    <form method="POST" id="profileForm" class="mt-4">
                         {% csrf_token %}
                         
                         {{ form.non_field_errors }}
 
-                        <div>
-                            {{ form.full_name.label_tag }}
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Full Name:</span>
+                            <div>
                             {{ form.full_name }}
                             {{ form.full_name.errors }}
+                            </div>
                         </div>
 
                         <div class="profile-form-group">
-                            {{ form.email.label_tag }}
+                            <span class="profile-form-label">Email:</span>
+                            <div>
                             {{ form.email }}
                             {{ form.email.errors }}
+                            </div>
                         </div>
 
                         <div class="profile-form-group">
-                            {{ form.default_address.label_tag }}
-                            {{ form.default_address }}
-                            {{ form.default_address.errors }}
+                            <span class="profile-form-label">Phone Number:</span>
+                            <div>
+                                {{ form.phone_number }}
+                                {{ form.phone_number.errors }}
+                            </div>
                         </div>
 
                         <div class="profile-form-group">
-                            {{ form.delivery_note.label_tag }}
-                            {{ form.delivery_note }}
-                            {{ form.delivery_note.errors }}
+                            <span class="profile-form-label">Street Address 1:</span>
+                            <div>
+                                {{ form.street_address_1 }}
+                                {{ form.street_address_1.errors }}
+                            </div>
                         </div>
 
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Street Address 2:</span>
+                            <div>
+                                {{ form.street_address_2 }}
+                                {{ form.street_address_2.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Postcode:</span>
+                            <div>
+                                {{ form.postcode }}
+                                {{ form.postcode.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Town or City:</span>
+                            <div>
+                                {{ form.town_or_city }}
+                                {{ form.town_or_city.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Country:</span>
+                            <div>
+                                {{ form.country }}
+                                {{ form.country.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Delivery Notes:</span>
+                            <div>
+                                {{ form.delivery_notes }}
+                                {{ form.delivery_notes.errors }}
+                            </div>
+                        </div>
 
                         <div class="profile-action-row">
                         <button class="btn profile-action-btn" type="button" id="editProfileBtn">
