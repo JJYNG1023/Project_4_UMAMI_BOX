@@ -10,22 +10,43 @@
 {% endblock %}
 
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    {% element p %}
-        {% trans 'Are you sure you want to sign out?' %}
-    {% endelement %}
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
-            {% csrf_token %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
+ <section class="page-wrapper mt-4 mb-5">
+    <div class="container account-card">
+
+        <p class="heading text-uppercase text-start mb-2 fs-1">
+            My Account
+        </p>
+        
+        <div class="row justify-content-center account-signout-page">
+            <div class="col-12 col-md-8 col-lg-5">
+
+                <div class="text-center">
+                    <h1 class="fs-4 mb-3">
+                        {% trans "Sign Out" %}
+                    </h1>
+
+                    <p class="mb-4">
+                        {% trans "Are you sure you want to sign out?" %}
+                    </p>
+
+                    {% url 'account_logout' as action_url %}
+
+                    <form method="POST" action="{{ action_url }}" class="account-form">
+                        {% csrf_token %}
+                        {{ redirect_field }}
+
+                        <button class="btn account-submit-btn" type="submit">
+                            {% trans "Sign Out" %}
+                        </button>
+                    </form>
+
+                    <a href="{% url 'profile' %}" class="account-link mt-4">
+                        Cancel and return to My Account
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock content %}

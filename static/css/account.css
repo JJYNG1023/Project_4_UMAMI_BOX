@@ -6,7 +6,12 @@
 .account-card {
     background-color: white;
     border-radius: var(--radius-md);
-    padding: 1rem 1.5rem 2rem;
+    padding: 1rem 1.5rem 2rem 1.5rem;
+}
+
+.account-signout-page {
+   margin-top: 5rem;
+   height:80vw;
 }
 
 .account-subtitle {
