@@ -2,7 +2,8 @@ from django import forms
 from .models import UserProfile
 
 class UserProfileForm(forms.ModelForm):
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'profile-form-input'})
+)
 
     class Meta:
         model = UserProfile

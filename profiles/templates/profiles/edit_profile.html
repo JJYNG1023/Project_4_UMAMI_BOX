@@ -4,7 +4,8 @@
 {% block extra_title %} | Edit Profile{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -16,7 +17,7 @@
     
             <div class="row justify-content-center">
                 <!-- Profile detail content goes here -->
-                <div class="col-12 col-md-8 -col-lg-5">
+                <div class="col-12 col-md-8 col-lg-5">
                     <form method="POST" id="profileForm" class="mt-4">
                         {% csrf_token %}
                         
@@ -99,7 +100,7 @@
                             Edit
                         </button>
 
-                        <button class="btn profile-action-btn" type="submit">
+                        <button class="btn profile-action-btn" type="submit"  id="saveProfileBtn">
                             Save
                         </button>
                         </div>

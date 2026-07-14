@@ -70,3 +70,18 @@
 .profile-delete-btn {
     min-width: 180px;
 }
+
+.profile-field-locked {
+    color: var(--color-text);
+    cursor: default;
+}
+
+.profile-field-editing {
+    color: #9b9b9b;
+    cursor: text;
+}
+
+.profile-action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
