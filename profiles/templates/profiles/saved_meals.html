@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | Saved Meals{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-wrapper mt-5 mb-5">
+    <div class="container">
+
+        <p class="heading text-uppercase text-start text-md-center mb-2 fs-1">
+            Saved Meals
+        </p>
+
+        <!-- Search bar -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form method="GET" action="{% url 'saved_meals' %}" class="search-form mx-auto">
+                    <div class="search-input-wrapper">
+                        <input 
+                            type="text"
+                            name="q"
+                            class="form-control me-2 search-bar"
+                            placeholder="Search saved meals..."
+                            value="{{ search_query|default:'' }}"
+                        >
+
+                        {% if selected_category %}
+                            <input type="hidden" name="category" value="{{ selected_category }}">
+                        {% endif %}
+
+                        <button class="search-icon-btn" type="submit" aria-label="Search">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Category filters -->
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+
+            <a 
+                href="{% url 'saved_meals' %}{% if search_query %}?q={{ search_query|urlencode }}{% endif %}" 
+                class="filter-btn fs-7 {% if not selected_category %}active{% endif %}"
+            >
+                All
+            </a>
+
+            {% for category in categories %}
+                <a 
+                    href="{% url 'saved_meals' %}?{% if search_query %}q={{ search_query|urlencode }}&{% endif %}category={{ category.name }}"
+                    class="filter-btn fs-7 {% if selected_category == category.name %}active{% endif %}"
+                >
+                    {{ category.friendly_name|default:category.name }}
+                </a>
+            {% endfor %}
+
+        </div>
+
+        <!-- Saved meals list -->
+        <div class="row g-4">
+            {% for product in saved_products %}
+
+                <div class="col-12 col-lg-6">
+                    <div 
+                        class="d-flex product-card position-relative"
+                        data-product-id="{{ product.id }}"
+                        data-product-name="{{ product.name }}"
+                        data-product-price="{{ product.price }}"
+                        data-product-url="{% url 'product_detail' product.id %}"
+                        data-product-category="{{ product.category.friendly_name|default:product.category.name }}"
+                        data-product-cooking-time="{{ product.cooking_time }}"
+                        data-product-spice-level="{{ product.spice_level }}"
+                        {% if product.image %}
+                            data-product-image="{% static product.image.name %}"
+                        {% else %}
+                            data-product-image=""
+                        {% endif %}
+                    >
+
+                        <!-- Product image -->
+                        <div class="product-image-wrapper">
+                            <a href="{% url 'product_detail' product.id %}">
+                                {% if product.image %}
+                                    <img 
+                                        src="{% static product.image.name %}" 
+                                        class="product-image" 
+                                        alt="{{ product.name }}"
+                                    >
+                                {% endif %}
+                            </a>
+                        </div>
+
+                        <!-- Product content -->
+                        <div class="product-card-content d-flex flex-column">
+
+                            <div class="d-flex justify-content-between align-items-start">
+                                <a href="{% url 'product_detail' product.id %}" class="text-decoration-none">
+                                    <h2 class="product-title mb-2">
+                                        {{ product.name }}
+                                    </h2>
+                                </a>
+
+                                <button 
+                                    class="btn product-favourite-btn saved-meal-btn is-favourite" 
+                                    type="button"
+                                    data-save-url="{% url 'toggle_saved_meal' product.id %}"
+                                    aria-label="Remove {{ product.name }} from saved meals"
+                                >
+                                    <i class="bi bi-heart-fill"></i>
+                                </button>
+                            </div>
+
+                            <p class="product-meta mb-2">
+                                {{ product.category.friendly_name|default:product.category.name }}
+
+                                {% if product.cooking_time %}
+                                    | {{ product.cooking_time }} min
+                                {% endif %}
+
+                                {% if product.spice_level %}
+                                    | {{ product.spice_level }}
+                                {% endif %}
+                            </p>
+
+                            <p class="mb-2 small">
+                                {{ product.description|truncatewords:12 }}
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <p class="product-price mb-0">
+                                    £{{ product.price }}
+                                </p>
+
+                                <button class="btn product-add-btn" type="button" aria-label="Add {{ product.name }} to basket">
+                                    <i class="bi bi-plus-circle"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            {% empty %}
+
+                <div class="col-12">
+                    <p class="text-center mt-4">
+                        You have not saved any meals yet.
+                    </p>
+
+                    <div class="text-center">
+                        <a href="{% url 'shop_items' %}" class="btn browse-btn mt-5">
+                            Browse Meals
+                        </a>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+<!-- CSRF token for saved meal fetch request -->
+<form class="d-none">
+    {% csrf_token %}
+</form>
+
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    <script src="{% static 'shop/js/shop.js' %}"></script>
+{% endblock %}

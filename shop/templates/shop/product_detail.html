@@ -16,7 +16,11 @@
             <!-- Product image -->
             <div class="col-12 col-lg-6">
                 <div class="product-detail-image-wrapper position-relative">
-                    <button class="btn product-favourite-btn" aria-label="Add {{ product.name }} to favourites">
+                    <button class="btn product-favourite-btn saved-meal-btn" 
+                    type="button" 
+                    aria-label="Add {{ product.name }} to favourites"
+                    data-product-id="{{ product.id }}"
+                    data-save-url="{% url 'toggle_saved_meal' product.id %}">
                         <i class="bi bi-heart"></i>
                     </button>
 
@@ -216,6 +220,10 @@
 <div class="shop-toast-message" id="shopToastMessage">
     Added to order
 </div>
+
+<form class="d-none">
+    {% csrf_token %}
+</form>
 
 <script src="{% static 'shop/js/shop.js' %}"></script>
 {% endblock%}

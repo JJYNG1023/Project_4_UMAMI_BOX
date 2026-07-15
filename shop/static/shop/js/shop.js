@@ -180,20 +180,107 @@ document.addEventListener("DOMContentLoaded" , function() {
 
 
     // add to favourit //
-    if (favBtn) {
-        favBtn.addEventListener("click", function () {
-            const icon = favBtn.querySelector("i");
+    const savedMealButtons = document.querySelectorAll(".saved-meal-btn");
 
-            favBtn.classList.toggle("is-favourite");
+    function getCsrfToken() {
+        const csrfInput = document.querySelector("[name=csrfmiddlewaretoken]");
 
-            if (icon) {
-                icon.classList.toggle("bi-heart");
-                icon.classList.toggle("bi-heart-fill");
+        if (csrfInput) {
+            return csrfInput.value;
+        }
+
+        const cookies = document.cookie.split(";");
+
+        for (let cookie of cookies) {
+            const trimmedCookie = cookie.trim();
+
+            if (trimmedCookie.startsWith("csrftoken=")) {
+                return trimmedCookie.substring("csrftoken=".length);
+            }
+        }
+
+        return "";
+    }
+
+    savedMealButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            const saveUrl = button.dataset.saveUrl;
+            const icon = button.querySelector("i");
+
+            if (!saveUrl) {
+                console.log("No save URL found on favourite button");
+                return;
             }
 
-            popUpToast(`Added To Favourite`);
+            fetch(saveUrl, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": getCsrfToken(),
+                    "X-Requested-With": "XMLHttpRequest",
+                },
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.saved) {
+                    icon.classList.remove("bi-heart");
+                    icon.classList.add("bi-heart-fill");
+                    button.classList.add("is-favourite");
+                    popUpToast("Saved to meals!");
+                } else {
+                    icon.classList.remove("bi-heart-fill");
+                    icon.classList.add("bi-heart");
+                    button.classList.remove("is-favourite");
+                    popUpToast("Removed from saved meals");
+                }
+            })
+            .catch(function (error) {
+                console.log("Saved meal error:", error);
+                popUpToast("Something went wrong");
+            });
         });
-    }
+    });
     updateBasketCount();
 });
 
+savedMealButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        const saveUrl = button.dataset.saveUrl;
+        const icon = button.querySelector("i");
+
+        fetch(saveUrl, {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": getCsrfToken(),
+                "X-Requested-With": "XMLHttpRequest",
+            },
+        })
+        .then(function (response) {
+            if (response.redirected) {
+                window.location.href = response.url;
+                return;
+            }
+
+            return response.json();
+        })
+        .then(function (data) {
+            if (!data) {
+                return;
+            }
+
+            if (data.saved) {
+                icon.classList.remove("bi-heart");
+                icon.classList.add("bi-heart-fill");
+                popUpToast("Saved to meals!");
+            } else {
+                icon.classList.remove("bi-heart-fill");
+                icon.classList.add("bi-heart");
+                popUpToast("Removed from saved meals");
+            }
+        })
+        .catch(function (error) {
+            console.log("Saved meal error:", error);
+        });
+    });
+});

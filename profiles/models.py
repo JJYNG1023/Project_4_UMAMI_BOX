@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from django_countries.fields import CountryField
+from shop.models import Product
 
 # Create your models here.
 
@@ -26,3 +27,13 @@ class UserProfile(models.Model):
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     UserProfile.objects.get_or_create(user=instance)
     instance.userprofile.save()
+
+class SavedMeal(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together=('user','product')
+
+    def __str__(self):
+        return f'{self.user.username} saved {self.product.name}'

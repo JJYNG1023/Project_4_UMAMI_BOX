@@ -12,20 +12,20 @@
 <section class="page-wrapper mt-4 mb-5">
     <div class="container profile-form">
         <div class="row">
-            <p class="heading text-uppercase text-start mb-2 fs-1">
+            <p class="heading text-uppercase text-start mb-2 fs-1 text-md-center">
                 My Account
             </p>
 
-            <p class="text-start fs-6 mb-5">
+            <p class="text-start fs-6 mb-5 text-md-center">
                 Welcome back, {{ request.user.username }}
             </p>
         </div>
 
         <div class="row profile-container">
-            <a href="{% url 'edit_profile' %}" class="btn fs-2 mb-2 text-start">Profile Detail</a>
-            <a href="{% url 'saved_meals' %}" class="btn fs-2 mb-2 text-start">Saved Meals</a>
-            <a href="{% url 'order_history' %}" class="btn fs-2 mb-2 text-start">Order History</a>
-            <a href="{% url 'account_logout' %}" class="btn fs-2 mb-2 text-start">Logout</a>
+            <a href="{% url 'edit_profile' %}" class="btn fs-2 mb-2 text-start text-md-center">Profile Detail</a>
+            <a href="{% url 'saved_meals' %}" class="btn fs-2 mb-2 text-start text-md-center">Saved Meals</a>
+            <a href="{% url 'order_history' %}" class="btn fs-2 mb-2 text-start text-md-center">Order History</a>
+            <a href="{% url 'account_logout' %}" class="btn fs-2 mb-2 text-start text-md-center">Logout</a>
         </div>
     </div>
 </section>
