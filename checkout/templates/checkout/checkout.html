@@ -3,27 +3,168 @@
 
 {% block extra_title %} | Checkout{% endblock %}
 
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
 {% block content %}
+
 <section class="page-wrapper mt-5 mb-5">
     <div class="container">
+
         <p class="heading text-uppercase text-start text-md-center mb-4 fs-1">
             Checkout
         </p>
 
-        <div class="row">
-            <div class="col-12 col-lg-5">
+        <!-- Checkout progress -->
+        <div class="row text-center mb-5 checkout-progress">
+            <div class="col-4">
+                <i class="bi bi-1-circle-fill"></i>
+                <span>Delivery Details</span>
+            </div>
+
+            <div class="col-4">
+                <i class="bi bi-2-circle"></i>
+                <span>Delivery Date</span>
+            </div>
+
+            <div class="col-4">
+                <i class="bi bi-3-circle"></i>
+                <span>Payment</span>
+            </div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <!-- Order summary: hidden on mobile and medium, visible on desktop -->
+            <div class="col-lg-7 d-none d-lg-block">
                 <h2 class="fs-5 mb-3">Order Summary</h2>
 
-                <p>Basket summary will go here.</p>
+                <div id="checkoutBasketItems">
+                    <!-- Basket items will be shown here with JavaScript -->
+                </div>
             </div>
-            
-            <div class="col-12 col-lg-7">
-                <h2 class="fs-5 mb-3">Delivery Details</h2>
 
-                <p>Checkout form will go here.</p>
+            <!-- Checkout details -->
+            <div class="col-12 col-md-8 col-lg-5">
+                <div class="basket-summary mt-3">
+
+                    <h2 class="fs-5 mb-3">Delivery Details</h2>
+
+                    <form method="POST" action="">
+                        {% csrf_token %}
+
+                        {{ form.non_field_errors }}
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Full Name:</span>
+                            <div>
+                                {{ form.full_name }}
+                                {{ form.full_name.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Email:</span>
+                            <div>
+                                {{ form.email }}
+                                {{ form.email.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Phone Number:</span>
+                            <div>
+                                {{ form.phone_number }}
+                                {{ form.phone_number.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Street Address 1:</span>
+                            <div>
+                                {{ form.street_address_1 }}
+                                {{ form.street_address_1.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Street Address 2:</span>
+                            <div>
+                                {{ form.street_address_2 }}
+                                {{ form.street_address_2.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Postcode:</span>
+                            <div>
+                                {{ form.postcode }}
+                                {{ form.postcode.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Town or City:</span>
+                            <div>
+                                {{ form.town_or_city }}
+                                {{ form.town_or_city.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Country:</span>
+                            <div>
+                                {{ form.country }}
+                                {{ form.country.errors }}
+                            </div>
+                        </div>
+
+                        <div class="profile-form-group">
+                            <span class="profile-form-label">Delivery Notes:</span>
+                            <div>
+                                {{ form.delivery_notes }}
+                                {{ form.delivery_notes.errors }}
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="checkout-total-summary">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 class="fs-6 mb-0">Sub-Total</h3>
+                                <p class="fs-6 mb-0">£<span id="checkoutSubTotal">0.00</span></p>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 class="fs-6 mb-0">Delivery Fee</h3>
+                                <p class="fs-6 mb-0">£<span id="checkoutDeliveryFee">0.00</span></p>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 class="fs-6 mb-0">Total</h3>
+                                <p class="fs-6 mb-0">£<span id="checkoutTotal">0.00</span></p>
+                            </div>
+                        </div>
+
+                        <button class="btn order-btn w-100 mt-3 fs-5" type="submit">
+                            Continue to Payment
+                        </button>
+                    </form>
+
+                </div>
             </div>
 
         </div>
     </div>
 </section>
+
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    <script src="{% static 'checkout/js/checkout.js' %}"></script>
 {% endblock %}
