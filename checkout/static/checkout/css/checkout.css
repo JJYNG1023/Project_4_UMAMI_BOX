@@ -1,0 +1,60 @@
+.order_summary_section{
+    padding-left:3.5em;
+}
+
+hr{
+    padding-left:4em;
+    padding-right:4em;
+}
+
+.checkout-total-summary{
+    padding-left:4em;
+    padding-right:4em;
+}
+
+.basket-summary {
+    padding: 0;
+}
+
+/* desktop alignment */
+@media (min-width: 992px) {
+    .checkout-column-inner {
+        width: 88%;
+        margin: 0 auto;
+    }
+
+    /* left title aligns with basket cards */
+    .checkout-column-inner h2 {
+        margin-left: 0;
+    }
+
+    /* make delivery form slightly narrower */
+    .basket-summary {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* keep all inputs inside same visual edge */
+    .basket-summary .profile-form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .basket-summary input,
+    .basket-summary select,
+    .basket-summary textarea {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-lg-7 .checkout-column-inner {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .col-lg-5 .checkout-column-inner {
+        width: 82%;
+        margin: 0 auto;
+    }
+}
