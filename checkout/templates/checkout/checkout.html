@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | Checkout{% endblock %}
+
+{% block content %}
+<section class="page-wrapper mt-5 mb-5">
+    <div class="container">
+        <p class="heading text-uppercase text-start text-md-center mb-4 fs-1">
+            Checkout
+        </p>
+
+        <div class="row">
+            <div class="col-12 col-lg-5">
+                <h2 class="fs-5 mb-3">Order Summary</h2>
+
+                <p>Basket summary will go here.</p>
+            </div>
+            
+            <div class="col-12 col-lg-7">
+                <h2 class="fs-5 mb-3">Delivery Details</h2>
+
+                <p>Checkout form will go here.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
