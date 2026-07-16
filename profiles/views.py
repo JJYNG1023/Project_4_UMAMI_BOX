@@ -112,3 +112,9 @@ def toggle_saved_meal(request, product_id):
         })
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+@login_required
+def order_history(request):
+    """Display user's order history"""
+    return render(request, 'profiles/order_history.html')

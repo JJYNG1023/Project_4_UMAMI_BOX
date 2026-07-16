@@ -96,3 +96,21 @@
     margin-right: 1.5em;
     margin-bottom: 10em;
 }
+
+.browse-btn :hover {
+    background-color: var(--color-secondary);
+    color: var(--color-light-text);
+    border-color: var(--color-secondary);
+}
+
+.order-history-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-text);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+}
+
+.order-history-card hr {
+    border-color: var(--color-text);
+    opacity: 1;
+}

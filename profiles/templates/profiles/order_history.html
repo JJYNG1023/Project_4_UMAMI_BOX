@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | Order History{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-wrapper mt-5 mb-5">
+    <div class="container">
+
+        <p class="heading text-uppercase text-start text-md-center mb-2 fs-1">
+            Order History
+        </p>
+        
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+
+                {% if orders %}
+                    {% for order in orders %}
+                        <div class="order-history-card mb-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <p class="fw-bold mb-1">
+                                        Order #{{ order.order_number }}
+                                    </p>
+
+                                    <p class="mb-1">
+                                        {{ order.date }}
+                                    </p>
+                                </div>
+
+                                <p class="fw-bold mb-0">
+                                    £{{ order.grand_total }}
+                                </p>
+                            </div>
+
+                            <hr>
+
+                            <a href="#" class="btn profile-action-btn">
+                                View Order
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center mt-5">
+                        <p class="mb-3">
+                            You have not placed any orders yet.
+                        </p>
+
+                        <a href="{% url 'shop_items' %}" class="btn browse-btn mt-5">
+                            Browse Meals
+                        </a>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
