@@ -16,6 +16,14 @@ hr{
     padding: 0;
 }
 
+
+.required-text {
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    font-weight: 400;
+    margin-left: 0.25rem;
+}
+
 /* desktop alignment */
 @media (min-width: 992px) {
     .checkout-column-inner {

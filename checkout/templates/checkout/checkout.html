@@ -77,34 +77,38 @@
                         {{ order_form.non_field_errors }}
 
                         <div class="profile-form-group">
-                            <span class="profile-form-label">Full Name:</span>
+                            <span class="profile-form-label">Full Name:
+                                <small class="required-text">* is required</small>
+                            </span>
                             <div>
                                 {{ order_form.full_name }}
-                                {{ order_form.full_name.errors }}
                             </div>
                         </div>
 
                         <div class="profile-form-group">
-                            <span class="profile-form-label">Email:</span>
+                            <span class="profile-form-label">Email:
+                                <small class="required-text">* is required</small>
+                            </span>
                             <div>
                                 {{ order_form.email }}
-                                {{ order_form.email.errors }}
                             </div>
                         </div>
 
                         <div class="profile-form-group">
-                            <span class="profile-form-label">Phone Number:</span>
+                            <span class="profile-form-label">Phone Number:
+                                <small class="required-text">* is required</small>
+                            </span>
                             <div>
                                 {{ order_form.phone_number }}
-                                {{ order_form.phone_number.errors }}
                             </div>
                         </div>
 
                         <div class="profile-form-group">
-                            <span class="profile-form-label">Street Address 1:</span>
+                            <span class="profile-form-label">Street Address 1:
+                                <small class="required-text">* is required</small>
+                            </span>
                             <div>
                                 {{ order_form.street_address_1 }}
-                                {{ order_form.street_address_1.errors }}
                             </div>
                         </div>
 
@@ -112,35 +116,36 @@
                             <span class="profile-form-label">Street Address 2:</span>
                             <div>
                                 {{ order_form.street_address_2 }}
-                                {{ order_form.street_address_2.errors }}
                             </div>
                         </div>
 
                         <div class="profile-form-group">
-                            <span class="profile-form-label">Postcode:</span>
+                            <span class="profile-form-label">Postcode:
+                                <small class="required-text">* is required</small></span>
                             <div>
                                 {{ order_form.postcode }}
-                                {{ order_form.postcode.errors }}
                             </div>
                         </div>
 
                         <div class="profile-form-group">
-                            <span class="profile-form-label">Town or City:</span>
+                            <span class="profile-form-label">Town or City:
+                                <small class="required-text">* is required</small>
+                            </span>
                             <div>
                                 {{ order_form.town_or_city }}
-                                {{ order_form.town_or_city.errors }}
                             </div>
                         </div>
 
                         <div class="profile-form-group">
-                            <span class="profile-form-label">Country:</span>
+                            <span class="profile-form-label">Country:
+                                <small class="required-text">* is required</small>
+                            </span>
                             <div>
                                 {{ order_form.country }}
-                                {{ order_form.country.errors }}
                             </div>
                         </div>
 
-                        <button class="btn order-btn w-100 mt-3 fs-5" type="submit">
+                        <button class="btn order-btn mt-3 fs-5" type="submit">
                             Continue to Payment
                         </button>
                     </form>
