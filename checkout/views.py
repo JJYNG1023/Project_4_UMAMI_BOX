@@ -5,13 +5,12 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 
 from shop.models import Product
-from .forms import OrderForm
-from .models import OrderLineItem
-import stripe
-from django.conf import settings
+from .forms import OrderForm, DeliveryDateForm
+from .models import Order, OrderLineItem
+
 
 def checkout(request):
-    """Display checkout page and create order"""
+    """Display checkout page and create order from delivery details"""
 
     if request.method == 'POST':
         order_form = OrderForm(request.POST)
@@ -25,7 +24,7 @@ def checkout(request):
             basket = json.loads(basket_data)
         except json.JSONDecodeError:
             messages.error(request, "There was a problem reading your basket.")
-            return redirect(reverse('basket'))
+            return redirect(reverse('view_basket'))
 
         if not basket:
             messages.error(request, "There's nothing in your basket.")
@@ -63,8 +62,8 @@ def checkout(request):
             order.grand_total = grand_total
             order.save()
 
-            messages.success(request, 'Order created successfully.')
-            return redirect(reverse('checkout_success', args=[order.id]))
+            messages.success(request, 'Delivery details saved.')
+            return redirect(reverse('delivery_date', args=[order.id]))
 
         messages.error(request, 'Please check your delivery details.')
 
@@ -90,29 +89,55 @@ def checkout(request):
                 pass
 
         order_form = OrderForm(initial=initial_data)
-        
-    stripe_public_key = settings.STRIPE_PUBLIC_KEY
-    stripe_secret_key = settings.STRIPE_SECRET_KEY
-
-    stripe.api_key = stripe_secret_key
-
-    # Temporary example amount while testing
-    # Later this should come from the basket total
-    intent = stripe.PaymentIntent.create(
-        amount=3999,
-        currency="gbp",
-    )
 
     context = {
-        "order_form": order_form,
-        "stripe_public_key": stripe_public_key,
-        "client_secret": intent.client_secret,
+        'order_form': order_form,
     }
 
     return render(request, 'checkout/checkout.html', context)
 
+
+def delivery_date(request, order_id):
+    """Allow user to choose delivery date, time and delivery notes"""
+
+    order = get_object_or_404(Order, id=order_id)
+
+    if request.user.is_authenticated:
+        if order.user_profile and order.user_profile != request.user.userprofile:
+            messages.error(request, 'You do not have permission to edit this order.')
+            return redirect(reverse('shop_items'))
+
+    if request.method == 'POST':
+        form = DeliveryDateForm(request.POST, instance=order)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Delivery date saved.')
+
+            # Temporary until payment page is created
+            return redirect(reverse('checkout_success', args=[order.id]))
+
+            # Later change this to:
+            # return redirect(reverse('payment', args=[order.id]))
+
+        messages.error(request, 'Please check your delivery date and time.')
+
+    else:
+        form = DeliveryDateForm(instance=order)
+
+    context = {
+        'form': form,
+        'order': order,
+    }
+
+    return render(request, 'checkout/delivery_date.html', context)
+
+
 def checkout_success(request, order_id):
     """Display checkout success page and clear basket"""
+
+    order = get_object_or_404(Order, id=order_id)
+
     return render(request, 'checkout/checkout_success.html', {
-        'order_id': order_id,
+        'order': order,
     })

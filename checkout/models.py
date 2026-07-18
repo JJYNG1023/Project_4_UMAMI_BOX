@@ -22,6 +22,8 @@ class Order(models.Model):
     town_or_city = models.CharField(max_length=80)
     country = CountryField(blank_label='Country')
     delivery_notes = models.TextField(blank=True)
+    delivery_date = models.DateField(null=True, blank=True)
+    delivery_time = models.TimeField(null=True, blank=True)
 
     date = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | Delivery Date{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="page-wrapper mt-5 mb-5">
+    <div class="container">
+
+        <p class="heading text-uppercase text-start text-md-center mb-4 fs-1">
+            Checkout
+        </p>
+
+        <div class="row text-center mb-5 checkout-progress">
+            <div class="col-4">
+                <i class="bi bi-1-circle"></i>
+                <span>Delivery Details</span>
+            </div>
+
+            <div class="col-4">
+                <i class="bi bi-2-circle-fill"></i>
+                <span>Delivery Date</span>
+            </div>
+
+            <div class="col-4">
+                <i class="bi bi-3-circle"></i>
+                <span>Payment</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+
+                    <h2 class="fs-4 mb-5 text-center">
+                        Choose Delivery Date
+                    </h2>
+
+                    <div class="row g-4 delivery-date-layout">
+
+                        <!-- Left side: calendar -->
+                        <div class="col-12 col-lg-6">
+                            <div class="delivery-calendar-wrapper">
+                                {{ form.delivery_date }}
+                            </div>
+                        </div>
+
+                        <!-- Right side: delivery time and notes -->
+                        <div class="col-12 col-lg-6">
+                            <div class="delivery-time-card">
+
+                                <div class="profile-form-group">
+                                    <span class="profile-form-label">
+                                        Delivery Date:
+                                        <small class="required-text">* is required</small>
+                                    </span>
+
+                                    <p id="selectedDeliveryDate" class="selected-delivery-date mb-0">
+                                        Please select a delivery date from the calendar
+                                    </p>
+                                </div>
+
+                                <div class="profile-form-group">
+                                    <span class="profile-form-label">
+                                        Delivery Time:
+                                        <small class="required-text">* is required</small>
+                                    </span>
+
+                                    <div>
+                                        {{ form.delivery_time }}
+                                    </div>
+                                </div>
+
+                                <div class="profile-form-group">
+                                    <span class="profile-form-label">
+                                        Delivery Notes:
+                                    </span>
+
+                                    <div>
+                                        {{ form.delivery_notes }}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn order-btn mt-5 fs-5" type="submit">
+                            Continue to Payment
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="{% static 'checkout/js/delivery_date.js' %}"></script>
+{% endblock %}

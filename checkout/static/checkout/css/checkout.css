@@ -24,6 +24,47 @@ hr{
     margin-left: 0.25rem;
 }
 
+/* delivery_date calendar setting */
+
+.delivery-calendar-wrapper {
+    width: 100%;
+}
+
+.delivery-date-picker {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    width: 0;
+}
+
+.selected-delivery-date {
+    font-size: 0.95rem;
+    color: var(--color-muted);
+}
+
+.delivery-calendar-wrapper .flatpickr-calendar.inline {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    background-color: transparent;
+    border: 1px solid var(--color-text);
+    border-radius: var(--radius-sm);
+    box-shadow: none;
+}
+
+.delivery-calendar-wrapper .flatpickr-months,
+.delivery-calendar-wrapper .flatpickr-weekdays {
+    background-color: transparent;
+}
+
+.delivery-calendar-wrapper .flatpickr-day.selected,
+.delivery-calendar-wrapper .flatpickr-day.startRange,
+.delivery-calendar-wrapper .flatpickr-day.endRange {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
 /* desktop alignment */
 @media (min-width: 992px) {
     .checkout-column-inner {
@@ -53,6 +94,11 @@ hr{
         width: 100%;
         max-width: 100%;
     }
+    
+    .delivery-time-card{
+        padding-left: 2em;
+    }
+
 }
 
 @media (min-width: 992px) {
