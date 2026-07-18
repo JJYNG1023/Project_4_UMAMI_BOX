@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | Order Complete{% endblock %}
+
+{% block content %}
+
+<section class="page-wrapper mt-5 mb-5">
+    <div class="container text-center">
+        <p class="heading text-uppercase mb-4 fs-1">
+            Order Complete
+        </p>
+
+        <p class="mb-3">
+            Thank you. Your order has been placed successfully.
+        </p>
+
+        <p class="mb-4">
+            Order number: #{{ order_id }}
+        </p>
+
+        <a href="{% url 'order_history' %}" class="btn order-btn">
+            View Order History
+        </a>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    <script>
+        localStorage.removeItem("umamiBasket");
+    </script>
+{% endblock %}

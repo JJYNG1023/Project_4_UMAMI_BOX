@@ -1,17 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("checkout.js loaded");
 
+    const basketDataInput = document.getElementById("basketData");
     const checkoutBasketItems = document.getElementById("checkoutBasketItems");
     const checkoutSubTotal = document.getElementById("checkoutSubTotal");
     const checkoutDeliveryFee = document.getElementById("checkoutDeliveryFee");
     const checkoutTotal = document.getElementById("checkoutTotal");
 
     function getBasket() {
-        return JSON.parse(localStorage.getItem("umamiBasket")) || [];
+        try {
+            return JSON.parse(localStorage.getItem("umamiBasket")) || [];
+        } catch (error) {
+            console.log("Basket JSON error:", error);
+            return [];
+        }
+    }
+
+    function updateBasketDataInput(basket) {
+        if (basketDataInput) {
+            basketDataInput.value = JSON.stringify(basket);
+        }
     }
 
     function renderCheckoutBasket() {
         const basket = getBasket();
+
+        updateBasketDataInput(basket);
 
         let subTotal = 0;
 
@@ -44,7 +58,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         basket.forEach(function (item) {
-            const itemTotal = Number(item.price) * Number(item.quantity);
+            const itemPrice = Number(item.price);
+            const itemQuantity = Number(item.quantity);
+            const itemTotal = itemPrice * itemQuantity;
+
             subTotal += itemTotal;
 
             if (checkoutBasketItems) {
@@ -53,9 +70,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 orderDetail.innerHTML = `
                     <div class="basket-product-image-wrapper">
-                        ${item.image
-                            ? `<img src="${item.image}" class="basket-product-image" alt="${item.name}">`
-                            : `<div class="basket-image-placeholder">image</div>`
+                        ${
+                            item.image
+                                ? `<img src="${item.image}" class="basket-product-image" alt="${item.name}">`
+                                : `<div class="basket-image-placeholder">image</div>`
                         }
                     </div>
 
@@ -71,11 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         </p>
 
                         <p class="basket-product-price mb-2">
-                            £${Number(item.price).toFixed(2)}
+                            £${itemPrice.toFixed(2)}
                         </p>
 
                         <p class="mb-1">
-                            Quantity: ${item.quantity}
+                            Quantity: ${itemQuantity}
                         </p>
 
                         <p class="fw-bold mt-auto mb-0">

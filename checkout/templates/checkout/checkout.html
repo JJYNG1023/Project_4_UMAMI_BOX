@@ -73,6 +73,7 @@
 
                     <form method="POST" action="">
                         {% csrf_token %}
+                        <input type="hidden" name="basket_data" id="basketData">
 
                         {{ order_form.non_field_errors }}
 
@@ -146,13 +147,11 @@
                         </div>
 
                         <button class="btn order-btn mt-3 fs-5" type="submit">
-                            Continue to Payment
+                            Continue to Delivery Date
                         </button>
                     </form>
-
                 </div>
             </div>
-
         </div>
     </div>
 </section>

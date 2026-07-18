@@ -1,0 +1,22 @@
+<form method="POST" action="" id="payment-form">
+    {% csrf_token %}
+
+    <h2 class="fs-5 mb-3">Payment</h2>
+
+    <div id="card-element"></div>
+    <div id="card-errors" class="text-danger small mt-2" role="alert"></div>
+
+    <button class="btn order-btn mt-3 fs-5" type="submit">
+        Complete Payment
+    </button>
+</form>
+
+
+{% block postload_js %}
+    {{ block.super }}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+{% endblock %}
