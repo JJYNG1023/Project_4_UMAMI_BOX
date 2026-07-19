@@ -116,6 +116,8 @@ ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 WSGI_APPLICATION = 'umami_box.wsgi.application'
 
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

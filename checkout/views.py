@@ -86,7 +86,6 @@ def checkout(request):
                     'postcode': profile.postcode,
                     'town_or_city': profile.town_or_city,
                     'country': profile.country,
-                    'delivery_notes': profile.delivery_notes,
                 }
             except AttributeError:
                 pass
@@ -117,7 +116,6 @@ def delivery_date(request, order_id):
             form.save()
             messages.success(request, 'Delivery date saved.')
 
-            # Temporary until payment page is created
             return redirect(reverse('payment', args=[order.id]))
 
         messages.error(request, 'Please check your delivery date and time.')
@@ -132,13 +130,13 @@ def delivery_date(request, order_id):
 
     return render(request, 'checkout/delivery_date.html', context)
 
-def payment(request, oder_id):
-    order = get_object_or_404(order,id=order_id)
+def payment(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
 
     if request.user.is_authenticated:
         if order.user_profile and order.user_profile !=request.user.userprofile:
             messages.error(request,'you do not have permission to pay for this order.')
-            return redirect(reverse('shop_item'))
+            return redirect(reverse('shop_items'))
     
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -151,15 +149,15 @@ def payment(request, oder_id):
             payment_intent = stripe.PaymentIntent.retrieve(payment_intent_id)
 
             if payment_intent.status == 'succeeded':
-                order.strip_pid = payment_intent_id
+                order.stripe_pid = payment_intent.id
                 order.payment_status = 'paid'
                 order.save()
 
                 messages.success(request, 'Payment Successful')
-                return redirect(reverse('payment', args=[order.id]))
+                return redirect(reverse('checkout_success', args=[order.id]))
         
         messages.error(request,'Payment could not be confirmed')
-        return redirect(redirect('payment', args=[order.id]))
+        return redirect(reverse('payment', args=[order.id]))
 
     stripe_total = int(order.grand_total * Decimal('100'))
 
