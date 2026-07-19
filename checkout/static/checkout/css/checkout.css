@@ -65,7 +65,24 @@ hr{
     border-color: var(--color-primary);
 }
 
-/* desktop alignment */
+/* ------------------
+         stripe
+---------------------  */
+#card-element {
+    border: 1px solid var(--color-text);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    background-color: transparent;
+    min-height: 48px;
+}
+
+#card-errors {
+    min-height: 1.25rem;
+}
+
+/* ------------------
+    desktop alignment
+---------------------  */
 @media (min-width: 992px) {
     .checkout-column-inner {
         width: 88%;
