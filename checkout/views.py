@@ -8,6 +8,9 @@ from shop.models import Product
 from .forms import OrderForm, DeliveryDateForm
 from .models import Order, OrderLineItem
 
+import stripe
+from django.conf import settings
+
 
 def checkout(request):
     """Display checkout page and create order from delivery details"""
@@ -115,10 +118,7 @@ def delivery_date(request, order_id):
             messages.success(request, 'Delivery date saved.')
 
             # Temporary until payment page is created
-            return redirect(reverse('checkout_success', args=[order.id]))
-
-            # Later change this to:
-            # return redirect(reverse('payment', args=[order.id]))
+            return redirect(reverse('payment', args=[order.id]))
 
         messages.error(request, 'Please check your delivery date and time.')
 
@@ -132,6 +132,52 @@ def delivery_date(request, order_id):
 
     return render(request, 'checkout/delivery_date.html', context)
 
+def payment(request, oder_id):
+    order = get_object_or_404(order,id=order_id)
+
+    if request.user.is_authenticated:
+        if order.user_profile and order.user_profile !=request.user.userprofile:
+            messages.error(request,'you do not have permission to pay for this order.')
+            return redirect(reverse('shop_item'))
+    
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
+    stripe.api_key = stripe_secret_key
+
+    if request.method == 'POST':
+        payment_intent_id = request.POST.get('payment_intent_id')
+
+        if payment_intent_id:
+            payment_intent = stripe.PaymentIntent.retrieve(payment_intent_id)
+
+            if payment_intent.status == 'succeeded':
+                order.strip_pid = payment_intent_id
+                order.payment_status = 'paid'
+                order.save()
+
+                messages.success(request, 'Payment Successful')
+                return redirect(reverse('payment', args=[order.id]))
+        
+        messages.error(request,'Payment could not be confirmed')
+        return redirect(redirect('payment', args=[order.id]))
+
+    stripe_total = int(order.grand_total * Decimal('100'))
+
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency='gbp',
+        metadata={
+            'order_id': order.id,
+        }
+    )
+
+    context = {
+        'order': order,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+    }
+
+    return render(request, 'checkout/payment.html', context)
 
 def checkout_success(request, order_id):
     """Display checkout success page and clear basket"""

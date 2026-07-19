@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("checkout.js loaded");
+    console.log("stripe_elements.js loaded");
 
     const paymentForm = document.getElementById("payment-form");
     const cardErrors = document.getElementById("card-errors");
+    const paymentIntentIdInput = document.getElementById("paymentIntentId")
 
     const stripePublicKeyElement = document.getElementById("id_stripe_public_key");
     const clientSecretElement = document.getElementById("id_client_secret");
@@ -10,6 +12,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!paymentForm || !stripePublicKeyElement || !clientSecretElement) {
         console.log("Stripe form elements not found");
         return;
+    }
+    
+    function getJsonScriptValue(id) {
+        const element = document.getElementById(id);
+
+        if (!element) {
+            return "";
+        }
+
+        return JSON.parse(element.textContent);
     }
 
     const stripePublicKey = JSON.parse(stripePublicKeyElement.textContent);
