@@ -3,13 +3,13 @@ from decimal import Decimal
 
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.conf import settings
 
 from shop.models import Product
 from .forms import OrderForm, DeliveryDateForm
 from .models import Order, OrderLineItem
-
 import stripe
-from django.conf import settings
+from .utils import send_order_confirmation_email
 
 def checkout(request):
     """Display checkout page and create order from delivery details"""
@@ -151,6 +151,8 @@ def payment(request, order_id):
                 order.stripe_pid = payment_intent.id
                 order.payment_status = 'paid'
                 order.save()
+
+                send_order_confirmation_email(order)
 
                 messages.success(request, 'Payment Successful')
                 return redirect(reverse('checkout_success', args=[order.id]))

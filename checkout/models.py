@@ -32,6 +32,7 @@ class Order(models.Model):
 
     stripe_pid = models.CharField(max_length=254, blank=True, null=True)
     payment_status = models.CharField(max_length=50, default='pending')
+    confirmation_email_sent = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Order {self.id}'
