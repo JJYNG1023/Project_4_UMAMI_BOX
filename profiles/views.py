@@ -1,12 +1,16 @@
 from django.shortcuts import render , redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.contrib import messages
+from django.db.models import Q
+
 from .models import UserProfile
 from .forms import UserProfileForm
-from django.db.models import Q
 from shop.models import Product, Category
 from .models import SavedMeal
+from checkout.models import Order
+
 
 # Create your views here.
 
@@ -51,10 +55,6 @@ def edit_profile(request):
     }
 
     return render(request, 'profiles/edit_profile.html', context)
-
-@login_required
-def order_history(request):
-    return render(request, 'profiles/order_history.html')
 
 @login_required
 def saved_meals(request):
@@ -116,5 +116,15 @@ def toggle_saved_meal(request, product_id):
 
 @login_required
 def order_history(request):
-    """Display user's order history"""
-    return render(request, 'profiles/order_history.html')
+    """Display user's previous orders"""
+
+    orders = Order.objects.filter(
+        user_profile=request.user.userprofile,
+        payment_status='paid'
+    ).order_by('-date')
+
+    context = {
+        'orders': orders,
+    }
+
+    return render(request, 'profiles/order_history.html', context)

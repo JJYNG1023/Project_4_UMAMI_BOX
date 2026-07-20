@@ -27,41 +27,54 @@
                             <div class="d-flex justify-content-between align-items-start">
                                 <div>
                                     <p class="fw-bold mb-1">
-                                        Order #{{ order.order_number }}
+                                        Order Reference: UMAMI-{{ order.id|stringformat:"05d" }}
                                     </p>
 
                                     <p class="mb-1">
-                                        {{ order.date }}
+                                        Date: {{ order.date|date:"d M Y" }}
                                     </p>
                                 </div>
 
                                 <p class="fw-bold mb-0">
-                                    £{{ order.grand_total }}
+                                    Payment Status: {{ order.payment_status|title }}
                                 </p>
                             </div>
-
-                            <hr>
-
-                            <a href="#" class="btn profile-action-btn">
-                                View Order
-                            </a>
+                            <p class="fw-bold mb-0">
+                                    £{{ order.grand_total }}
+                            </p>
                         </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="text-center mt-5">
-                        <p class="mb-3">
-                            You have not placed any orders yet.
-                        </p>
 
-                        <a href="{% url 'shop_items' %}" class="btn browse-btn mt-5">
+                        <hr>
+
+                         {% for item in order.lineitems.all %}
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>{{ item.product.name }} x {{ item.quantity }}</span>
+                                <span>£{{ item.lineitem_total }}</span>
+                            </div>
+                        {% endfor %}
+
+                        {% if order.delivery_date %}
+                            <p class="mb-1 mt-3">
+                                Delivery Date: {{ order.delivery_date }}
+                            </p>
+                        {% endif %}
+
+                        {% if order.delivery_time %}
+                            <p class="mb-0">
+                                Delivery Time: {{ order.delivery_time }}
+                            </p>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <div class="text-center mt-5">
+                        <p class="mb-3">You have not placed any orders yet.</p>
+                        <a href="{% url 'shop_items' %}" class="btn profile-action-btn">
                             Browse Meals
                         </a>
                     </div>
-                {% endif %}
-
+                {% endfor %}
             </div>
         </div>
-
     </div>
 </section>
 

@@ -11,7 +11,6 @@ from .models import Order, OrderLineItem
 import stripe
 from django.conf import settings
 
-
 def checkout(request):
     """Display checkout page and create order from delivery details"""
 
