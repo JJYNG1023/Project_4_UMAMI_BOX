@@ -38,20 +38,56 @@
 
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-5">
-
-                <h2 class="fs-4 mb-4 text-center">
-                    Payment
-                </h2>
-
-                <div class="basket-summary">
-                    <p class="text-center mb-4">
+                <div class="text-center mb-5">
+                    <h2 class="fs-4 mb-4">
+                        Payment
+                    </h2>
+                    <span class="fs-4 mb-4">
                         Order total: <strong>£{{ order.grand_total }}</strong>
-                    </p>
-
+                    </span>
+                </div>
+                <div class="basket-summary">
                     <form method="POST" action="" id="payment-form">
                         {% csrf_token %}
 
-                        <div id="card-element"></div>
+                        <div class="stripe-payment-fields">
+
+                            <div class="stripe-form-group">
+                                <label for="card-number-element" class="profile-form-label">
+                                    Card Number
+                                </label>
+                                <div id="card-number-element" class="stripe-input"></div>
+                            </div>
+
+                            <div class="stripe-form-group">
+                                <label for="card-expiry-element" class="profile-form-label">
+                                    Expiry Date
+                                </label>
+                                <div id="card-expiry-element" class="stripe-input"></div>
+                            </div>
+
+                            <div class="stripe-form-group">
+                                <label for="card-cvc-element" class="profile-form-label">
+                                    CVC
+                                </label>
+                                <div id="card-cvc-element" class="stripe-input"></div>
+                            </div>
+
+                            <div class="stripe-form-group">
+                                <label for="billingPostcode" class="profile-form-label">
+                                    Postcode
+                                </label>
+                                <input 
+                                    type="text"
+                                    id="billingPostcode"
+                                    class="profile-form-input"
+                                    value="{{ order.postcode }}"
+                                    autocomplete="postal-code"
+                                >
+                            </div>
+
+                        </div>
+
                         <div id="card-errors" class="text-danger small mt-2" role="alert"></div>
 
                         <input type="hidden" name="payment_intent_id" id="paymentIntentId">

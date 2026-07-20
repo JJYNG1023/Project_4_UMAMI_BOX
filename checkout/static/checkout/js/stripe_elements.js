@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const paymentForm = document.getElementById("payment-form");
     const cardErrors = document.getElementById("card-errors");
-    const paymentIntentIdInput = document.getElementById("paymentIntentId")
+    const paymentIntentIdInput = document.getElementById("paymentIntentId");
+    const billingPostcodeInput = document.getElementById("billingPostcode");
 
     const stripePublicKeyElement = document.getElementById("id_stripe_public_key");
     const clientSecretElement = document.getElementById("id_client_secret");
@@ -46,19 +47,33 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    const card = elements.create("card", {
+    const cardNumber = elements.create("cardNumber", {
         style: style
     });
 
-    card.mount("#card-element");
+    const cardExpiry = elements.create("cardExpiry", {
+        style: style
+    });
 
-    card.addEventListener("change", function (event) {
+    const cardCvc = elements.create("cardCvc", {
+        style: style
+    });
+    
+    cardNumber.mount("#card-number-element");
+    cardExpiry.mount("#card-expiry-element");
+    cardCvc.mount("#card-cvc-element");
+
+    function showCardError(event) {
         if (event.error) {
             cardErrors.textContent = event.error.message;
         } else {
             cardErrors.textContent = "";
         }
-    });
+    }
+
+    cardNumber.addEventListener("change", showCardError);
+    cardExpiry.addEventListener("change", showCardError);
+    cardCvc.addEventListener("change", showCardError);
 
     paymentForm.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -67,32 +82,44 @@ document.addEventListener("DOMContentLoaded", function () {
         submitButton.disabled = true;
         submitButton.textContent = "Processing...";
 
+        const postcode = billingPostcodeInput
+            ? billingPostcodeInput.value.trim()
+            : getJsonScriptValue("order_postcode");
+
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
-                card: card,
+                card: cardNumber,
                 billing_details: {
-                    name: paymentForm.full_name.value.trim(),
-                    email: paymentForm.email.value.trim(),
-                    phone: paymentForm.phone_number.value.trim(),
+                    name: getJsonScriptValue("order_full_name"),
+                    email: getJsonScriptValue("order_email"),
+                    phone: getJsonScriptValue("order_phone_number"),
                     address: {
-                        line1: paymentForm.street_address_1.value.trim(),
-                        line2: paymentForm.street_address_2.value.trim(),
-                        postal_code: paymentForm.postcode.value.trim(),
-                        city: paymentForm.town_or_city.value.trim(),
-                        country: paymentForm.country.value
+                        line1: getJsonScriptValue("order_street_address_1"),
+                        line2: getJsonScriptValue("order_street_address_2"),
+                        postal_code: postcode,
+                        city: getJsonScriptValue("order_town_or_city"),
+                        country: getJsonScriptValue("order_country")
                     }
                 }
             }
         }).then(function (result) {
+            console.log('stripe result:', result);
+            
             if (result.error) {
                 cardErrors.textContent = result.error.message;
                 submitButton.disabled = false;
-                submitButton.textContent = "Continue to Payment";
-            } else {
-                if (result.paymentIntent.status === "succeeded") {
-                    paymentForm.submit();
+                submitButton.textContent = "Complete Payment";
+                return;
                 }
-            }
+
+                if (result.paymentIntent && result.paymentIntent.status === "succeeded") {
+                    paymentIntentIdInput.value = result.paymentIntent.id;
+                    paymentForm.submit();
+                    return;
+                }
+                cardErrors.textContent = "Payment was not completed. Please try again";
+                submitButton.disabled = false;
+                submitButton.textContent = "Complete payment";
+            });
         });
     });
-});

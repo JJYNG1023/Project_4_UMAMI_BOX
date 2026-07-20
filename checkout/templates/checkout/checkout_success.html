@@ -3,6 +3,13 @@
 
 {% block extra_title %} | Order Complete{% endblock %}
 
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
 {% block content %}
 
 <section class="page-wrapper mt-5 mb-5">
@@ -11,17 +18,64 @@
             Order Complete
         </p>
 
-        <p class="mb-3">
-            Thank you. Your order has been placed successfully.
-        </p>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="order-history-card text-center">
+                    <h2 class="fs-4 mb-3">Thank you for your order</h2>
 
-        <p class="mb-4">
-            Order number: #{{ order_id }}
-        </p>
+                    <p class="mb-2">
+                        Thank you. Your order has been placed successfully.
+                    </p>
 
-        <a href="{% url 'order_history' %}" class="btn order-btn">
-            View Order History
-        </a>
+                    <p class="mb-2">
+                        Order reference: <strong> #{{ order.id }} </strong>
+                    </p>
+
+                     <p class="mb-2">
+                        Payment Status: <strong>{{ order.payment_status|title }}</strong>
+                    </p>
+
+                    <p class="mb-2">
+                        Total Paid: <strong>£{{ order.grand_total }}</strong>
+                    </p>
+
+                    {% if order.delivery_date %}
+                        <p class="mb-2">
+                            Delivery Date: <strong>{{ order.delivery_date }}</strong>
+                        </p>
+                    {% endif %}
+
+                    {% if order.delivery_time %}
+                        <p class="mb-4">
+                            Delivery Time: <strong>{{ order.delivery_time }}</strong>
+                        </p>
+                    {% endif %}
+                    
+                    <hr>
+
+                    <h3 class="fs-5 mb-3">Order Items</h3>
+
+                    {% for item in order.lineitems.all %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>{{ item.product.name }} x {{ item.quantity }}</span>
+                            <span>£{{ item.lineitem_total }}</span>
+                        </div>
+                    {% endfor %}
+
+                    <div class="mt-4">
+                        <a href="{% url 'order_history' %}" class="btn order-btn">
+                            View Order History
+                        </a>
+                    </div>
+
+                    <div class="mt-3">
+                        <a href="{% url 'shop_items' %}" class="text-decoration-none text-reset">
+                            Continue Shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
