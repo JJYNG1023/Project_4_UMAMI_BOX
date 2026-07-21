@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.mail import send_mail,
+from django.core.mail import send_mail
 
 """Send order confirmation email to the customer."""
 def send_order_confirmation_email(order):
