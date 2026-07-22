@@ -101,7 +101,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         country: getJsonScriptValue("order_country")
                     }
                 }
-            }
+            },
+            shipping: {
+                    name: getJsonScriptValue("order_full_name"),
+                    phone: getJsonScriptValue("order_phone_number"),
+                    address: {
+                        line1: getJsonScriptValue("order_street_address_1"),
+                        line2: getJsonScriptValue("order_street_address_2"),
+                        postal_code: postcode,
+                        city: getJsonScriptValue("order_town_or_city"),
+                        country: getJsonScriptValue("order_country")
+                    }
+                }
         }).then(function (result) {
             console.log('stripe result:', result);
             

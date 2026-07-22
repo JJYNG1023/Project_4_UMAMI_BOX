@@ -8,8 +8,9 @@ from django.conf import settings
 from shop.models import Product
 from .forms import OrderForm, DeliveryDateForm
 from .models import Order, OrderLineItem
-import stripe
 from .utils import send_order_confirmation_email
+
+import stripe
 
 def checkout(request):
     """Display checkout page and create order from delivery details"""
