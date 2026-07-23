@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+import time
 
 from .models import Order
 from .utils import send_order_confirmation_email
@@ -19,31 +20,34 @@ class StripeWH_Handler:
         payment_intent= event.data.object
         payment_intent_id = payment_intent.id
         order_id = payment_intent.metadata.get('order_id')
-
+        
         if not order_id:
             return HttpResponse(
-                content= f'Webhook received: payment_intent.succeeded | No order_id found', status=200
+                content=f'webhook recieved: {event['type']} | success: verified order already in database', status = 200
             )
+    
+        order= None
 
-        try:
-            order = Order.objects.get(id=order_id)
+        # Try to find existing order
+        for attempt in range (1 ,6):
+            try: 
+                order = Order.objects.get(id=order_id)
+                break 
+            except Order.DoesNotExist:
+                if attempt <5 :
+                time.sleep(1)
 
-            order.stripe_pid = payment_intent_id
-            order.payment_status = 'paid'
-            order.save()
-
-            send_order_confirmation_email(order)
-
+        if order os None:
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} | Order updated',
-                status=200
+                content= f'Webhook received: payment_intent.succeeded | No order_id found', status=400
             )
+        
+        order.stripe_pid = payment_intent_id
+        order.payment_status = 'paid'
+        order.save()
 
-        except Order.DoesNotExist:
-            return HttpResponse(
-                content=f'Webhook received: {event["type"]} | Order not found',
-                status=404
-            )
+        send_order_confirmation_email(order)
+        return HttpResponse ( content= f'Webhook received: {event["type"]}'|order updated', status=200),
 
     def handle_payment_intent_failed(self,event):
         """ Handle the failed payment """
