@@ -34,23 +34,21 @@ class StripeWH_Handler:
                 order = Order.objects.get(id=order_id)
                 break 
             except Order.DoesNotExist:
-                if attempt <5 :
+                if attempt < 5 :
                 time.sleep(1)
 
-        if order os None:
+        if order is None:
             return HttpResponse(
-                content= f'Webhook received: payment_intent.succeeded | No order_id found', status=400
-            )
+                content=f'Webhook received: {event["type"]} | Order not found',status=404)
         
         order.stripe_pid = payment_intent_id
         order.payment_status = 'paid'
         order.save()
 
         send_order_confirmation_email(order)
-        return HttpResponse ( content= f'Webhook received: {event["type"]}'|order updated', status=200),
+        return HttpResponse ( content=f'Webhook received: {event["type"]} | Order updated',status=200)
 
     def handle_payment_intent_failed(self,event):
         """ Handle the failed payment """
         return HttpResponse(
-            content= f'Webhook received:{event["type"]}', status=200
-        )
+            content= f'Webhook received:{event["type"]}', status=200)
