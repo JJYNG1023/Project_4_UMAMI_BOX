@@ -30,7 +30,7 @@ class Order(models.Model):
     delivery_fee = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
-    stripe_pid = models.CharField(max_length=254, blank=True, null=True)
+    stripe_pid = models.CharField(max_length=254, unique=True, blank=True, null=True)
     payment_status = models.CharField(max_length=50, default='pending')
     confirmation_email_sent = models.BooleanField(default=False)
 

@@ -32,7 +32,7 @@ def webhook(request):
         return HttpResponse(status=400)
     
     except Exception as e:
-        return HttpResponse(content=e, status=400)
+        return HttpResponse(content=str(e), status=400)
     
     #set up a webhook handler
     handler = StripeWH_Handler(request)
@@ -51,5 +51,19 @@ def webhook(request):
     event_handler = event_map.get(event_type, handler.handle_event)
 
     #call the event handler
-    response = event_handler(event)
-    return response
+    try:
+        response = event_handler(event)
+        return response
+
+    except Exception as e:
+        import traceback
+
+        print("WEBHOOK HANDLER ERROR")
+        print(type(e).__name__)
+        print(e)
+        traceback.print_exc()
+
+        return HttpResponse(
+            content=f'Webhook handler error: {type(e).__name__}: {str(e)}',
+            status=500
+        )

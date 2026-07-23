@@ -118,10 +118,8 @@ def toggle_saved_meal(request, product_id):
 def order_history(request):
     """Display user's previous orders"""
 
-    orders = Order.objects.filter(
-        user_profile=request.user.userprofile,
-        payment_status='paid'
-    ).order_by('-date')
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    orders = user_profile.orders.all().order_by('-date')
 
     context = {
         'orders': orders,
