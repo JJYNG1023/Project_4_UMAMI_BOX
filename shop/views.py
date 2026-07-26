@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Product
+from .forms import ProductForm
 
 # Create your views here.
 """Display the shop category landing page."""
@@ -100,3 +103,33 @@ def product_detail(request, product_id):
     }
     
     return render(request, 'shop/product_detail.html', context)
+
+
+def superuser_required(user):
+    return user.is_authenticated and user.is_superuser
+
+@login_required
+@user_passes_test(superuser_required)
+def add_product(request):
+    "add product to store"
+    if request.method == 'POST':
+        form = ProductForm(request.POST , request.FILES)
+
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, " Product has been addedd successfully ")
+            return redirect ('product_detail', product_id=product.id)
+        else: 
+            messages.error(request,"Failed to add product. Please check the form")
+    else:
+        form = ProductForm()
+    
+    template = 'shop/product_form.html'
+    
+    context = {
+        'form': form,
+        'page_title': 'Add Product',
+        'button_text': 'Add Product',
+    }
+
+    return render(request, template, context)

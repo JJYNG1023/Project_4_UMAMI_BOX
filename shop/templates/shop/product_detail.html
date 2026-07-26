@@ -30,10 +30,10 @@
 
                      {% if product.image %}
                      <img 
-                        src="{% static product.image.name %}" 
+                        src="{{ product.image.url }}" 
                         class="product-detail-image" 
                         alt="{{ product.name }}"
-                    >
+                     >
                     {% else %}
                     <div class="d-flex align-items-center justify-content-center h-100">
                         image
@@ -112,7 +112,7 @@
                     data-product-cooking-time="{{ product.cooking_time }}"
                     data-product-spice-level="{{ product.spice_level }}"
                     {% if product.image %}
-                        data-product-image="{% static product.image.name %}"
+                        data-product-image="{{product.image.url}}"
                     {% else %}
                         data-product-image=""
                     {% endif %}>
@@ -179,7 +179,7 @@
                                         <div class="h-100 explore-menue-card related-product-card position-relative">
                                             {% if item.image %}
                                                 <img 
-                                                    src="{% static item.image.name %}" 
+                                                    src="{{ item.image.url }}" 
                                                     class="card-img-top related-product-img" 
                                                     alt="{{ item.name }}"
                                                 >
