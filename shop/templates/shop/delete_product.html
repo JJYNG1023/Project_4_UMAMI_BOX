@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %} | Delete Product{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="container page-wrapper mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+
+            <h1 class="mb-4">Delete Product</h1>
+
+            <p class="mb-4">
+                Are you sure you want to remove 
+                <strong>{{ product.name }}</strong> 
+                from the shop?
+            </p>
+
+            <!-- Product preview card -->
+            <div class="product-card d-flex mb-4">
+                <div class="product-image-wrapper">
+                    {% if product.image %}
+                        <img 
+                            src="{{ product.image.url }}" 
+                            class="product-image" 
+                            alt="{{ product.name }}"
+                        >
+                    {% endif %}
+                </div>
+
+                <div class="product-card-content d-flex flex-column">
+                    <h3 class="product-title mb-2">
+                        {{ product.name }}
+                    </h3>
+
+                    <div class="product-meta mb-3">
+                        {% if product.category %}
+                            <span>
+                                {{ product.category.friendly_name|default:product.category.name }}
+                            </span>
+                        {% endif %}
+
+                        {% if product.cooking_time %}
+                            <span>|</span>
+                            <span>{{ product.cooking_time }}min</span>
+                        {% endif %}
+
+                        {% if product.spice_level %}
+                            <span>|</span>
+                            <span>{{ product.spice_level }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="product-card-bottom d-flex justify-content-between align-items-center mt-auto">
+                        <p class="product-price mb-0">
+                            £{{ product.price }}
+                        </p>
+
+                        {% if not product.is_available %}
+                            <span class="badge bg-secondary">Unavailable</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" class="btn btn-danger">
+                        Remove Product
+                    </button>
+
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-secondary">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

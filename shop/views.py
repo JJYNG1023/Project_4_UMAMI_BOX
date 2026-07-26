@@ -111,7 +111,7 @@ def superuser_required(user):
 @login_required
 @user_passes_test(superuser_required)
 def add_product(request):
-    "add product to store"
+    """add product to store"""
     if request.method == 'POST':
         form = ProductForm(request.POST , request.FILES)
 
@@ -160,3 +160,22 @@ def edit_product(request, product_id):
     }
 
     return render(request, 'shop/edit_product_form.html', context)
+
+
+@login_required
+@user_passes_test(superuser_required)
+def delete_product(request, product_id):
+    """delete a product by making it unavailable."""
+
+    product = get_object_or_404(Product, id=product_id)
+
+    if request.method == 'POST':
+        product.is_available = False
+        product.save()
+
+        messages.success(request, f'{product.name} has been removed from the shop.')
+        return redirect('shop_items')
+
+    context = {'product': product,}
+    
+    return render(request, 'shop/delete_product.html', context)
