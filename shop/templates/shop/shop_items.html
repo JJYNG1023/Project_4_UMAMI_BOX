@@ -19,9 +19,34 @@
                 <p class="fs-6"> {{ category_description }}</p>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-lg-end">
-                <form class="search-form mt-2" role="search">
+                <form class="search-form mt-2" method="GET" action="{% url 'shop_items' %}" role="search">
                     <div class="search-input-wrapper">
-                        <input class="form-control me-2 search-bar" type="search" placeholder="Search" aria-label="Search"/>
+
+                        {% if category %}
+                            <input type="hidden" name="category" value="{{ category }}">
+                        {% endif %}
+
+                        {% if cuisine %}
+                            <input type="hidden" name="cuisine" value="{{ cuisine }}">
+                        {% endif %}
+
+                        {% if dietary %}
+                            <input type="hidden" name="dietary" value="{{ dietary }}">
+                        {% endif %}
+
+                        {% if sort %}
+                            <input type="hidden" name="sort" value="{{ sort }}">
+                        {% endif %}
+
+                        <input 
+                            class="form-control me-2 search-bar" 
+                            type="search" 
+                            name="q"
+                            value="{{ current_query|default:'' }}"
+                            placeholder="Search" 
+                            aria-label="Search"
+                        >
+
                         <button class="search-icon-btn" type="submit" aria-label="Search">
                             <i class="bi bi-search"></i>
                         </button>

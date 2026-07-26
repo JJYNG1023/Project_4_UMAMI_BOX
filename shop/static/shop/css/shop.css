@@ -39,6 +39,9 @@ Search Bar
     color: var(--color-accent);
 }
 
+.bi-search{
+    padding-right: 15px;
+}
 /* ---------------------------------
 filter buttons
 ------------------------------------*/
