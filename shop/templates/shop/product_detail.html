@@ -74,6 +74,14 @@
                         {{ product.description }}
                     </p>
                     
+                    {% if request.user.is_superuser %}
+                    <div class="d-flex gap-2 mt-3">
+                        <a href="{% url 'edit_product' product.id %}" class="btn btn-warning">
+                            Edit Product
+                        </a>
+                    </div>
+                    {% endif %}
+
                     <!-- Mobile ingredients and allergy note -->
                      <div class="d-lg-none">
                      {% if ingredients_list %}
@@ -101,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Quantity -->
                 <div class="d-flex align-items-center gap-3 mb-3 order_quantity_section" 
                     data-product-id="{{ product.id }}"
