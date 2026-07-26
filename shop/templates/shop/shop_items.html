@@ -109,7 +109,7 @@
                     data-product-cooking-time="{{ product.cooking_time }}"
                     data-product-spice-level="{{ product.spice_level }}"
                     {% if product.image %}
-                        data-product-image="{% static product.image.name %}"
+                        data-product-image="{{ product.image.url }}"
                     {% else %}
                         data-product-image=""
                     {% endif %}>
@@ -117,7 +117,7 @@
                     <div class="product-image-wrapper">
                         {% if product.image %}
                         <img 
-                            src="{% static product.image.name %}" 
+                            src="{{ product.image.url }}" 
                             class="product-image" 
                             alt="{{product.name}}"
                         >

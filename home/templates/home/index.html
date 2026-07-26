@@ -162,7 +162,7 @@
                 <a href="{% url 'product_detail' product.pk %}" class="text-decoration-none">
                     <div class="h-100 explore-menue-card">
                     {% if product.image %}
-                    <img src="{% static product.image.name %}" class="card-img-top" alt="{{ product.name }}">
+                    <img src="{{product.image.url}}" class="card-img-top" alt="{{ product.name }}">
                     {% endif %}
                         <div class="ps-2 card-img-overlay d-flex flex-column justify-content-end align-items-start mb-4">
                             <span class="text-uppercase explore-menue-title">{{ product.name }}</span>

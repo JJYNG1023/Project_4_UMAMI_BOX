@@ -22,7 +22,7 @@ class Product(models.Model):
     description = models.TextField()
     tag = models.ManyToManyField(Tag, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.ImageField(upload_to='products/')
+    image = models.ImageField(upload_to='shop/products/')
     cooking_time = models.PositiveIntegerField(null=True, blank=True)
     servings = models.PositiveIntegerField(null=True, blank=True)
     spice_level = models.CharField(max_length=50,null=True, blank=True)
