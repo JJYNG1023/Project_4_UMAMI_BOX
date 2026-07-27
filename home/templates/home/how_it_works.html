@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | How It Works{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="mt-5 mb-5">
+    <div class="container page-wrapper">
+        <div class="row justify-content-center text-center">
+            <div class="col-12 col-lg-8">
+                <h1 class="heading text-uppercase mb-4">How UMAMI BOX Works</h1>
+                <p class="fs-6">
+                    UMAMI BOX makes it easier to enjoy Chinese, Japanese and Korean-inspired food at home.
+                    Choose from meal kits, ready meals and signature sauces, then we prepare and deliver
+                    everything fresh to your door.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-5 g-4">
+            <div class="col-12 col-md-4">
+                <div class="step-card-img-top text-center h-100">
+                    <span class="step-card-title text-uppercase">Step 1</span>
+                    <img 
+                        src="{% static 'images/step1-meal-order.png' %}" 
+                        class="card-img-top" 
+                        alt="Choose your meal"
+                    >
+                    <div class="card-body text-center">
+                        <span class="step-card-title text-uppercase">Choose</span>
+                        <p class="card-text">
+                            Pick your favourite meal kit, ready meal or signature sauce from our menu.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="step-card-img-top text-center h-100">
+                    <span class="step-card-title text-uppercase">Step 2</span>
+                    <img 
+                        src="{% static 'images/step2-meal-delivery.png' %}" 
+                        class="card-img-top" 
+                        alt="Fresh delivery"
+                    >
+                    <div class="card-body text-center">
+                        <span class="step-card-title text-uppercase">Deliver</span>
+                        <p class="card-text">
+                            We carefully pack your order with fresh ingredients and deliver it to your door.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="step-card-img-top text-center h-100">
+                    <span class="step-card-title text-uppercase">Step 3</span>
+                    <img 
+                        src="{% static 'images/step3-meal-cook.png' %}" 
+                        class="card-img-top" 
+                        alt="Cook and enjoy"
+                    >
+                    <div class="card-body text-center">
+                        <span class="step-card-title text-uppercase">Enjoy</span>
+                        <p class="card-text">
+                            Cook, heat or pour over our signature sauces and enjoy Asian-inspired flavour at home.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'shop_items' %}" class="btn btn-dark rounded-pill px-4 py-2 text-uppercase">
+                Start Shopping
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

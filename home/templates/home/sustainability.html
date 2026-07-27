@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} | Sustainability{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="page-wrapper mt-5 mb-5">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-12 col-lg-8">
+                <h1 class="heading text-uppercase mb-4">Better Food, Less Waste</h1>
+                <p class="fs-6">
+                    UMAMI BOX is designed to make home cooking easier while reducing unnecessary waste.
+                    From portioned ingredients to reusable packaging ideas, sustainability is part of how
+                    we want the business to grow.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-5">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="text-center h-100">
+                    <img 
+                        src="{% static 'images/sustainability-low-carbon.png' %}" 
+                        class="sustainability-icon mb-3" 
+                        alt="Low carbon icon"
+                    >
+                    <h3>Low Carbon</h3>
+                    <p>
+                        We aim to reduce food waste by providing portioned ingredients, so customers only
+                        receive what they need for each meal.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="text-center h-100">
+                    <img 
+                        src="{% static 'images/sustainability-recycling.png' %}" 
+                        class="sustainability-icon mb-3" 
+                        alt="Recycling icon"
+                    >
+                    <h3>Recycling Drop-Off</h3>
+                    <p>
+                        Customers can return reusable containers or packaging materials through our future
+                        recycling drop-off system.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="text-center h-100">
+                    <img 
+                        src="{% static 'images/sustainability-source-local.png' %}" 
+                        class="sustainability-icon mb-3" 
+                        alt="Local sourcing icon"
+                    >
+                    <h3>Local Suppliers</h3>
+                    <p>
+                        Where possible, we aim to source fresh ingredients from local farmers and suppliers
+                        to support the community.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="text-center h-100">
+                    <img 
+                        src="{% static 'images/sustainability-ice-pack.png' %}" 
+                        class="sustainability-icon mb-3" 
+                        alt="Reusable ice pack icon"
+                    >
+                    <h3>Reusable Ice Packs</h3>
+                    <p>
+                        We encourage customers to return ice packs with their next order, helping us reuse
+                        materials and reduce packaging waste.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-section mt-5 p-4 text-center">
+            <h2 class="heading text-uppercase mb-3">Our Aim</h2>
+            <p class="mb-0">
+                We want UMAMI BOX to offer convenient Asian-inspired food while encouraging more thoughtful
+                food habits, better portion control and less single-use waste.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}
