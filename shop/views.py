@@ -12,6 +12,8 @@ def shop(request):
 
 """Display the selected category shop products"""
 def shop_items(request):
+    products = Product.objects.filter(is_available=True)
+
     category = request.GET.get('category', 'all')
     cuisine = request.GET.get('cuisine')
     dietary = request.GET.get('dietary')
@@ -38,8 +40,6 @@ def shop_items(request):
     }
 
     selected_category = category_content.get(category, category_content['all'])
-
-    products = Product.objects.all()
     
     # Category filter
     if category != 'all':
@@ -58,9 +58,14 @@ def shop_items(request):
         products = products.filter(
             Q(name__icontains=query) |
             Q(description__icontains=query) |
-            Q(ingredients__icontains=query)
-        )
-
+            Q(ingredients__icontains=query) |
+            Q(allergens__icontains=query) |
+            Q(category__name__icontains=query) |
+            Q(category__friendly_name__icontains=query) |
+            Q(tag__name__icontains=query) |
+            Q(tag__friendly_name__icontains=query)
+        ).distinct()
+        
     # Search Filter
     if sort == 'cooking_time' :
         products = products.order_by('cooking_time')

@@ -59,6 +59,8 @@
 {% endblock %}
 
 {% block postload_js %}
+    {{ block.super }}
+    <script src="{% static 'shop/js/shop.js' %}"></script>
 {% endblock %}
 
   </body>
