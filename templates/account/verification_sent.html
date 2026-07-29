@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %} | Verify Email{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="page-wrapper mt-4 mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-5">
+                <div class="account-card text-center">
+
+                    <h2 class="fs-3 fw-bold mb-4">
+                        Verify Your Email
+                    </h2>
+
+                    <p>
+                        We have sent a verification link to your email address.
+                        Please check your inbox and click the link to activate your account.
+                    </p>
+
+                    <p class="small text-muted">
+                        If you do not see the email, please check your spam or junk folder.
+                    </p>
+
+                    <a href="{% url 'account_login' %}" class="account-submit-btn d-inline-block text-decoration-none mt-3">
+                        Back to Login
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
