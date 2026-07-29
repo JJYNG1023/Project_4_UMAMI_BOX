@@ -204,6 +204,12 @@ if 'USE_AWS' in os.environ:
     AWS_QUERYSTRING_AUTH = False
     AWS_S3_FILE_OVERWRITE = False
 
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=946080000',
+    }
+
     STATICFILES_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
 
