@@ -113,7 +113,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 ACCOUNT_LOGIN_METHODS = {'username', 'email'}
-ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'email2*', 'password1*', 'password2*']
+ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'password1*', 'password2*']
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_LOGIN_REDIRECT_URL = '/profiles/'
