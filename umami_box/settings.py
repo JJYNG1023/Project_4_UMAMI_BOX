@@ -191,35 +191,31 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 if 'USE_AWS' in os.environ:
-    #Bucket config
     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
     AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
     AWS_S3_CUSTOM_DOMAIN = (
         f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
     )
 
-    # S3 settings
     AWS_DEFAULT_ACL = None
     AWS_QUERYSTRING_AUTH = False
     AWS_S3_FILE_OVERWRITE = False
 
-    #static and media files
     STATICFILES_LOCATION = 'static'
-    MEDIAFILES_LOCATION = 'media'
-
-    #override static and media URLs in production
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+
     STORAGES = {
-            "default": {
-                "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-            },
-            "staticfiles": {
-                "BACKEND": "custom_storages.StaticStorage",
-            },
-        }
+        "default": {
+            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "custom_storages.StaticStorage",
+        },
+    }
+
 else:
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
