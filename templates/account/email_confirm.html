@@ -9,13 +9,13 @@
 {% endblock %}
 
 {% block content %}
-<section class="page-wrapper mt-4 mb-5">
-    <div class="container">
+<section class="page-wrapper py-5 mb-5">
+    <div class="container mt-5 pt-4 pb-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-5">
                 <div class="account-card text-center">
 
-                    <h2 class="fs-3 fw-bold mb-4">
+                    <h2 class="fs-3 fw-bold mt-3 mb-5">
                         Confirm Your Email
                     </h2>
 
@@ -24,9 +24,11 @@
                             Please confirm that this email address belongs to your UMAMI BOX account.
                         </p>
 
-                        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}" class="account-confirm-form">
                             {% csrf_token %}
-                            <button type="submit" class="account-submit-btn">
+                            <button type="submit"
+                                    class="btn btn-outline-dark fw-bold rounded-3 py-2 px-5 mt-3 d-inline-flex justify-content-center align-items-center"
+                                    style="min-width: 16rem;">
                                 Confirm Email
                             </button>
                         </form>
