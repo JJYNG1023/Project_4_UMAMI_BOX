@@ -114,10 +114,12 @@ SITE_ID = 1
 
 ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'password1*', 'password2*']
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/profiles/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 ACCOUNT_LOGIN_REDIRECT_URL = '/profiles/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
