@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %} | Confirm Email{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="page-wrapper mt-4 mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-5">
+                <div class="account-card text-center">
+
+                    <h2 class="fs-3 fw-bold mb-4">
+                        Confirm Your Email
+                    </h2>
+
+                    {% if confirmation %}
+                        <p>
+                            Please confirm that this email address belongs to your UMAMI BOX account.
+                        </p>
+
+                        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                            {% csrf_token %}
+                            <button type="submit" class="account-submit-btn">
+                                Confirm Email
+                            </button>
+                        </form>
+                    {% else %}
+                        <p>
+                            This confirmation link is invalid or has expired.
+                        </p>
+
+                        <a href="{% url 'account_login' %}" class="account-link-inline">
+                            Back to Login
+                        </a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
