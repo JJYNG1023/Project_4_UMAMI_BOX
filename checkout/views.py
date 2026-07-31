@@ -135,7 +135,7 @@ def payment(request, order_id):
 
     if request.user.is_authenticated:
         if order.user_profile and order.user_profile !=request.user.userprofile:
-            messages.error(request,'you do not have permission to pay for this order.')
+            messages.error(request, 'you do not have permission to pay for this order.')
             return redirect(reverse('shop_items'))
     
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -158,7 +158,7 @@ def payment(request, order_id):
                 messages.success(request, 'Payment Successful')
                 return redirect(reverse('checkout_success', args=[order.id]))
         
-        messages.error(request,'Payment could not be confirmed')
+        messages.error(request, 'Payment could not be confirmed')
         return redirect(reverse('payment', args=[order.id]))
 
     stripe_total = int(order.grand_total * Decimal('100'))

@@ -45,27 +45,27 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django_countries',
 
-    #crispyform
+    # crispyform
     'crispy_forms',
     'crispy_bootstrap5',
 
-    #cloudinary
+    # cloudinary
     'cloudinary_storage',
     'cloudinary',   
 
-    #allauth
+    # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    #local apps
+    # local apps
     'home',
     'shop',
     'basket',
     'profiles',
     'checkout',
 
-    #others
+    # others
     'storages',
 ]
 
@@ -78,8 +78,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     
-     #allauth
+     # allauth
     "allauth.account.middleware.AccountMiddleware",
 ]
 
@@ -179,7 +178,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#stripe
+# stripe
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
@@ -197,11 +196,11 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
-#crispy
+# crispy
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-#media
+# media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 

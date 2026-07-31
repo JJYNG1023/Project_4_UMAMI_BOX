@@ -6,16 +6,16 @@ from .utils import send_order_confirmation_email
 
 class StripeWH_Handler:
     """ Handle stripe webhook"""
-    def __init__(self,request):
+    def __init__(self, request):
         self.request = request
 
-    def handle_event(self,event):
+    def handle_event(self, event):
         """ Handle a generic/unknown webhook event """
         return HttpResponse(
             content= f'Webhook received:{event["type"]}', status=200
         )
     
-    def handle_payment_intent_succeeded(self,event):
+    def handle_payment_intent_succeeded(self, event):
         """ Handle the success payment """
 
         print("PAYMENT INTENT SUCCEEDED WEBHOOK STARTED")
@@ -26,10 +26,8 @@ class StripeWH_Handler:
             order_id = payment_intent.metadata['order_id']
         except KeyError:
             order_id = None
-        
         print("PaymentIntent ID:", payment_intent_id)
         print("Order ID from metadata:", order_id)
-        
         if not order_id:
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | No order_id found',
