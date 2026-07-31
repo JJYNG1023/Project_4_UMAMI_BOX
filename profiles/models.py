@@ -9,20 +9,20 @@ from shop.models import Product
 # Create your models here.
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
-    street_address_1 = models.CharField(max_length=80 , blank=True)
-    street_address_2 = models.CharField(max_length=80 , blank=True)
-    postcode = models.CharField(max_length=20 ,blank=True)
+    street_address_1 = models.CharField(max_length=80, blank=True)
+    street_address_2 = models.CharField(max_length=80, blank=True)
+    postcode = models.CharField(max_length=20, blank=True)
     town_or_city = models.CharField(max_length=80, blank=True)
-    country = CountryField(blank_label='Country', null=True ,blank=True)
+    country = CountryField(blank_label='Country', null=True, blank=True)
     delivery_notes = models.TextField(blank=True)
 
     def __str__(self):
         return self.user.username
 
-#update or create user profile    
+# update or create user profile    
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     UserProfile.objects.get_or_create(user=instance)
@@ -33,7 +33,7 @@ class SavedMeal(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together=('user','product')
+        unique_together=('user', 'product')
 
     def __str__(self):
         return f'{self.user.username} saved {self.product.name}'

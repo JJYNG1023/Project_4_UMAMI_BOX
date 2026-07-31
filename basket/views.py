@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
+"""Display basket page"""
 def basket(request):
-    """Display basket page"""
     return render(request, 'basket/basket.html')

@@ -35,14 +35,14 @@ class UserProfileForm(forms.ModelForm):
                     }),
                 }
 
-    def __init__ (self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(). __init__(*args, **kwargs)
 
         if self.user:
             self.fields['email'].initial = self.user.email
 
-    def save(self,commit=True):
+    def save(self, commit=True):
         profile = super().save(commit=False)
 
         if self.user:

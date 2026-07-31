@@ -103,7 +103,7 @@ def product_detail(request, product_id):
 
     context = {
         'product': product,
-        'ingredients_list':ingredients_list,
+        'ingredients_list': ingredients_list,
         'related_products': related_products,
     }
     

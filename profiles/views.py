@@ -21,10 +21,9 @@ def profile(request):
 @login_required
 def edit_profile(request):
     
-    user_profile, created =UserProfile.objects.get_or_create(user=request.user)
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
 
-    if request.method=='POST':
-        
+    if request.method =='POST':
         if 'delete_account' in request.POST:
             user = request.user
             logout(request)
