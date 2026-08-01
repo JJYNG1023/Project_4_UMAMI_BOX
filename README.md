@@ -330,14 +330,125 @@ Click to see [UMAMI BOX wireframe view](https://miro.com/app/board/uXjVHJBA6PA=/
 ---
 
 ### 2.00 Features
-
+Main features include:
+- Responsive navigation
+- Product catalogue
+- Product search
+- Product filtering
+- Product detail pages
+- Favourite/saved meals
+- JavaScript basket
+- Basket quantity controls
+- Checkout page
+- Stripe payment integration
+- Stripe webhook handling
+- Email verification
+- Order confirmation email
+- Profile page
+- Admin product management
+- Static information pages
+- Responsive footer
+  
 #### 2.01 Database Schema
+The project uses a PostgreSQL database in production.
+[Click here to see the database and ERD diagram](https://miro.com/app/board/uXjVHIoRGtg=/?share_link_id=583598996823)
+Main database models as follows:
+##### Product
+- Stores product information such as:
+- Product name
+- Description
+- Price
+- Image
+- Category
+- Cuisine
+- Tags
+- Spice level
+- Cooking time
+- Availability status
+
+##### Category
+- Stores product categories, such as:
+- Meal Kits
+- Ready Meals
+- Signature Sauces
+
+##### Tag
+- Stores product tags used for dietary or product filtering.
+
+##### UserProfile
+- Stores customer profile and delivery details linked to a Django user.
+
+##### SavedMeal
+- Stores products saved or favourited by a user.
+
+##### Order
+- Stores customer order information including:
+- User profile
+- Full name
+- Email
+- Phone number
+- Address
+- Delivery notes
+- Delivery date and time
+- Order total
+- Delivery fee
+- Grand total
+- Stripe payment ID
+- Payment status
+- Confirmation email status
+
+##### OrderLineItem
+- Stores the products and quantities linked to each order.
+
+![Checkout-page](docs/readme_images/erd-diagram.png)
 
 #### 2.02 HTML Features
+The HTML uses Django templates and template inheritance.
+
+Key HTML features include:
+- base.html for shared page structure
+- Template blocks for CSS, content and JavaScript
+- Included navbar and footer templates
+- Product cards
+- Basket layout
+- Checkout form
+- Login and signup templates
+- Email verification templates
+- Profile form
+- Static content pages
+
+The templates use semantic sections where possible and Bootstrap classes for consistent layout.
 
 #### 2.03 Bootstrap Features
+Bootstrap 5 is used throughout the project.
 
+Bootstrap features include:
+- Responsive container layout
+- Row and column grid system
+- Navbar layout
+- Buttons
+- Form spacing
+- Alerts
+- Flex utilities
+- Spacing utilities
+- Responsive columns
+- min-vh-100, d-flex, flex-column, flex-grow-1 and mt-auto for footer positioning.
+- Bootstrap Icons for account, basket and social icons.
+  
 #### 2.04 CSS Features
+Custom CSS is used alongside Bootstrap.
+
+CSS features include:
+- Brand colours 
+- Custom product cards
+- Basket styling
+- Button styling
+- Footer styling
+- Account card styling
+- Shop page styling
+- Responsive image presentation
+- Toast/pop-up message styling
+- Consistent spacing and typography
 
 ---
 
@@ -362,7 +473,7 @@ Click to see [UMAMI BOX wireframe view](https://miro.com/app/board/uXjVHJBA6PA=/
 
 #### 4.04 Testing with CSS Validator
 
-#### 4.05 Testing with Light House
+#### 4.05 Testing with Lighthouse
 
 ---
 
