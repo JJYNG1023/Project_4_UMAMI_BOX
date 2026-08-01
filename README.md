@@ -28,24 +28,304 @@ Site users want to:
  - Save favourite meals for later
 
 #### 1.02 Strategy Plane_Client Goals
+The client's goal is to create a professional e-commerce platform that promotes and sells asian cuisine.
+
+The client wants the site to: 
+- Present the UMAMI BOX brand to a wider range of audience
+- Make food offering ordering process easier to understand
+- Build trust through clean design and secure checkout using Stripe
+- Allow customers to create accounts
+- Send confirmation emails
+- Allow admin to manage products
+
 
 #### 1.03 Strategy Plane_Developer and Business Goals
 ##### Developers aim:
+- Build a full-stack Django project
+- Use reusable templates and views
+- Create a product catalogue
+- Add a JavaScript function to improve the user interface
+- Integrate Stripe payments
+- Handle Stripe webhooks
+- Use Amazon S3 for external static and media storage
+- Deploy the project to Heroku
+- Adjust and update code standards using Flake 8.
+- Keep sensitive data separate.
+
 ##### Site users aim:
+- Find products quickly
+- Understand product details
+- Add items to the basket
+- Check out without confusion
+- Add delivery date and time
+- Receive order confirmation
+- Create a user account to store saved meals and previous order history
+- Delete Account when no longer in use
+
 ##### Web managers aim:
+- Add new products
+- Edit product information
+- Mark unavailable products as invalid
+- View orders in Django admin
+- Manage customer and order information
 
 #### 1.05 Skeleton Plane_Design Choices
+The design was planned to be simple, clean and user-friendly with minimal colour palettes. 
+The layout avoids unnecessary clutter and keeps the product action clear.
+
+Important design choices include:
+- A strong dark green navigation bar
+- A warm neutral background with neutral coloured images
+- Product cards with clear imagery
+- Large page headings
+- Consistent buttons
+- Responsive Bootstrap grid layout
+- Footer branding and social links
+
 ##### Main navigation structure
+The main navigation includes:
+
+- Home
+- Shop
+- How It Works
+- Sustainability
+- About
+- Account/Profile icon
+- Basket icon
+
 
 #### 1.06 Styling
+To keep the styling consistent across the website, generic CSS variables are defined inside the template with `:root`. This allows colours, buttons, spacing and other repeated styles to use the same default values throughout the app. By using `:root`, the website maintains a more consistent visual style and makes future design changes easier to manage.
+
+```
+:root {
+     /* Brand colours */
+    --color-primary: #123525;          /* deep green header/buttons */
+    --color-primary-light: #1E4A35;    /* hover green */
+    --color-primary-dark: #03110a;     /* darker green */
+
+    --color-secondary: #D8B56D;        /* muted gold accent */
+    --color-accent: #C85A3A;           /* chilli / basket badge / spice */
+
+    /* Background colours */
+    --color-background: #F8F1E6;       /* warm cream */
+    --color-background-soft: #F1E5D2;  /* soft beige section */
+    --color-card: #FFF9EF;             /* card background */
+    --color-card-warm: #F4E8D5;        /* category / content card */
+    --color-white: #FFFFFF;
+
+    /* Text colours */
+    --color-text: #1F1B16;             /* main text */
+    --color-heading: #14291F;          /* heading dark green */
+    --color-muted: #6F675C;            /* muted paragraph text */
+    --color-light-text: #FFF9EF;       /* text on dark green */
+
+    /* Borders */
+    --color-border: #D8C8AF;
+    --color-border-light: #E8DCCB;
+
+    /* Status colours */
+    --color-success: #2F6B45;
+    --color-warning: #D9A441;
+    --color-error: #A63A2A;
+
+    /* Fonts */
+    --font-logo: 'Inter', sans-serif;
+    --font-heading: 'Inter', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Fonts */
+    --font-logo-size:15px;
+    --font-heading-size:14px;
+    --font-subheading-1-size: 15px;
+    --font-subheading-2-size: 12px;
+    --font-subheading-3-size: 11px;
+    --font-subheading-4-size: 10px;
+    --font-subheading-5-size: 9px;
+    --font-body-size: 10px;
+    --font-annotation-size:9px;
+
+    /* Icon sizes */
+    --icon-size-1-5: 1.5em;
+    --icon-size-1-7: 1.7em;
+    --icon-size-1-8: 1.8em;
+    --icon-size-2-0: 2em;
+    --icon-size-2-5: 2.5em;
+    --icon-size-3-0: 3em;
+
+    /* Spacing */
+    --spacing-size-3-0: 3em;
+    --spacing-size-4-0: 4em;
+    --spacing-size-5-0: 5em;
+    --spacing-size-6-0: 6em;
+
+    /* Border radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1.25rem;
+    --radius-pill: 999px;
+
+    /* Shadows */
+    --shadow-soft: 0 8px 24px rgba(31, 27, 22, 0.08);
+    --shadow-card: 0 4px 16px rgba(31, 27, 22, 0.06);
+
+    --moible-side-padding: 1.5em;
+    --tablet-side-padding: 5em;
+    --desktop-side-padding: 4em;
+}
+
+/* ------------------------------
+general css
+-------------------------------*/
+
+body {
+    background-color: var(--color-background-soft);
+    color: var(--color-text);
+    font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: var(--font-heading);
+    color: var(--color-heading);
+}
+
+.fs-1,
+.fs-2,
+.fs-3,
+.fs-4,
+.fs-5,
+.fs-6,
+.fs-7 {
+    font-family: var(--font-heading);
+    color: var(--color-heading);
+}
+
+
+p{
+    font-size: var(--font-body-size);
+}
+```
+
 ##### Typography
+The typography is designed to be bold, clear and easy to read and understand.
+The Site uses:
+- Large uppercase headings for page titles.
+- Clear body text for descriptions
+- Bold navigation link
+- Consistent button text
+- Readable form labels and placeholders
+
+See the snapshot of typography of each pages:
+-![UMAMI BOX homepage](docs/readme_images/homepage.png)
+-![Product-range](docs/readme_images/product-range.png)
+-![Shop-page](docs/readme_images/shop-page.png)
+-![Basket-page](docs/readme_images/basket-page.png)
+-![Checkout-page](docs/readme_images/checkout-page.png)
+-![Sustainability-page](docs/readme_images/sustainability-page.png)
+-![About-us-page](docs/readme_images/about-us-page.png)
+-![How-it-works](docs/readme_images/how-it-works.png)
+-![Account-page](docs/readme_images/account-page.png)
+
 ##### Colour Scheme
+The main colour scheme uses:
+- Dark green for the header, footer and brand identity.
+- Warm cream/beige for the background.
+- White for cards and content sections.
+- Black/dark text for readability.
+- Bootstrap alert colours for user messages.
+
+As shown in the general code below:
+```
+:root {
+     /* Brand colours */
+    --color-primary: #123525;          /* deep green header/buttons */
+    --color-primary-light: #1E4A35;    /* hover green */
+    --color-primary-dark: #03110a;     /* darker green */
+
+    --color-secondary: #D8B56D;        /* muted gold accent */
+    --color-accent: #C85A3A;           /* chilli / basket badge / spice */
+
+    /* Background colours */
+    --color-background: #F8F1E6;       /* warm cream */
+    --color-background-soft: #F1E5D2;  /* soft beige section */
+    --color-card: #FFF9EF;             /* card background */
+    --color-card-warm: #F4E8D5;        /* category / content card */
+    --color-white: #FFFFFF;
+
+    /* Text colours */
+    --color-text: #1F1B16;             /* main text */
+    --color-heading: #14291F;          /* heading dark green */
+    --color-muted: #6F675C;            /* muted paragraph text */
+    --color-light-text: #FFF9EF;       /* text on dark green */
+
+    /* Borders */
+    --color-border: #D8C8AF;
+    --color-border-light: #E8DCCB;
+
+    /* Status colours */
+    --color-success: #2F6B45;
+    --color-warning: #D9A441;
+    --color-error: #A63A2A;
+```
+
+
 ##### Layout Style
+The layout uses Bootstrap containers, rows and columns. The design is responsive across mobile, tablet and desktop.
+
+Click to see [UMAMI BOX wirefram view](https://miro.com/app/board/uXjVHJBA6PA=/?share_link_id=775077299756)
+
+Layout principles:
+-Central page headings.
+-Product cards arranged in responsive grids.
+-Basket split into items and summary.
+-Forms kept in clean card layouts.
+
 
 #### 1.07 Surface Plane_Wireframes
 ##### Mobile Wireframes
+Planned mobile structure:
+- Collapsed navigation menu
+- Stacked content sections
+- Single-column product cards
+- Basket items above basket summary
+- Full-width form fields
+- Clear checkout button
+![mobile wireframe](docs/readme_wireframe/mobile-wireframes.png)
+![mobile wireframe](docs/readme_wireframe/mobile-wireframes-1.png)
+![mobile wireframe](docs/readme_wireframe/mobile-wireframes-2.png)
+![mobile wireframe](docs/readme_wireframe/mobile-wireframes-3.png)
+Click to see [UMAMI BOX wireframe view](https://miro.com/app/board/uXjVHJBA6PA=/?share_link_id=775077299756)
+
 ##### Tablet Wireframes
+Planned tablet structure:
+- Wider spacing than mobile
+- Two-column product card layout where possible
+- Basket summary shown below or beside items depending on screen width
+- Larger buttons and improved spacing
+- Padding on both sides of the webpage
+![tablet wireframe](docs/readme_wireframe/tablet-wireframes.png)
+![tablet wireframe](docs/readme_wireframe/tablet-wireframes-1.png)
+![tablet wireframe](docs/readme_wireframe/tablet-wireframes-2.png)
+![tablet wireframe](docs/readme_wireframe/tablet-wireframes-3.png)
+Click to see [UMAMI BOX wireframe view](https://miro.com/app/board/uXjVHJBA6PA=/?share_link_id=775077299756)
+  
 ##### Desktop Wireframes
+Planned desktop structure:
+- Full navigation across the top
+- Multi-column product grid
+- Basket items on the left and summary on the right
+- Wider content containers
+- Footer across the full page width
+- Padding on both sides of the webpage
+![desktop wireframes](docs/readme_wireframe/desktop-wireframes.png)
+![desktop wireframes](docs/readme_wireframe/desktop-wireframes-1.png)
+![desktop wireframes](docs/readme_wireframe/desktop-wireframes-2.png)
+![desktop wireframes](docs/readme_wireframe/desktop-wireframes-3.png)
+Click to see [UMAMI BOX wireframe view](https://miro.com/app/board/uXjVHJBA6PA=/?share_link_id=775077299756)
 
 ---
 
