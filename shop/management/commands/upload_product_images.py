@@ -5,6 +5,7 @@ from django.conf import settings
 
 from shop.models import Product
 
+
 class Command(BaseCommand):
     help = 'Bulk upload local product images to Cloudinary and update Product image fields.'
 

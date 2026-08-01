@@ -1,5 +1,4 @@
 from django import forms
-from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
 from .models import Order
@@ -57,7 +56,7 @@ class OrderForm(forms.ModelForm):
 
 class DeliveryDateForm(forms.ModelForm):
     class Meta:
-        model= Order
+        model = Order
         fields = [
             'delivery_date',
             'delivery_time',

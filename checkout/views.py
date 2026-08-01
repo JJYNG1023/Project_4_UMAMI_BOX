@@ -12,6 +12,7 @@ from .utils import send_order_confirmation_email
 
 import stripe
 
+
 def checkout(request):
     """Display checkout page and create order from delivery details"""
 
@@ -130,14 +131,14 @@ def delivery_date(request, order_id):
 
     return render(request, 'checkout/delivery_date.html', context)
 
+
 def payment(request, order_id):
     order = get_object_or_404(Order, id=order_id)
 
     if request.user.is_authenticated:
-        if order.user_profile and order.user_profile !=request.user.userprofile:
+        if order.user_profile and order.user_profile != request.user.userprofile:
             messages.error(request, 'you do not have permission to pay for this order.')
             return redirect(reverse('shop_items'))
-    
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe.api_key = stripe_secret_key
@@ -157,7 +158,7 @@ def payment(request, order_id):
 
                 messages.success(request, 'Payment Successful')
                 return redirect(reverse('checkout_success', args=[order.id]))
-        
+
         messages.error(request, 'Payment could not be confirmed')
         return redirect(reverse('payment', args=[order.id]))
 
@@ -176,8 +177,8 @@ def payment(request, order_id):
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }
-
     return render(request, 'checkout/payment.html', context)
+
 
 def checkout_success(request, order_id):
     """Display checkout success page and clear basket"""

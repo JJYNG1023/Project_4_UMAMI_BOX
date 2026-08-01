@@ -5,12 +5,14 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Product
 from .forms import ProductForm
 
+
 # Create your views here.
-"""Display the shop category landing page."""
+# Display the shop category landing page.
 def shop(request):
     return render(request, 'shop/shop.html')
 
-"""Display the selected category shop products"""
+
+# Display the selected category shop products
 def shop_items(request):
     products = Product.objects.filter(is_available=True)
 
@@ -19,7 +21,6 @@ def shop_items(request):
     dietary = request.GET.get('dietary')
     sort = request.GET.get('sort')
     query = request.GET.get('q')
-    
     category_content = {
         'all': {
             'title': 'All Products',
@@ -27,26 +28,35 @@ def shop_items(request):
         },
         'meal_kits': {
             'title': 'Meal Kits',
-            'description': 'Pre-portioned ingredients and signature sauces delivered together, making it easy to cook restaurant-inspired Asian meals at home.',
+            'description':  (
+                'Pre-portioned ingredients and signature sauces delivered together, '
+                'making it easy to cook restaurant-inspired Asian meals at home.'
+            ),
         },
         'ready_meals': {
             'title': 'Ready Meals',
-            'description': 'Freshly prepared Asian meals, ready to heat and enjoy in minutes. Perfect for busy days without compromising on flavour.',
+            'description': (
+                'Pre-portioned ingredients and signature sauces delivered '
+                'together, making it easy to cook restaurant-inspired Asian '
+                'meals at home.'
+            ),
         },
         'signature_sauces': {
             'title': 'Signature Sauces',
-            'description': 'Rich, flavour-packed homemade sauces crafted to bring authentic Asian taste to your everyday cooking.',
+            'description': (
+                'Rich, flavour-packed homemade sauces crafted to bring authentic '
+                'Asian taste to your everyday cooking.'
+            ),
         },
     }
 
     selected_category = category_content.get(category, category_content['all'])
-    
     # Category filter
     if category != 'all':
-        products=products.filter(category__name=category)
+        products = products.filter(category__name=category)
 
     # Cuisine filter using tags
-    if cuisine :
+    if cuisine:
         products = products.filter(tag__name=cuisine)
 
     # Cuisine dietary using tags
@@ -65,21 +75,19 @@ def shop_items(request):
             Q(tag__name__icontains=query) |
             Q(tag__friendly_name__icontains=query)
         ).distinct()
-        
     # Search Filter
-    if sort == 'cooking_time' :
+    if sort == 'cooking_time':
         products = products.order_by('cooking_time')
 
-    elif sort == 'price_low_high' :
+    elif sort == 'price_low_high':
         products = products.order_by('price')
 
-    elif sort == 'price_high_low' :
+    elif sort == 'price_high_low':
         products = products.order_by('-price')
 
     products = products.distinct()
-    
     context = {
-        'products' : products,
+        'products': products,
         'category': category,
         'category_title': selected_category['title'],
         'category_description': selected_category['description'],
@@ -91,11 +99,12 @@ def shop_items(request):
 
     return render(request, 'shop/shop_items.html', context)
 
-"""Display a single product detail page."""
+
+# Display a single product detail page.
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
 
-    ingredients_list=[]
+    ingredients_list = []
     if product.ingredients:
         ingredients_list = [item.strip() for item in product.ingredients.split(',')]
 
@@ -106,31 +115,29 @@ def product_detail(request, product_id):
         'ingredients_list': ingredients_list,
         'related_products': related_products,
     }
-    
     return render(request, 'shop/product_detail.html', context)
 
 
 def superuser_required(user):
     return user.is_authenticated and user.is_superuser
 
+
 @login_required
 @user_passes_test(superuser_required)
 def add_product(request):
     """add product to store"""
     if request.method == 'POST':
-        form = ProductForm(request.POST , request.FILES)
+        form = ProductForm(request.POST, request.FILES)
 
         if form.is_valid():
             product = form.save()
             messages.success(request, " Product has been addedd successfully ")
-            return redirect ('product_detail', product_id=product.id)
-        else: 
-            messages.error(request,"Failed to add product. Please check the form")
+            return redirect('product_detail', product_id=product.id)
+        else:
+            messages.error(request, "Failed to add product. Please check the form")
     else:
         form = ProductForm()
-    
     template = 'shop/product_form.html'
-    
     context = {
         'form': form,
         'page_title': 'Add Product',
@@ -181,6 +188,5 @@ def delete_product(request, product_id):
         messages.success(request, f'{product.name} has been removed from the shop.')
         return redirect('shop_items')
 
-    context = {'product': product,}
-    
+    context = {'product': product, }
     return render(request, 'shop/delete_product.html', context)

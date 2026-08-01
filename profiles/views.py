@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -9,7 +9,6 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from shop.models import Product, Category
 from .models import SavedMeal
-from checkout.models import Order
 
 
 # Create your views here.
@@ -18,12 +17,13 @@ from checkout.models import Order
 def profile(request):
     return render(request, 'profiles/profile.html')
 
+
 @login_required
 def edit_profile(request):
-    
+
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
 
-    if request.method =='POST':
+    if request.method == 'POST':
         if 'delete_account' in request.POST:
             user = request.user
             logout(request)
@@ -31,29 +31,27 @@ def edit_profile(request):
 
             messages.success(request, 'Your account has been deleted.')
             return redirect('account_login')
-        
         form = UserProfileForm(
             request.POST,
-            instance= user_profile,
+            instance=user_profile,
             user=request.user
         )
 
         if form.is_valid():
             form.save()
-            messages.success(request,'Profile updated successfully.')
+            messages.success(request, 'Profile updated successfully.')
             return redirect('edit_profile')
     else:
-        form = UserProfileForm (
-            instance = user_profile,
+        form = UserProfileForm(
+            instance=user_profile,
             user=request.user
         )
-
-
     context = {
         'form': form,
     }
 
     return render(request, 'profiles/edit_profile.html', context)
+
 
 @login_required
 def saved_meals(request):
@@ -89,7 +87,7 @@ def saved_meals(request):
 
 @login_required
 def toggle_saved_meal(request, product_id):
-    """Save or remove a product from the user's saved meals."""
+    # Save or remove a product from the user's saved meals.
 
     if request.method == 'POST':
         product = get_object_or_404(Product, id=product_id)

@@ -1,14 +1,14 @@
 from django import forms
 from .models import UserProfile
 
+
 class UserProfileForm(forms.ModelForm):
-    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'profile-form-input'})
-)
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'profile-form-input'}))
 
     class Meta:
         model = UserProfile
         # database fields appear in the form
-        fields = [            
+        fields = [
                     'full_name',
                     'email',
                     'phone_number',
@@ -18,7 +18,6 @@ class UserProfileForm(forms.ModelForm):
                     'town_or_city',
                     'country',
                     'delivery_notes',]
-        
         # controls the HTML input element used for each field
         widgets = {
                     'full_name': forms.TextInput(attrs={'class': 'profile-form-input'}),

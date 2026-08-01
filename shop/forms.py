@@ -8,6 +8,7 @@ SPICE_LEVEL_CHOICES = [
     ('Hot', 'Hot'),
 ]
 
+
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
