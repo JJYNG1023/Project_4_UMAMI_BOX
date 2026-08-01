@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         if (basket.length===0){
             basketItems.innerHTML = `
-            <div class="emptyBasketMessage">
+            <div class="emptyBasketMessage text-center fs-2">
                 <p> Your basket is empty </p>
             <div>
             `;
