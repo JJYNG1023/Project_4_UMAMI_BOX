@@ -1,5 +1,4 @@
 from django import forms
-from django_countries.widgets import CountrySelectWidget
 
 from .models import Order
 
@@ -48,7 +47,7 @@ class OrderForm(forms.ModelForm):
                 'class': 'profile-form-input',
                 'placeholder': 'Town or City',
             }),
-            'country': CountrySelectWidget(attrs={
+            'country': forms.Select(attrs={
                 'class': 'profile-form-input',
             }),
         }
