@@ -353,6 +353,7 @@ Main features include:
 The project uses a PostgreSQL database in production.
 [Click here to see the database and ERD diagram](https://miro.com/app/board/uXjVHIoRGtg=/?share_link_id=583598996823)
 
+
 Main database models as follows:
 ##### Product
 - Stores product information such as:
@@ -602,22 +603,144 @@ CSS features include:
 
 ### 3.00 Technologies used
 ##### Languages
+- Django (Python)
+- HTML
+- CSS
+- Javascript
+
 ##### Frameworks and Libraries
+- **Django**  
+  Main Python web framework for UMAMI BOX, it handles the website structure, views, URLs, models, forms, database connections, user authentication and admin panel.
+
+- **Bootstrap 5**
+  To create a responsive layout across mobile, tablet and desktop screens.
+  
+- **Bootstrap Icons** 
+  Visual icons such as the account icon, basket icon and social media icons in the footer.
+  
+- **Django Allauth**
+  Manage user account functionality, including signup, login, logout and email verification.
+  
+- **Django Crispy Forms**
+  To improve the structure of Django forms, making forms easier to manage.
+
+- **Crispy Bootstrap 5**
+   Forms are rendered using Bootstrap 5 styling and layout.
+  
+- **Stripe**  
+  Handles secure online payments during checkout. 
+  
 ##### Database
+- PostgreSQL
+- Neon PostgreSQL for production
+  
 ##### Tools
+- **Git**  
+  Version control, allowing changes to be tracked, committed and managed throughout development.
+- **GitHub**  
+  Stores the project repository online, manages the codebase and keeps a remote backup of the project.
+- **VS Code**  
+  Main code editor for writing and editing code files.
+- **Heroku CLI**  
+  Used to manage and deploy the project to Heroku from the terminal, including running migrations, checking logs and restarting the app.
+- **Stripe CLI**  
+  To test Stripe webhooks locally and confirm that payment events were being received correctly.
+- **Flake8**  
+  To check Python code quality and identify style issues such as unused imports, spacing errors, long lines and trailing whitespace.
+- **AWS S3**  
+  To host and serve static files in production, including CSS, JavaScript and static images.
+- **Cloudinary**  
+  To host and serve product/media images, ensuring product images load correctly in production.
+
 ##### Python Packages
+Main Python packages include:
+- Django
+- gunicorn
+- dj-database-url
+- psycopg2 / PostgreSQL database package
+- stripe
+- django-allauth
+- django-crispy-forms
+- crispy-bootstrap5
+- django-countries
+- cloudinary
+- django-cloudinary-storage
+- django-storages
+- boto3
+- whitenoise
+- flake8
 
 --- 
 
 ### 4.00 Testing
-##### Testing during development
-##### Testing after development
+Testing was carried out throughout development and after deployment.
 
-#### 4.01 Testing Must-Have stories from UX section of README.md
+Testing focused on:
+- Page loading
+- User navigation
+- Product display
+- Basket functionality
+- Checkout functionality
+- Stripe webhook responses
+- Email verification
+- User login/logout
+- Profile update
+- Admin product management
+- Heroku deployment
+- Static file loading
+- Media file loading
+- Responsive layout
+
+#### 4.01 Testing Must-Have stories
+[UMAMI BOX_Kanban Board](https://github.com/users/JJYNG1023/projects/6/views/1)
+
+|Must-have user story | Test content | Result |
+| --- | --- | --- |
+| Browse products | Opened the shop page and confirmed products displayed correctly | Passed |
+| Filter products | Used product filtering options for category, cuisine and dietary filters | Passed |
+| Search products | Used the search bar to search for product names and descriptions | Passed |
+| View product details | Opened product detail pages from the shop | Passed |
+| Add products to basket | Added products from the product detail page | Passed |
+| Update basket quantity | Increased and decreased product quantity in the basket | Passed |
+| Remove basket items | Removed items from the basket | Passed |
+| Checkout securely | Completed checkout using Stripe test card | Passed |
+| Create an account | Signed up using a new email address | Passed |
+| Verify email | Received verification email and confirmed account | Passed |
+| Login and view profile | Logged in and confirmed redirect to profile page | Passed |
+| Edit profile | Logged in and edit profile details | Passed |
+| Save favourite meals |  Used favourite button and checked saved meal behaviour | Passed |
+| Add and edit products | Logged in as superuser and tested product management | Passed |
+
 
 #### 4.02 Functionality Test
+| Feature | Test | Expected Result | Expected Result |
+| --- | --- | --- | --- |
+| Home page | Open home page | Page loads correctly | Pass |
+| Navbar | Click navigation links | Correct pages open | Pass |
+| Shop page | Open shop | Products display | Pass |
+| Product image | View product cards | Cloudinary images load | Pass |
+| Search | Search product keyword | Matching products display | Pass |
+| Filters |  Apply filters | Filtered products display | Pass |
+| Product detail | Open product | Product detail page loads | Pass |
+| Quantity selector | Increase/decrease quantity | Quantity updates correctly | Pass |
+| Add to basket | Add product | Product appears in basket | Pass |
+| Basket total | Add items | Subtotal and total update | Pass |
+| Remove item | Remove basket item | Item removed from basket | Pass |
+| Checkout page | Click checkout | Checkout page loads | Pass |
+| Stripe payment | Use test card | Payment succeeds | Pass |
+| Stripe webhook | Complete test payment | Webhook returns 200 | Pass |
+| Order status | Check admin | Order marked as paid | Pass |
+| Confirmation email | Complete payment | Email sends | Pass |
+| Signup | Register account | Verification email sent | Pass |
+| Email confirmation | Click email link | Account confirmed | Pass |
+| Login | Login user | Redirects to profile | Pass |
+| Logout | Logout user | Redirects to login/home flow | Pass |
+| Profile update | Edit profile | Details save | Pass |
+| Footer | Open short page | Footer stays lower/bottom | Pass |
+| Messages | Trigger message | Message displays and disappears | Pass |
 
 #### 4.03 Testing with HTML Validator
+HTML validation using the W3C Markup Validation Service.
 
 #### 4.04 Testing with CSS Validator
 
