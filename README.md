@@ -912,17 +912,47 @@ Accessibility, best practices and SEO scores were strong. Future improvements wo
 ##### Basket
 | Performance | Accessibility | Best Practices | SEO |
 | --- | --- | --- | --- |
-| 74 | 96 | 96 | 91 |
+| 55 | 86 | 96 | 91 |
+
+![lighthouse_basket](docs/readme_testing/lighthouse_basket.png)
+![lighthouse_basket](docs/readme_testing/lighthouse_basket_insight.png)
+
+Revised the following code in Basket.js :
+1. Removed console/debug code 
+   ```
+   console.log("basket.js loaded");
+   console.log("basketItems container not found");
+   console.log("basket:", basket);
+   console.count("remove clicked");
+   ```
+2. Fixed spacing and Flake8-style JavaScript formatting
+3. Fixed empty basket HTML closing tag
+4. Added image accessibility and performance improvements
+   ```
+   <img
+    src="${item.image}"
+    class="basket-product-image"
+    alt="${item.name}"
+    loading="lazy"  - reduces image quality for faster loading 
+    width="300"     - limits image size
+    height="300"    - limits image size
+    >
+   ```
+5. Changed basket product heading from h3 to h2
 
 ##### Checkout
 | Performance | Accessibility | Best Practices | SEO |
 | --- | --- | --- | --- |
-| 74 | 96 | 96 | 91 |
+| 95 | 90 | 96 | 90 |
+
+![lighthouse_checkout](docs/readme_testing/lighthouse_checkout.png)
 
 ##### Profile
 | Performance | Accessibility | Best Practices | SEO |
 | --- | --- | --- | --- |
-| 74 | 96 | 96 | 91 |
+| 94 | 100 | 96 | 90 |
+
+![lighthouse_profile](docs/readme_testing/lighthouse_account.png)
 
 ---
 
