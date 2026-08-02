@@ -856,6 +856,29 @@ Remove additional "p" end tag
 
 
 #### 4.04 Testing with CSS Validator
+##### base.css
+![base](docs/readme_testing/css_base_validator.png)
+No errors found
+
+##### shop.css
+![shop](docs/readme_testing/css_shop_validator.png)
+No errors found
+
+##### basket.css
+![basket](docs/readme_testing/css_basket_validator.png)
+No errors found
+
+##### checkout.css
+![css_checkout_validator](docs/readme_testing/css_checkout_validator.png)
+No errors found
+
+##### profiles.css
+![shop](docs/readme_testing/css_profiles_validator.png)
+No errors found
+
+##### account.css
+![css_account_validator](docs/readme_testing/css_account_validator.png)
+No errors found
 
 #### 4.05 Testing with Lighthouse
 
