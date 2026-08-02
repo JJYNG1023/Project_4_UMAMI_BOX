@@ -352,6 +352,7 @@ Main features include:
 #### 2.01 Database Schema
 The project uses a PostgreSQL database in production.
 [Click here to see the database and ERD diagram](https://miro.com/app/board/uXjVHIoRGtg=/?share_link_id=583598996823)
+
 Main database models as follows:
 ##### Product
 - Stores product information such as:
@@ -417,16 +418,24 @@ Key HTML features include:
 - Profile form
 - Static content pages
 
-The templates use semantic sections where possible and Bootstrap classes for consistent layout.
-
 #### 2.03 Bootstrap Features
 Bootstrap 5 is used throughout the project.
 
 Bootstrap features include:
 - Responsive container layout
 - Row and column grid system
-- Navbar layout
+  Example taken from index.html indicates a responsive grid system:
+  ```
+  <div class="col-12 col-md-6 col-lg-3">
+  ```
+- Navbar layout template 
 - Buttons
+  Example taken from index.html:
+  ```
+  <div class="d-flex justify-content-center pt-4 mb-5">
+            <a href="{% url 'shop_items' %}" class="btn btn-dark -==- px-4 py-2 text-uppercase">view all</a></div>
+    </div>
+  ```
 - Form spacing
 - Alerts
 - Flex utilities
@@ -441,15 +450,154 @@ Custom CSS is used alongside Bootstrap.
 CSS features include:
 - Brand colours 
 - Custom product cards
-- Basket styling
+ ```
+  .product-card {
+      background-color: var(--color-card);
+      border: 1px solid var(--color-text);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      min-height: 150px;
+  }
+  
+  .product-image-wrapper {
+      width: 40%;
+      flex-shrink: 0;
+      border-radius: var(--radius-sm);
+  }
+  
+  .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+  }
+  
+  .product-card-content {
+      width: 65%;
+      padding: 0.8rem;
+  }
+  
+  .product-title {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+  }
+  
+  .product-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+  }
+  
+  .product-price {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+  }
+  
+  .product-add-btn {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--color-text);
+      font-size: 1.5rem;
+      line-height: 1;
+  }
+  
+  .product-add-btn:hover {
+      color: var(--color-accent);
+  }
+  
+  .order-btn {    
+      background-color: var(--color-white);
+      color: var(--color-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      font-weight: 500;
+      margin-left: 1.5em;
+      margin-right: 1.5em;
+  }  
+  ```
+- Basket styling: [basket.css](basket/static/basket/css/basket.css)
 - Button styling
+  ```
+   /* Border radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1.25rem;
+    --radius-pill: 999px;
+  ```
 - Footer styling
-- Account card styling
-- Shop page styling
+  ```
+  .bg-umami-footer {
+      background-color: var(--color-primary);
+  }
+  
+  .footer-logo {
+      font-family: var(--font-logo);
+      font-size: var(--font-logo-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--color-light-text);
+  }
+  
+  .footer-heading {
+      color: var(--color-light-text);
+      font-size: var(--font-subheading-2-size);
+      font-weight: 700;
+  }
+  
+  .footer-link-icon{
+      color: var(--color-light-text);
+      padding: 0 15px;
+      font-size: var(--icon-size-1-5);
+  }
+  
+  .footer-link {
+      color: var(--color-light-text);
+      font-size: var(--font-annotation-size);
+      text-decoration: none;
+      opacity: 0.8;
+  }
+  
+  .footer-link:hover {
+      color: var(--color-secondary);
+      opacity: 1;
+      text-decoration: none;
+  }
+  ```
+- Shop page styling [Shop.css](shop/static/shop/css/shop.css)
 - Responsive image presentation
-- Toast/pop-up message styling
 - Consistent spacing and typography
-
+  ```
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+      font-family: var(--font-heading);
+      color: var(--color-heading);
+  }
+  
+  .fs-1,
+  .fs-2,
+  .fs-3,
+  .fs-4,
+  .fs-5,
+  .fs-6,
+  .fs-7 {
+      font-family: var(--font-heading);
+      color: var(--color-heading);
+  }
+  
+  
+  p{
+      font-size: var(--font-body-size);
+  }
+  ```
 ---
 
 ### 3.00 Technologies used
