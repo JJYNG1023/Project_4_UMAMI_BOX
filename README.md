@@ -741,6 +741,119 @@ Testing focused on:
 
 #### 4.03 Testing with HTML Validator
 HTML validation using the W3C Markup Validation Service.
+To avoid the HTML validator reading the Django templates, website URL links are directly used.
+
+**Home**
+![Home validator](docs/readme_testing/html_home_validator.png)
+Home HTML was fine. No errors occurred during validation; however, there are a few base.html and nav-bar.html errors, and the corrections are below.
+1. Revise code for nav-bar.html : 
+```
+<div class="modal fade"
+    id="mobileNavMenu"
+    tabindex="-1"
+    aria-labelledby="mobileNavMenuLabel"
+    aria-hidden="true"
+    role="dialog">
+```
+
+2. Revise code for footer section in base.html : 
+```
+<div class="mt-auto">
+    {% include 'includes/footer.html' %}
+</div>
+```
+
+3. Removed <br> for mobile nav-bar
+
+
+**Shop**
+![shop](docs/readme_testing/html_shop_validator.png)
+1. Remove <button> and use a href instead: 
+```
+Original code:
+<button class="btn btn-outline-dark">
+    <a href="{% url 'shop_items' %}?category=meal_kits" class="text-dark text-decoration-none">
+        Explore Meal Kits
+    </a>
+</button>
+
+Revised Fixes: 
+<a href="{% url 'shop_items' %}?category=meal_kits" class="btn btn-light px-4 py-2 mt-1">
+Explore More
+</a>
+```
+
+**Product detail**
+![product_detail](docs/readme_testing/html_product_detail_validator.png)
+No issues detected
+
+**Basket**
+![basket](docs/readme_testing/html_basket_validator.png)
+No issues detected
+
+**Checkout**
+![Checkout](docs/readme_testing/html_checkout_validator.png)
+
+1. Update checkout html
+   ```
+   Original code :
+   <form method="POST" action="">↩
+
+   Revised fixes:
+   <form method="POST" >
+   ```
+   
+2. Remove CountrySelectWidget in forms.py
+   ```
+   Original code :
+   'country': CountrySelectWidget(attrs={
+    'class': 'profile-form-input',
+   }),
+
+   Revised fixes:
+   'country': forms.Select(attrs={
+    'class': 'profile-form-input',
+   ```
+
+**Login**
+![Login](docs/readme_testing/html_login_validator.png)
+No errors detected, only minor warning issues that have been ignored.
+
+**Signup**
+![Signup](docs/readme_testing/html_signup_validator.png)
+No errors detected, only minor warning issues that have been ignored.
+
+**Profile**
+![Profile](docs/readme_testing/html_basket_validator_validator.png)
+No issues detected
+
+**How It Works**
+![How It Works](docs/readme_testing/html_how-it-works_validator.png)
+No issues detected for how-it-works.html; however, there is a footer issue which has been resolved.
+```
+Original code:
+<h3 class="footer-logo mb-3 fs-5">UMAMI BOX</h3>
+
+Revised fix:
+<p class="footer-logo mb-3 fs-5">UMAMI BOX</p>
+```
+
+**Sustainability**
+![Sustainability](docs/readme_testing/html_sustainability_validator.png)
+Correct heading size
+
+```
+Original code:
+<h3>Reusable Ice Packs</h3>
+
+Revised fix:
+<h2 class="fs-5">Reusable Ice Packs</h2>
+```
+
+**About**
+![About](docs/readme_testing/html_about-us_validator.png)
+Remove additional "p" end tag
+
 
 #### 4.04 Testing with CSS Validator
 
