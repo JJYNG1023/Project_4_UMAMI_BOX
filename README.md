@@ -940,6 +940,10 @@ Revised the following code in Basket.js :
    ```
 5. Changed basket product heading from h3 to h2
 
+After the revision above, Accessibility was improved to 100. Performance remained lower due to large product images served from Cloudinary and third-party resources. Future improvements would include further image compression.
+
+![lighthouse_basket](docs/readme_testing/lighthouse_basket_revised.png)
+
 ##### Checkout
 | Performance | Accessibility | Best Practices | SEO |
 | --- | --- | --- | --- |
