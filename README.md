@@ -881,6 +881,48 @@ No errors found
 No errors found
 
 #### 4.05 Testing with Lighthouse
+##### Home
+| Performance | Accessibility | Best Practices | SEO |
+| --- | --- | --- | --- |
+| 74 | 96 | 96 | 91 |
+
+The website has heavily loaded images, resulting in delays and slightly poor performance.
+![lighthouse_home](docs/readme_testing/lighthouse_home.png)
+![lighthouse_home](docs/readme_testing/lighthouse_home_insight.png)
+
+
+##### Shop
+| Performance | Accessibility | Best Practices | SEO |
+| --- | --- | --- | --- |
+| 56 | 100 | 96 | 91 |
+The shop page scored lower for performance due to multiple product images.
+Accessibility, best practices and SEO scores were strong. Future improvements would include finding an alternative method for image compression, such as WebP image formats.
+
+![lighthouse_home](docs/readme_testing/lighthouse_shop.png)
+![lighthouse_home](docs/readme_testing/lighthouse_shop_insight.png)
+
+##### Product detail
+| Performance | Accessibility | Best Practices | SEO |
+| --- | --- | --- | --- |
+| 81 | 100 | 96 | 91 |
+
+![lighthouse_product-detail](docs/readme_testing/lighthouse_product-detail.png)
+![lighthouse_product-detail](docs/readme_testing/lighthouse_product-detail_insight.png)
+
+##### Basket
+| Performance | Accessibility | Best Practices | SEO |
+| --- | --- | --- | --- |
+| 74 | 96 | 96 | 91 |
+
+##### Checkout
+| Performance | Accessibility | Best Practices | SEO |
+| --- | --- | --- | --- |
+| 74 | 96 | 96 | 91 |
+
+##### Profile
+| Performance | Accessibility | Best Practices | SEO |
+| --- | --- | --- | --- |
+| 74 | 96 | 96 | 91 |
 
 ---
 
