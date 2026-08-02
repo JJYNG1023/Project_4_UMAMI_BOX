@@ -48,11 +48,7 @@
 </header>
 
 <!-- Mobile Menue Modal -->
-<div class="modal fade" 
-    id="mobileNavMenu" 
-    tabindex="-1" 
-    aria-labelledby="mobileNavMenuLabel" 
-    aria-hidden="true">
+<div class="modal fade" id="mobileNavMenu" tabindex="-1" aria-labelledby="mobileNavMenuLabel" role="dialog">
     <div class="modal-dialog modal-fullscreen-lg-down m-0">
         <div class="modal-content nav-modal-content">
             <div class="modal-body px-4">
@@ -77,8 +73,6 @@
                         <li>
                             <a class="nav-modal-link" href="#">About</a>
                         </li>
-
-                        <br>
 
                         <li>
                         {% if request.user.is_authenticated %}
