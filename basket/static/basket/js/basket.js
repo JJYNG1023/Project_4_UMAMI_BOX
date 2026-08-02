@@ -1,13 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("basket.js loaded");
 
     const basketItems = document.getElementById("basketItems");
     const basketSubTotal = document.getElementById("basketSubTotal");
-    let basketDeliveryFee= document.getElementById("basketDeliveryFee");
+    const basketDeliveryFee = document.getElementById("basketDeliveryFee");
     const basketTotal = document.getElementById("basketTotal");
 
     if (!basketItems) {
-        console.log("basketItems container not found");
         return;
     }
 
@@ -24,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderBasketItems () {
         const basket = getBasket()
 
-        console.log("basket:",basket);
-
         /* Empty basket message */
         basketItems.innerHTML = "";
         
@@ -33,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
             basketItems.innerHTML = `
             <div class="emptyBasketMessage text-center fs-2">
                 <p> Your basket is empty </p>
-            <div>
+            </div>
             `;
 
             if(basketSubTotal){
@@ -57,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 `   
                     <div class="basket-product-image-wrapper">
                         ${item.image
-                            ? `<img src="${item.image}" class="basket-product-image" alt="${item.name}">`
+                            ? `<img src="${item.image}" class="basket-product-image" alt="${item.name}" loading="lazy"
+                                width="300" height="300">`
                             : `<div class="basket-image-placeholder">image</div>`
                         }
                     </div>
@@ -66,13 +63,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="basket-product-content d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start">
                             <a href="${item.url || '#'}" class="text-decoration-none">
-                                <h3 class="fs-6 mb-2">
+                                <h2 class="fs-6 mb-2">
                                     ${ item.name }
-                                </h3>
+                                </h2>
                             </a>
                         
-                            <button class="btn basket-remove-btn remove-basket-item" data-product-id="${item.id}" type="button">
-                                <i class="bi bi-x-lg"></i>
+                            <button class="btn basket-remove-btn remove-basket-item"
+                            data-product-id="${item.id}"
+                            type="button"
+                            aria-label="Remove ${item.name} from basket">
+                                <i class="bi bi-x-lg" aria-hidden="true"></i>
                             </button>
                         </div>
                         
@@ -85,9 +85,20 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="container mt-2 mb-0"> 
                             <div class="row">
                                 <div class="basket-quantity-control d-inline-flex align-items-center col-6">
-                                    <button class="btn basket-quantity-btn remove-basket-item" data-product-id="${item.id}" type="button">-</button>
+                                    <button class="btn basket-quantity-btn
+                                            remove-basket-item"
+                                            data-product-id="${item.id}"
+                                            type="button"
+                                            aria-label="Decrease quantity for ${item.name}">
+                                            -
+                                            </button>
                                     <span class="basket-quantity-number">${item.quantity}</span>
-                                    <button class="btn basket-quantity-btn add-basket-item" data-product-id="${item.id}" type="button">+</button>
+                                    <button class="btn basket-quantity-btn add-basket-item"
+                                            data-product-id="${item.id}"
+                                            type="button"
+                                            aria-label="Increase quantity for ${item.name}">
+                                            +
+                                            </button>
                                 </div>
                                 <div class="col-6 mt-1 text-end">
                                     <p class="fs-6">
@@ -118,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!removeButton && !addButton) {
                 return;
             }
-            console.count("remove clicked")
 
             event.preventDefault();
             

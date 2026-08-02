@@ -66,6 +66,17 @@
     color: var(--color-text);
 }
 
+.basket-quantity-btn,
+.basket-remove-btn {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.basket-quantity-number {
+    min-width: 32px;
+    text-align: center;
+}
+
 /* ---------------------------------
 Small - midscreen view
 ------------------------------------*/
