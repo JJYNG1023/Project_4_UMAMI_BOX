@@ -961,19 +961,203 @@ After the revision above, Accessibility was improved to 100. Performance remaine
 ---
 
 ### 5.00 Deployment
+The project repository is hosted on GitHub, and the live Django application is deployed on Heroku.
+GitHub is used for version control and remote code storage, while Heroku is used to host the live production website. 
+The production database is hosted with Neon PostgreSQL, static files are served through AWS S3, product images are served through Cloudinary, payments are handled by Stripe, and production emails are sent using SMTP email settings.
+
+Live site: [UMAMI BOX](https://umami-box-7c0c8877d77c.herokuapp.com/)
+Repository: [Project_4_UMAMI_BOX](https://github.com/JJYNG1023/Project_4_UMAMI_BOX)
+
+The deployment workflow as follows:
+1. Changes are made locally in the VS Code editor
+2. Changes are committed using Git
+3. The committed code is pushed to GitHub
+4. The same committed code is pushed to Heroku
+5. Heroku build and releases the live web application
+6. Database migrations are run on Heroku when needed
+7. The live site is tested before and after deployment
+
+#### GitHub upload process
+The project was uploaded to GitHub using Git and the upload process as follows: 
+1. After making local changes, the files were checked using
+git status
+
+2. The changed files were added using:
+git add .
+
+3. The changes were committed using:
+git commit -m "Deployment update"
+
+4. The local commit was pushed to the GitHub repository with:
+git push
+
+
+#### Heroku deployment process
+The live site is deployed to Heroku by pushing the local main branch to the Heroku remote, and step as follows:
+
+1. The committed project was pushed to Heroku using:
+git push heroku main
+
+2. After deployment, migrations were run on the Heroku app:
+heroku run python manage.py migrate -a umami-box
+
+3. Restart the app using:
+heroku restart -a umami-box
+
+4. Check Heroku logs using:
+heroku logs --tail -a umami-box
+
+Further information guides can be found on [heroku website](https://devcenter.heroku.com/articles/git)
+
 #### 5.01 Deployment Progress Completed
+The following are the steps taken to deploy the current project:
+
+1. Created the GitHub repository named Project_4_UMAMI_BOX
+2. Set up the Python development environment
+3. Added a .gitignore file
+4. Added SQL database configuration
+5. Added Cloudinary database configuration
+6. Updated env.py and settings.py
+7. Installed required plugins using requirements.txt
+8. Installed Gunicorn (for heroku)
+9. Created the main Django app called UMAMI_BOX
+10. Linked the GitHub repository to Heroku
+11. Added the secret key and SQL database key to Heroku Config Vars
+12. Make migration on changes in models.py and creation of new apps
+13. Temporarily added DISABLE_COLLECTSTATIC=1 on Heroku
+14. Committed all changes to GitHub
+15. Remove the DISABLE_COLLECTSTATIC=1 on Heroku
+16. Configured AWS S3 for static files
+17. Created the Stripe webhook endpoint.
+18. Added the Stripe webhook signing secret
+19. Tested Stripe payment and webhook responses
+20. Configured production email settings.
+21. Tested email sending
+22. Fixed login redirect behaviour
+23. Styled email verification pages
+24. Fixed footer positioning
+25. Ran Flake8 checks
+26. Fixed HTML validator issues
+27. Tested the live Heroku site after deployment
+
+#### Steps to deployment commands:
+1. python manage.py check
+2. flake8 --config=.flake8 .
+3. git add .
+4. git commit -m "Deployment update"
+5. git push
+6. git push heroku main
+7. heroku run python manage.py migrate -a umami-box
+8. heroku restart -a umami-box
 
 #### 5.02 How to run this project locally
+1. Clone the repository:
+git clone https://github.com/JJYNG1023/Project_4_UMAMI_BOX.git
+cd Project_4_UMAMI_BOX
+
+2. Create a virtual environment:
+python -m venv .venv
+
+3. Activate the virtual environment on Windows PowerShell:
+.venv\Scripts\activate
+
+4. Install requirements:
+pip install -r requirements.txt
+
+5. Create an env.py file beside manage.py:
+import os
+
+```
+os.environ.setdefault("DEVELOPMENT", "True")
+os.environ.setdefault("DEBUG", "True")
+os.environ.setdefault("SECRET_KEY", "your-local-secret-key")
+os.environ.setdefault("DATABASE_URL", "your-database-url")
+os.environ.setdefault("STRIPE_PUBLIC_KEY", "your-stripe-public-key")
+os.environ.setdefault("STRIPE_SECRET_KEY", "your-stripe-secret-key")
+os.environ.setdefault("STRIPE_WH_SECRET", "your-stripe-webhook-secret")
+```
+
+6. Run migrations:
+python manage.py migrate
+
+7. Create a superuser:
+python manage.py createsuperuser
+
+8. Run the server:
+python manage.py runserver
+
+9. Local site:
+http://127.0.0.1:8000/
+
 
 ---
 
 ### 6.00 Security
+Security measures involve:
+- Store secret keys in environment variables
+- Exclude env.py from GitHub
+- Set DEBUG to false
+- ALLOWED_HOSTS configured
+- Use Stripe for secure payment
+- Use Stripe webhook
+- CSRF protection for forms
+- Django Allauth for authentication
+- Email verification for real users
+- Product management restricted to superusers
+- AWS Key stored as Heroku config variables
+- Database URL stored as an environment variable
+- Cloudinary URL stored as an environment variable
+
+As a whole, no secret keys, database URLs, Stripe keys, AWS keys, Cloudinary URLs or email passwords are committed to GitHub or visible to the public
 
 ---
 
 ### 7.00 Credit
-#### 7.01 Content
-#### 7.02 Media
-#### 7.03 Code
+
+Resources used:
+- Django documentation
+- Bootstrap documentation
+- Stripe documentation
+- Django Allauth documentation
+- Heroku documentation
+- AWS S3 documentation
+- Cloudinary documentation
+- Code Institute project guidance
+- ChatGPT
+- Google AI search model
+
+#### 7.01 Content and Media
+All product images, sustainability icons and visual media used in the project were generated through ChatGPT. 
+These images were created specifically for the UMAMI BOX project and were used to support the branding, product presentation and visual identity of the website.
+
+The product data was also created for project demonstration purposes. I had created one original product in JSON format and used ChatGPT to generate a larger sample product dataset of 60 e-commerce products based on the same structure. This was used to populate the shop with realistic meal kits, ready meals and sauce products for testing and presentation.
+
+#### 7.02 Code
+External documentation and resources were used to support development, including:
+
+- Django documentation for models, views, forms, templates and admin functionality.
+- Bootstrap documentation for responsive layout, grid structure, spacing, buttons and alerts.
+- Django Allauth documentation for account registration, login, logout and email verification.
+- Stripe documentation for checkout payment integration and webhook handling.
+- Heroku documentation for deployment and production configuration.
+- AWS S3 documentation for static file storage.
+- Cloudinary documentation for product and media image hosting.
+- Flake8 documentation for Python code formatting and linting guidance.
+
+Some coding issues were resolved with guidance from Code Institute support, documentation, debugging and iterative testing.
+
+#### 7.03 Future Improvements
+Future improvements could include:
+- Customer product reviews
+- Active discount codes
+- Subscription meal kits
+- Stock control
+- Delivery calendar restrictions
+- Newsletter signup
+- Stronger Cloudinary image optimisation for faster and more responsive web
+
+
 #### 7.04 Acknowledgements
-Thank you to the Code Institute tutors for guidance throughout the project development process.
+I would also like to acknowledge the support of online documentation, learning resources and debugging tools that helped with Django, Stripe, Heroku, AWS S3, Cloudinary and deployment troubleshooting.
+
+Special thanks to the Code Institute tutors for guidance throughout the project development process.
